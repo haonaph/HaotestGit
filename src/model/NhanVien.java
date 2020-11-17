@@ -26,10 +26,12 @@ public class NhanVien {
     private String sdt1;
     private String Anh;
     private String GhiChu;
+    private String MaPB;
+    private int ChucVu;
 
     @Override
     public String toString() {
-        return "NhanVien{" + "MaNV=" + MaNV + ", TenNV=" + TenNV + ", DiaChi=" + DiaChi + ", sdt=" + sdt + ", NgaySinh=" + NgaySinh + ", NoiSinh=" + NoiSinh + ", CMND=" + CMND + ", GioiTinh=" + GioiTinh + ", email=" + email + ", TinhTrangHonNhan=" + TinhTrangHonNhan + ", TrangThaiLamViec=" + TrangThaiLamViec + ", sdt1=" + sdt1 + ", Anh=" + Anh + ", GhiChu=" + GhiChu + '}';
+        return "NhanVien{" + "MaNV=" + MaNV + ", TenNV=" + TenNV + ", DiaChi=" + DiaChi + ", sdt=" + sdt + ", NgaySinh=" + NgaySinh + ", NoiSinh=" + NoiSinh + ", CMND=" + CMND + ", GioiTinh=" + GioiTinh + ", email=" + email + ", TinhTrangHonNhan=" + TinhTrangHonNhan + ", TrangThaiLamViec=" + TrangThaiLamViec + ", sdt1=" + sdt1 + ", Anh=" + Anh + ", GhiChu=" + GhiChu + ", MaPB=" + MaPB + ", ChucVu=" + ChucVu + '}';
     }
 
     public String getMaNV() {
@@ -143,4 +145,21 @@ public class NhanVien {
     public void setGhiChu(String GhiChu) {
         this.GhiChu = GhiChu;
     }
+
+    public String getMaPB() {
+        return MaPB;
+    }
+
+    public void setMaPB(String MaPB) {
+        this.MaPB = MaPB;
+    }
+
+    public int getChucVu() {
+        return ChucVu;
+    }
+
+    public void setChucVu(int ChucVu) {
+        this.ChucVu = ChucVu;
+    }
+    
 }
