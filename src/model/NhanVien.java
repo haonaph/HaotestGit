@@ -14,6 +14,7 @@ import java.util.Date;
 public class NhanVien {
     private String MaNV;
     private String TenNV;
+    private String MatKhau;
     private String DiaChi;
     private String sdt;
     private Date NgaySinh;
@@ -27,12 +28,7 @@ public class NhanVien {
     private String Anh;
     private String GhiChu;
     private String MaPB;
-    private int ChucVu;
-
-    @Override
-    public String toString() {
-        return "NhanVien{" + "MaNV=" + MaNV + ", TenNV=" + TenNV + ", DiaChi=" + DiaChi + ", sdt=" + sdt + ", NgaySinh=" + NgaySinh + ", NoiSinh=" + NoiSinh + ", CMND=" + CMND + ", GioiTinh=" + GioiTinh + ", email=" + email + ", TinhTrangHonNhan=" + TinhTrangHonNhan + ", TrangThaiLamViec=" + TrangThaiLamViec + ", sdt1=" + sdt1 + ", Anh=" + Anh + ", GhiChu=" + GhiChu + ", MaPB=" + MaPB + ", ChucVu=" + ChucVu + '}';
-    }
+    private boolean ChucVu;
 
     public String getMaNV() {
         return MaNV;
@@ -48,6 +44,14 @@ public class NhanVien {
 
     public void setTenNV(String TenNV) {
         this.TenNV = TenNV;
+    }
+
+    public String getMatKhau() {
+        return MatKhau;
+    }
+
+    public void setMatKhau(String MatKhau) {
+        this.MatKhau = MatKhau;
     }
 
     public String getDiaChi() {
@@ -154,12 +158,19 @@ public class NhanVien {
         this.MaPB = MaPB;
     }
 
-    public int getChucVu() {
+    public boolean isChucVu() {
         return ChucVu;
     }
 
-    public void setChucVu(int ChucVu) {
+    public void setChucVu(boolean ChucVu) {
         this.ChucVu = ChucVu;
     }
+
+  
+    @Override
+    public String toString() {
+        return "NhanVien{" + "MaNV=" + MaNV + ", TenNV=" + TenNV + ", MatKhau=" + MatKhau + ", DiaChi=" + DiaChi + ", sdt=" + sdt + ", NgaySinh=" + NgaySinh + ", NoiSinh=" + NoiSinh + ", CMND=" + CMND + ", GioiTinh=" + GioiTinh + ", email=" + email + ", TinhTrangHonNhan=" + TinhTrangHonNhan + ", TrangThaiLamViec=" + TrangThaiLamViec + ", sdt1=" + sdt1 + ", Anh=" + Anh + ", GhiChu=" + GhiChu + ", MaPB=" + MaPB + ", ChucVu=" + ChucVu + '}';
+    }
     
+
 }

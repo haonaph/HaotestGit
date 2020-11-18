@@ -5,6 +5,12 @@
  */
 package Form;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.Timer;
+
 /**
  *
  * @author viphn
@@ -13,8 +19,24 @@ public class Home extends javax.swing.JFrame {
 
     public Home() {
         initComponents();
+        ints();
     }
 
+    private void ints() {
+        this.setLocationRelativeTo(null);
+//        this.setIconImage(XImage.APP_ICON);
+        new ChaoJDialog(this, true).setVisible(true);
+        new DangNhapJDialog(this, true).setVisible(true);
+        new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Date now = new Date();
+                SimpleDateFormat formats = new SimpleDateFormat("hh:mm:ss a");
+                String text = formats.format(now);
+                lblDongHo.setText(text);
+            }
+        }).start();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,7 +90,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(pnlTrangThaiLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 662, Short.MAX_VALUE)
                 .addComponent(lblDongHo, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
@@ -81,10 +103,12 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(lblDongHo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        lblNoiDung.setBackground(new java.awt.Color(204, 204, 204));
+        desktopPane.setBackground(new java.awt.Color(255, 255, 255));
+
+        lblNoiDung.setBackground(new java.awt.Color(255, 255, 255));
         lblNoiDung.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNoiDung.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/HR18.jpg"))); // NOI18N
-        lblNoiDung.setOpaque(true);
+        lblNoiDung.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/anhpoly2.PNG"))); // NOI18N
+        lblNoiDung.setInheritsPopupMenu(false);
 
         desktopPane.setLayer(lblNoiDung, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -92,11 +116,13 @@ public class Home extends javax.swing.JFrame {
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNoiDung, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(desktopPaneLayout.createSequentialGroup()
+                .addComponent(lblNoiDung, javax.swing.GroupLayout.PREFERRED_SIZE, 1130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNoiDung, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblNoiDung, javax.swing.GroupLayout.DEFAULT_SIZE, 845, Short.MAX_VALUE)
         );
 
         toolBar.setRollover(true);
@@ -192,17 +218,17 @@ public class Home extends javax.swing.JFrame {
 
     private void btHethongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHethongActionPerformed
         // TODO add your handling code here:
-  
+
     }//GEN-LAST:event_btHethongActionPerformed
 
     private void btThongkeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThongkeActionPerformed
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_btThongkeActionPerformed
 
     private void btCanhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCanhanActionPerformed
         // TODO add your handling code here:
-      
+
     }//GEN-LAST:event_btCanhanActionPerformed
 
     /**
