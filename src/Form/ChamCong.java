@@ -38,14 +38,12 @@ public class ChamCong extends javax.swing.JInternalFrame {
             sotrang = count / 2 + 1;
         }
         load(1);
-        number.setText(sotrang + "");
+        number.setText("1/" + sotrang);
         jTable1.setAutoCreateRowSorter(true);
         String[] a = {
             "C", "CN", "V", "P", "O"
         };
         JComboBox c = new JComboBox(a);
-        jTable1.getColumnModel().getColumn(2).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(3).setCellEditor(new DefaultCellEditor(c));
         jTable1.getColumnModel().getColumn(4).setCellEditor(new DefaultCellEditor(c));
         jTable1.getColumnModel().getColumn(5).setCellEditor(new DefaultCellEditor(c));
         jTable1.getColumnModel().getColumn(6).setCellEditor(new DefaultCellEditor(c));
@@ -75,19 +73,20 @@ public class ChamCong extends javax.swing.JInternalFrame {
         jTable1.getColumnModel().getColumn(30).setCellEditor(new DefaultCellEditor(c));
         jTable1.getColumnModel().getColumn(31).setCellEditor(new DefaultCellEditor(c));
         jTable1.getColumnModel().getColumn(32).setCellEditor(new DefaultCellEditor(c));
+        jTable1.getColumnModel().getColumn(33).setCellEditor(new DefaultCellEditor(c));
+        jTable1.getColumnModel().getColumn(34).setCellEditor(new DefaultCellEditor(c));
     }
 
     public void load(long trang) {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         try {
-            long so = this.trang * 2 - 2;
+            long so = trang * 2 - 2;
             String sql = "select top 2 CHAMCONG.*, NHANVIEN.HoTen FROM CHAMCONG\n"
                     + "inner join NHANVIEN on CHAMCONG.MaNV = NHANVIEN.MaNV where CHAMCONG.MaNV not in (select top " + so + " CHAMCONG.MaNV FROM CHAMCONG)";
             ResultSet rs = JdbcHelper.executeQuery(sql);
             while (rs.next()) {
                 Object[] row = {
-                    rs.getInt("MaChamCong"),
                     rs.getString("MaNV"), rs.getString("HoTen"), rs.getInt("Thang"), rs.getInt("Nam"), rs.getInt("D1"),
                     rs.getInt("D2"), rs.getInt("D3"), rs.getInt("D4"), rs.getInt("D5"), rs.getInt("D6"), rs.getInt("D7"),
                     rs.getInt("D8"), rs.getInt("D9"), rs.getInt("D10"), rs.getInt("D11"), rs.getInt("D12"), rs.getInt("D13"),
@@ -125,14 +124,11 @@ public class ChamCong extends javax.swing.JInternalFrame {
     public void countdb() {
         try {
             String sql = "select count(*) from CHAMCONG";
-            Statement sta = cn.createStatement();
-            ResultSet rs = sta.executeQuery(sql);
+            ResultSet rs = JdbcHelper.executeQuery(sql);
             while (rs.next()) {
                 count = rs.getLong(1);
             }
             rs.close();
-            sta.close();
-            cn.close();
         } catch (Exception e) {
         }
     }
@@ -161,7 +157,6 @@ public class ChamCong extends javax.swing.JInternalFrame {
         setClosable(true);
         setMaximizable(true);
         setResizable(true);
-        setPreferredSize(new java.awt.Dimension(1900, 1000));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -218,7 +213,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
         });
 
         first.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        first.setText("<<");
+        first.setText("|<");
         first.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 firstActionPerformed(evt);
@@ -248,19 +243,6 @@ public class ChamCong extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1441, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(PhongBan, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Thang, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Nam, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(TimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(first)
@@ -273,6 +255,19 @@ public class ChamCong extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(last)
                 .addGap(291, 291, 291))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(PhongBan, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Thang, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Nam, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(TimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,8 +294,8 @@ public class ChamCong extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-//        this.countdb();
-//        this.load(trang);
+        this.countdb();
+        this.load(trang);
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void firstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstActionPerformed
