@@ -1211,7 +1211,7 @@ public class NhanVienIm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-     new DANHSACHDIEUCHUYEN().setVisible(true);
+        new DANHSACHDIEUCHUYEN().setVisible(true);
     }//GEN-LAST:event_jButton14ActionPerformed
 
 
