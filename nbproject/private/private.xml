@@ -3,9 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/LENOVO/Desktop/New%20Folder/New%20folder/HaotestGit/src/helper/DateHelper.java</file>
-            <file>file:/C:/Users/LENOVO/Desktop/New%20Folder/New%20folder/HaotestGit/src/Form/DangNhap.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/New%20Folder/New%20folder/HaotestGit/src/Form/NhanVienIm.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/New%20Folder/New%20folder/HaotestGit/src/model/NhanVien.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/New%20Folder/New%20folder/HaotestGit/src/Form/DANHSACHDIEUCHUYEN.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/New%20Folder/New%20folder/HaotestGit/src/helper/Auth.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/New%20Folder/New%20folder/HaotestGit/src/model/DieuChuyenNhanSu.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/New%20Folder/New%20folder/HaotestGit/src/Form/NghiPhepFrame.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/New%20Folder/New%20folder/HaotestGit/src/Form/ChaoJDialog.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/New%20Folder/New%20folder/HaotestGit/src/DAO/PhongBanDAO.java</file>
             <file>file:/C:/Users/LENOVO/Desktop/New%20Folder/New%20folder/HaotestGit/src/Form/Home.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/New%20Folder/New%20folder/HaotestGit/src/helper/JdbcHelper.java</file>
+            <file>file:/C:/Users/LENOVO/Desktop/New%20Folder/New%20folder/HaotestGit/src/DAO/DieuChuyenNhanSuDAO.java</file>
         </group>
     </open-files>
 </project-private>

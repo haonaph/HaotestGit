@@ -16,10 +16,23 @@ import model.DieuChuyenNhanSu;
  * @author LENOVO
  */
 public class DieuChuyenNhanSuDAO extends CSDAO<DieuChuyenNhanSu, String> {
-
+ String INSERT_SQL = "INSERT INTO DieuChuyenNhanSu (MaDC, MaNV, MaPB1,ChucVu1, NgayDieuChuyen,ThoiGianBatDau1,ThoiGianLamViec,DonViTruocDo,MaPB2 ,ThoiGianBatDau2,ChucVu2,TienNhiem) VALUES (?, ?, ?, ?, ?, ?,?,?,?,?,?,?)";
     @Override
     public void insert(DieuChuyenNhanSu entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JdbcHelper.executeUpdate(INSERT_SQL,
+                entity.getMaDC(),
+                entity.getMaNV(),
+                entity.getMaPB1(),
+                entity.isChucVu1(),
+                entity.getNgayDieuChuyen(),
+                entity.getNgayBatDau1(),
+                entity.getThoiGianLamViec(),
+                entity.getDonViTruocDo(),
+                entity.getMaPB2(),
+                entity.getNgayBatDau2(),
+                entity.isChucVu2(),
+                entity.getTienNhiem()      
+        );
     }
 
     @Override

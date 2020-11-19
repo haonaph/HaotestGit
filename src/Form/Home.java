@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JInternalFrame;
 import javax.swing.Timer;
 
 /**
@@ -38,6 +39,39 @@ public class Home extends javax.swing.JFrame {
         }).start();
     }
 
+    private void OpenNghiPhep() {
+        for (JInternalFrame frmChild : desktopPane.getAllFrames()) {
+            frmChild.dispose();
+        }
+        NghiPhepFrame frmLogin = new NghiPhepFrame();
+        frmLogin.setTitle("QUẢN LÝ NGHỈ PHÉP");
+        frmLogin.setLocation(this.getWidth() / 2 - frmLogin.getWidth() / 2, (this.getHeight() - 20) / 2 - frmLogin.getHeight() / 2 - 20);
+        desktopPane.add(frmLogin);
+        frmLogin.setVisible(true);
+    }
+
+    private void OpenNhanSu() {
+        for (JInternalFrame frmChild : desktopPane.getAllFrames()) {
+            frmChild.dispose();
+        }
+        NhanVienIm frmLogin = new NhanVienIm();
+        frmLogin.setTitle("QUẢN LÝ NHÂN SỰ");
+        frmLogin.setLocation(this.getWidth() / 2 - frmLogin.getWidth() / 2, (this.getHeight() - 20) / 2 - frmLogin.getHeight() / 2 - 20);
+        desktopPane.add(frmLogin);
+        frmLogin.setVisible(true);
+    }
+
+    private void OpenChamCong() {
+        for (JInternalFrame frmChild : desktopPane.getAllFrames()) {
+            frmChild.dispose();
+        }
+        ChamCong frmLogin = new ChamCong();
+        frmLogin.setTitle("QUẢN LÝ CHẤM CÔNG");
+        frmLogin.setLocation(this.getWidth() / 2 - frmLogin.getWidth() / 2, (this.getHeight() - 20) / 2 - frmLogin.getHeight() / 2 - 20);
+        desktopPane.add(frmLogin);
+        frmLogin.setVisible(true);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,7 +88,6 @@ public class Home extends javax.swing.JFrame {
         lblTrangThai = new javax.swing.JLabel();
         lblDongHo = new javax.swing.JLabel();
         desktopPane = new javax.swing.JDesktopPane();
-        lblNoiDung = new javax.swing.JLabel();
         toolBar = new javax.swing.JToolBar();
         btNhansu = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
@@ -106,24 +139,15 @@ public class Home extends javax.swing.JFrame {
 
         desktopPane.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblNoiDung.setBackground(new java.awt.Color(255, 255, 255));
-        lblNoiDung.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNoiDung.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/anhpoly2.PNG"))); // NOI18N
-        lblNoiDung.setInheritsPopupMenu(false);
-
-        desktopPane.setLayer(lblNoiDung, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(desktopPaneLayout.createSequentialGroup()
-                .addComponent(lblNoiDung, javax.swing.GroupLayout.PREFERRED_SIZE, 1130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGap(0, 1130, Short.MAX_VALUE)
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNoiDung, javax.swing.GroupLayout.DEFAULT_SIZE, 845, Short.MAX_VALUE)
+            .addGap(0, 845, Short.MAX_VALUE)
         );
 
         toolBar.setRollover(true);
@@ -223,7 +247,8 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btNhansuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNhansuActionPerformed
-        // TODO add your handling code here:
+
+        this.OpenNhanSu();
     }//GEN-LAST:event_btNhansuActionPerformed
 
     private void btHethongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHethongActionPerformed
@@ -232,8 +257,8 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btHethongActionPerformed
 
     private void btThongkeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThongkeActionPerformed
-        // TODO add your handling code here:
 
+        this.OpenNghiPhep();
     }//GEN-LAST:event_btThongkeActionPerformed
 
     private void btCanhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCanhanActionPerformed
@@ -242,10 +267,11 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btCanhanActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        ChamCong ccmd = new ChamCong();
-        desktopPane.removeAll();
-        desktopPane.add(ccmd);
-        ccmd.setVisible(true);
+        this.OpenChamCong();
+//        ChamCong ccmd = new ChamCong();
+//        desktopPane.removeAll();
+//        desktopPane.add(ccmd);
+//        ccmd.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
@@ -301,7 +327,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;
     private javax.swing.JLabel lblDongHo;
-    private javax.swing.JLabel lblNoiDung;
     private javax.swing.JLabel lblTrangThai;
     private javax.swing.JPanel pnlTrangThai;
     private javax.swing.JToolBar toolBar;

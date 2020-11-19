@@ -17,13 +17,32 @@ import helper.JdbcHelper;
  */
 public class NhanVienDAO extends CSDAO<NhanVien, String> {
 
+    String INSERT_SQL = "INSERT INTO NhanVien (MaNV,MaPB ,MatKhau ,HoTen ,ĐiaChi ,SDT,NgaySinh ,NoiSinh,CMND,GioiTinh,Emai,TinhTrangHonNhan ,TrangThaiLamViec,SDTKhac,Anh,GhiChu,ChucVu ) VALUES (?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     String DELETE_SQL = "DELETE FROM NhanVien WHERE MaNV=?";
     String SELECT_ALL_SQL = "SELECT * FROM NhanVien";
     String SELECT_BY_ID_SQL = "SELECT * FROM NhanVien WHERE MaNV=?";
 
     @Override
     public void insert(NhanVien entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JdbcHelper.executeUpdate(INSERT_SQL,
+                entity.getMaNV(),
+                entity.getMaPB(),
+                entity.getMatKhau(),
+                entity.getTenNV(),
+                entity.getDiaChi(),
+                entity.getSdt(),
+                entity.getNgaySinh(),
+                entity.getNoiSinh(),
+                entity.getCMND(),
+                entity.isGioiTinh(),
+                entity.getEmail(),
+                entity.isTinhTrangHonNhan(),
+                entity.isTrangThaiLamViec(),
+                entity.getSdt1(),
+                entity.getAnh(),
+                entity.getGhiChu(),
+                entity.isChucVu()
+        );
     }
 
     @Override
@@ -59,8 +78,8 @@ public class NhanVienDAO extends CSDAO<NhanVien, String> {
                 NhanVien entity = new NhanVien();
                 entity.setMaNV(rs.getString("MaNV"));
                 entity.setMaPB(rs.getString("MaPB"));
-                entity.setTenNV(rs.getString("TenNV"));
                 entity.setMatKhau(rs.getString("MatKhau"));
+                entity.setTenNV(rs.getString("TenNV"));
                 entity.setDiaChi(rs.getString("DiaChi"));
                 entity.setSdt(rs.getString("sdt"));
                 entity.setNgaySinh(rs.getDate("NgaySinh"));
