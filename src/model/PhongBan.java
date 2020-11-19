@@ -15,9 +15,10 @@ public class PhongBan {
 
     @Override
     public String toString() {
-        return "PhongBan{" + "MaPB=" + MaPB + ", TenPB=" + TenPB + '}';
+        return "PhongBan{" + "MaPB=" + MaPB + '}';
     }
 
+   
     public String getMaPB() {
         return MaPB;
     }

@@ -12,18 +12,37 @@ import java.util.Date;
  * @author Cao Do
  */
 public class DieuChuyenNhanSu {
+
     private String MaDC;
     private String MaNV;
     private String MaPB1;
-    private int ChucVu1;
+    private boolean ChucVu1;
     private Date NgayDieuChuyen;
     private Date NgayBatDau1;
     private Date ThoiGianLamViec;
     private String DonViTruocDo;
     private String MaPB2;
     private Date NgayBatDau2;
-    private int ChucVu2;
+    private boolean ChucVu2;
     private String TienNhiem;
+
+    public DieuChuyenNhanSu() {
+    }
+
+    public DieuChuyenNhanSu(String MaDC, String MaNV, String MaPB1, boolean ChucVu1, Date NgayDieuChuyen, Date NgayBatDau1, Date ThoiGianLamViec, String DonViTruocDo, String MaPB2, Date NgayBatDau2, boolean ChucVu2, String TienNhiem) {
+        this.MaDC = MaDC;
+        this.MaNV = MaNV;
+        this.MaPB1 = MaPB1;
+        this.ChucVu1 = ChucVu1;
+        this.NgayDieuChuyen = NgayDieuChuyen;
+        this.NgayBatDau1 = NgayBatDau1;
+        this.ThoiGianLamViec = ThoiGianLamViec;
+        this.DonViTruocDo = DonViTruocDo;
+        this.MaPB2 = MaPB2;
+        this.NgayBatDau2 = NgayBatDau2;
+        this.ChucVu2 = ChucVu2;
+        this.TienNhiem = TienNhiem;
+    }
 
     @Override
     public String toString() {
@@ -54,11 +73,11 @@ public class DieuChuyenNhanSu {
         this.MaPB1 = MaPB1;
     }
 
-    public int getChucVu1() {
+    public boolean isChucVu1() {
         return ChucVu1;
     }
 
-    public void setChucVu1(int ChucVu1) {
+    public void setChucVu1(boolean ChucVu1) {
         this.ChucVu1 = ChucVu1;
     }
 
@@ -110,11 +129,11 @@ public class DieuChuyenNhanSu {
         this.NgayBatDau2 = NgayBatDau2;
     }
 
-    public int getChucVu2() {
+    public boolean isChucVu2() {
         return ChucVu2;
     }
 
-    public void setChucVu2(int ChucVu2) {
+    public void setChucVu2(boolean ChucVu2) {
         this.ChucVu2 = ChucVu2;
     }
 
@@ -125,4 +144,6 @@ public class DieuChuyenNhanSu {
     public void setTienNhiem(String TienNhiem) {
         this.TienNhiem = TienNhiem;
     }
+
+    
 }

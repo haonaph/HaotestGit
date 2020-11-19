@@ -13,6 +13,7 @@ import java.util.Date;
  */
 public class NhanVien {
     private String MaNV;
+    private String MaPB;
     private String TenNV;
     private String MatKhau;
     private String DiaChi;
@@ -27,7 +28,6 @@ public class NhanVien {
     private String sdt1;
     private String Anh;
     private String GhiChu;
-    private String MaPB;
     private boolean ChucVu;
 
     public String getMaNV() {
@@ -166,11 +166,14 @@ public class NhanVien {
         this.ChucVu = ChucVu;
     }
 
-  
     @Override
     public String toString() {
-        return "NhanVien{" + "MaNV=" + MaNV + ", TenNV=" + TenNV + ", MatKhau=" + MatKhau + ", DiaChi=" + DiaChi + ", sdt=" + sdt + ", NgaySinh=" + NgaySinh + ", NoiSinh=" + NoiSinh + ", CMND=" + CMND + ", GioiTinh=" + GioiTinh + ", email=" + email + ", TinhTrangHonNhan=" + TinhTrangHonNhan + ", TrangThaiLamViec=" + TrangThaiLamViec + ", sdt1=" + sdt1 + ", Anh=" + Anh + ", GhiChu=" + GhiChu + ", MaPB=" + MaPB + ", ChucVu=" + ChucVu + '}';
+        return "NhanVien{" + "MaNV=" + MaNV + ", MaPB=" + MaPB + ", TenNV=" + TenNV + ", MatKhau=" + MatKhau + ", DiaChi=" + DiaChi + ", sdt=" + sdt + ", NgaySinh=" + NgaySinh + ", NoiSinh=" + NoiSinh + ", CMND=" + CMND + ", GioiTinh=" + GioiTinh + ", email=" + email + ", TinhTrangHonNhan=" + TinhTrangHonNhan + ", TrangThaiLamViec=" + TrangThaiLamViec + ", sdt1=" + sdt1 + ", Anh=" + Anh + ", GhiChu=" + GhiChu + ", ChucVu=" + ChucVu + '}';
     }
-    
+
+   
+
+  
+   
 
 }
