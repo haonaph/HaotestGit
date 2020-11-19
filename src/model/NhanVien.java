@@ -15,7 +15,7 @@ public class NhanVien {
     private String MaNV;
     private String MaPB;
     private String MatKhau;
-     private String TenNV;
+     private String HoTen;
     private String DiaChi;
     private String sdt;
     private Date NgaySinh;
@@ -30,6 +30,11 @@ public class NhanVien {
     private String GhiChu;
     private boolean ChucVu;
 
+    @Override
+    public String toString() {
+        return "NhanVien{" + "MaNV=" + MaNV + ", MaPB=" + MaPB + ", MatKhau=" + MatKhau + ", HoTen=" + HoTen + ", DiaChi=" + DiaChi + ", sdt=" + sdt + ", NgaySinh=" + NgaySinh + ", NoiSinh=" + NoiSinh + ", CMND=" + CMND + ", GioiTinh=" + GioiTinh + ", email=" + email + ", TinhTrangHonNhan=" + TinhTrangHonNhan + ", TrangThaiLamViec=" + TrangThaiLamViec + ", sdt1=" + sdt1 + ", Anh=" + Anh + ", GhiChu=" + GhiChu + ", ChucVu=" + ChucVu + '}';
+    }
+
     public String getMaNV() {
         return MaNV;
     }
@@ -38,12 +43,12 @@ public class NhanVien {
         this.MaNV = MaNV;
     }
 
-    public String getTenNV() {
-        return TenNV;
+    public String getMaPB() {
+        return MaPB;
     }
 
-    public void setTenNV(String TenNV) {
-        this.TenNV = TenNV;
+    public void setMaPB(String MaPB) {
+        this.MaPB = MaPB;
     }
 
     public String getMatKhau() {
@@ -52,6 +57,14 @@ public class NhanVien {
 
     public void setMatKhau(String MatKhau) {
         this.MatKhau = MatKhau;
+    }
+
+    public String getHoTen() {
+        return HoTen;
+    }
+
+    public void setHoTen(String HoTen) {
+        this.HoTen = HoTen;
     }
 
     public String getDiaChi() {
@@ -150,25 +163,12 @@ public class NhanVien {
         this.GhiChu = GhiChu;
     }
 
-    public String getMaPB() {
-        return MaPB;
-    }
-
-    public void setMaPB(String MaPB) {
-        this.MaPB = MaPB;
-    }
-
     public boolean isChucVu() {
         return ChucVu;
     }
 
     public void setChucVu(boolean ChucVu) {
         this.ChucVu = ChucVu;
-    }
-
-    @Override
-    public String toString() {
-        return "NhanVien{" + "MaNV=" + MaNV + ", MaPB=" + MaPB + ", TenNV=" + TenNV + ", MatKhau=" + MatKhau + ", DiaChi=" + DiaChi + ", sdt=" + sdt + ", NgaySinh=" + NgaySinh + ", NoiSinh=" + NoiSinh + ", CMND=" + CMND + ", GioiTinh=" + GioiTinh + ", email=" + email + ", TinhTrangHonNhan=" + TinhTrangHonNhan + ", TrangThaiLamViec=" + TrangThaiLamViec + ", sdt1=" + sdt1 + ", Anh=" + Anh + ", GhiChu=" + GhiChu + ", ChucVu=" + ChucVu + '}';
     }
 
    

@@ -28,7 +28,7 @@ public class NhanVienDAO extends CSDAO<NhanVien, String> {
                 entity.getMaNV(),
                 entity.getMaPB(),
                 entity.getMatKhau(),
-                entity.getTenNV(),
+                entity.getHoTen(),
                 entity.getDiaChi(),
                 entity.getSdt(),
                 entity.getNgaySinh(),
@@ -55,10 +55,7 @@ public class NhanVienDAO extends CSDAO<NhanVien, String> {
         JdbcHelper.executeUpdate(DELETE_SQL, key);
     }
 
-    @Override
-    public List<NhanVien> selectAll() {
-        return this.selectBySql(SELECT_ALL_SQL);
-    }
+  
     @Override
     public NhanVien selectById(String key) {
         List<NhanVien> list = this.selectBySql(SELECT_BY_ID_SQL, key);
@@ -66,6 +63,10 @@ public class NhanVienDAO extends CSDAO<NhanVien, String> {
             return null;
         }
         return list.get(0);
+    }
+  @Override
+    public List<NhanVien> selectAll() {
+        return this.selectBySql(SELECT_ALL_SQL);
     }
 
     @Override
@@ -78,7 +79,7 @@ public class NhanVienDAO extends CSDAO<NhanVien, String> {
                 entity.setMaNV(rs.getString("MaNV"));
                 entity.setMaPB(rs.getString("MaPB"));
                 entity.setMatKhau(rs.getString("MatKhau"));
-                entity.setTenNV(rs.getString("HoTen"));
+                entity.setHoTen(rs.getString("HoTen"));
                 entity.setDiaChi(rs.getString("ĐiaChi"));
                 entity.setSdt(rs.getString("SDT"));
                 entity.setNgaySinh(rs.getDate("NgaySinh"));
