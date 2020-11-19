@@ -22,7 +22,7 @@ public class NhanVien {
     private String NoiSinh;
     private String CMND;
     private boolean GioiTinh;
-    private String email;
+    private String Emai;
     private boolean TinhTrangHonNhan;
     private boolean TrangThaiLamViec;
     private String sdt1;
@@ -32,7 +32,7 @@ public class NhanVien {
 
     @Override
     public String toString() {
-        return "NhanVien{" + "MaNV=" + MaNV + ", MaPB=" + MaPB + ", MatKhau=" + MatKhau + ", HoTen=" + HoTen + ", DiaChi=" + DiaChi + ", sdt=" + sdt + ", NgaySinh=" + NgaySinh + ", NoiSinh=" + NoiSinh + ", CMND=" + CMND + ", GioiTinh=" + GioiTinh + ", email=" + email + ", TinhTrangHonNhan=" + TinhTrangHonNhan + ", TrangThaiLamViec=" + TrangThaiLamViec + ", sdt1=" + sdt1 + ", Anh=" + Anh + ", GhiChu=" + GhiChu + ", ChucVu=" + ChucVu + '}';
+        return "NhanVien{" + "MaNV=" + MaNV + ", MaPB=" + MaPB + ", MatKhau=" + MatKhau + ", HoTen=" + HoTen + ", DiaChi=" + DiaChi + ", sdt=" + sdt + ", NgaySinh=" + NgaySinh + ", NoiSinh=" + NoiSinh + ", CMND=" + CMND + ", GioiTinh=" + GioiTinh + ", Emai=" + Emai + ", TinhTrangHonNhan=" + TinhTrangHonNhan + ", TrangThaiLamViec=" + TrangThaiLamViec + ", sdt1=" + sdt1 + ", Anh=" + Anh + ", GhiChu=" + GhiChu + ", ChucVu=" + ChucVu + '}';
     }
 
     public String getMaNV() {
@@ -115,12 +115,12 @@ public class NhanVien {
         this.GioiTinh = GioiTinh;
     }
 
-    public String getEmail() {
-        return email;
+    public String getEmai() {
+        return Emai;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmai(String Emai) {
+        this.Emai = Emai;
     }
 
     public boolean isTinhTrangHonNhan() {
@@ -171,9 +171,6 @@ public class NhanVien {
         this.ChucVu = ChucVu;
     }
 
-   
-
   
-   
 
 }
