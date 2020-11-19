@@ -55,7 +55,6 @@ public class NhanVienDAO extends CSDAO<NhanVien, String> {
         JdbcHelper.executeUpdate(DELETE_SQL, key);
     }
 
-  
     @Override
     public NhanVien selectById(String key) {
         List<NhanVien> list = this.selectBySql(SELECT_BY_ID_SQL, key);
@@ -64,7 +63,8 @@ public class NhanVienDAO extends CSDAO<NhanVien, String> {
         }
         return list.get(0);
     }
-  @Override
+
+    @Override
     public List<NhanVien> selectAll() {
         return this.selectBySql(SELECT_ALL_SQL);
     }
