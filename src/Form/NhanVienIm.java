@@ -9,6 +9,9 @@ import DAO.DieuChuyenNhanSuDAO;
 import model.NhanVien;
 import DAO.NhanVienDAO;
 import DAO.PhongBanDAO;
+import helper.DateHelper;
+import helper.MsgBox;
+import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import model.DieuChuyenNhanSu;
@@ -30,34 +33,63 @@ public class NhanVienIm extends javax.swing.JInternalFrame {
     PhongBanDAO pbdao = new PhongBanDAO();
     DieuChuyenNhanSuDAO dcnsdao = new DieuChuyenNhanSuDAO();
 
-    void fillComboBoxNhanVien() {
-        DefaultComboBoxModel model = (DefaultComboBoxModel) cboMaNV.getModel();
-        model.removeAllElements();
-        List<NhanVien> list = nvdao.selectAll();
-        for (NhanVien nv : list) {
-            model.addElement(nv);
+//    void fillComboBoxNhanVien() {
+//        DefaultComboBoxModel model = (DefaultComboBoxModel) cboMaNV.getModel();
+//        model.removeAllElements();
+//        List<NhanVien> list = nvdao.selectAll();
+//        for (NhanVien nv : list) {
+//            model.addElement(nv);
+//        }
+//    }
+//    void fillComboBoxPB() {
+//        DefaultComboBoxModel model = (DefaultComboBoxModel) cboPB.getModel();
+//        model.removeAllElements();
+//        List<PhongBan> list = pbdao.selectAll();
+//        for (PhongBan pb : list) {
+//            model.addElement(pb);
+//        }
+//
+//    }
+    DieuChuyenNhanSuDAO dAo = new DieuChuyenNhanSuDAO();
+
+    private void insert() {
+        DieuChuyenNhanSu model = getModel();
+
+        try {
+            dAo.insert(model);
+            this.clear();
+            MsgBox.alert(this, "Thêm mới thành công");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            MsgBox.alert(this, "Thêm mới thất bại");
         }
     }
 
-    void fillComboBoxPB() {
-        DefaultComboBoxModel model = (DefaultComboBoxModel) cboPB.getModel();
-        model.removeAllElements();
-        List<PhongBan> list = pbdao.selectAll();
-        for (PhongBan pb : list) {
-            model.addElement(pb);
-        }
-
+    DieuChuyenNhanSu getModel() {
+        DieuChuyenNhanSu model = new DieuChuyenNhanSu();
+        model.setMaNV(txtMaNV.getText());
+        model.setChucVu1(Boolean.valueOf(txtChucVuHT.getText()));
+        model.setMaPB1(txtMaPB.getText());
+        model.setNgayDieuChuyen(DateHelper.toDate(txtNgayDC.getText()));
+        model.setNgayBatDau1(DateHelper.toDate(txtTGBD.getText()));
+        model.setThoiGianLamViec(DateHelper.toDate(txtTGLV.getText()));
+        model.setDonViTruocDo(txtDVTD.getText());
+        model.setMaPB2(txtMaPB1.getText());
+        model.setNgayBatDau2(DateHelper.toDate(txtTGBD2.getText()));
+        model.setChucVu2(Boolean.valueOf(txtChucVu1.getText()));
+        model.setTienNhiem(txtTienNhiem.getText());
+        return model;
     }
-
-    void fillComboBoxChucVu() {
-        DefaultComboBoxModel model = (DefaultComboBoxModel) cboPB.getModel();
-        model.removeAllElements();
-        List<DieuChuyenNhanSu> list = dcnsdao.selectAll();
-        for (DieuChuyenNhanSu dcns : list) {
-            model.addElement(dcns);
-        }
-
-    }
+//    void fillComboBoxChucVu() {
+//        DefaultComboBoxModel model = (DefaultComboBoxModel) cboPB.getModel();
+//        model.removeAllElements();
+//        List<DieuChuyenNhanSu> list = dcnsdao.selectAll();
+//        for (DieuChuyenNhanSu dcns : list) {
+//            model.addElement(dcns);
+//        }
+//
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -194,29 +226,27 @@ public class NhanVienIm extends javax.swing.JInternalFrame {
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        txtMaPB = new javax.swing.JTextField();
-        txtNgayDC = new javax.swing.JTextField();
-        txtTGBD = new javax.swing.JTextField();
-        txtTGLV = new javax.swing.JTextField();
-        txtDVTD = new javax.swing.JTextField();
-        jLabel37 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
         txtMaPB1 = new javax.swing.JTextField();
-        txtTGBD1 = new javax.swing.JTextField();
+        txtMaPB = new javax.swing.JTextField();
         txtChucVu1 = new javax.swing.JTextField();
-        txtNDN = new javax.swing.JTextField();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
-        cboPB = new javax.swing.JComboBox<>();
-        cboChucVu = new javax.swing.JComboBox<>();
-        cboMaNV = new javax.swing.JComboBox<>();
+        txtTGBD2 = new javax.swing.JTextField();
+        txtTienNhiem = new javax.swing.JTextField();
+        txtNgayDC = new javax.swing.JTextField();
+        txtTGLV = new javax.swing.JTextField();
+        txtTGBD = new javax.swing.JTextField();
+        txtDVTD = new javax.swing.JTextField();
+        txtMaNV = new javax.swing.JTextField();
+        txtChucVuHT = new javax.swing.JTextField();
 
         setTitle("Thông Tin Nhân Viên");
 
@@ -971,23 +1001,6 @@ public class NhanVienIm extends javax.swing.JInternalFrame {
         jLabel30.setForeground(new java.awt.Color(51, 153, 255));
         jLabel30.setText("Điều chuyển:");
 
-        txtMaPB.setEditable(false);
-        txtMaPB.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        txtNgayDC.setEditable(false);
-        txtNgayDC.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        txtTGBD.setEditable(false);
-        txtTGBD.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        txtTGLV.setEditable(false);
-        txtTGLV.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        txtDVTD.setEditable(false);
-        txtDVTD.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jLabel37.setText("Chọn phòng ban");
-
         jLabel39.setText("Chức vụ");
 
         jLabel40.setText("Người đảm nhiệm hiện tại");
@@ -998,14 +1011,16 @@ public class NhanVienIm extends javax.swing.JInternalFrame {
 
         txtMaPB1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        txtTGBD1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txtMaPB.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         txtChucVu1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        txtNDN.setEditable(false);
-        txtNDN.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
         jButton9.setText("Xác nhận");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton10.setText("|<");
 
@@ -1020,15 +1035,27 @@ public class NhanVienIm extends javax.swing.JInternalFrame {
 
         jButton14.setText("Danh Sách Điều Chuyển");
         jButton14.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
-        cboPB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cboPB.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txtTGBD2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        cboChucVu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cboChucVu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txtTienNhiem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        cboMaNV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cboMaNV.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txtNgayDC.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        txtTGLV.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        txtTGBD.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        txtDVTD.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        txtMaNV.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        txtChucVuHT.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout QTLVLayout = new javax.swing.GroupLayout(QTLV);
         QTLV.setLayout(QTLVLayout);
@@ -1052,103 +1079,95 @@ public class NhanVienIm extends javax.swing.JInternalFrame {
                                 .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel22)
                                     .addComponent(jLabel27)
-                                    .addComponent(jLabel28)
                                     .addComponent(jLabel21)
                                     .addComponent(jLabel20)
                                     .addComponent(jLabel19))
                                 .addComponent(jLabel24))
-                            .addComponent(jLabel25))
+                            .addComponent(jLabel25)
+                            .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(62, 62, 62)
                         .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtDVTD, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                            .addComponent(txtMaPB)
                             .addComponent(txtTGLV)
                             .addComponent(txtTGBD)
-                            .addComponent(txtNgayDC)
-                            .addComponent(txtMaPB, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                            .addComponent(cboChucVu, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cboMaNV, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(txtNgayDC, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDVTD)
+                            .addComponent(txtMaNV, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtChucVuHT))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
                 .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel30)
                     .addGroup(QTLVLayout.createSequentialGroup()
                         .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel37)
                             .addComponent(jLabel41)
                             .addComponent(jLabel42)
                             .addComponent(jLabel39)
                             .addComponent(jLabel40))
                         .addGap(40, 40, 40)
                         .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cboPB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtMaPB1)
-                            .addComponent(txtTGBD1)
+                            .addComponent(txtMaPB1, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
                             .addComponent(txtChucVu1)
-                            .addComponent(txtNDN, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtTGBD2)
+                            .addComponent(txtTienNhiem)))
                     .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(73, 73, 73))
         );
         QTLVLayout.setVerticalGroup(
             QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QTLVLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(QTLVLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
                         .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cboMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboPB, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel37))
-                        .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(QTLVLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(cboChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(QTLVLayout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtMaPB1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel41))))
+                            .addComponent(txtMaPB1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel41))
                         .addGap(28, 28, 28)
                         .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtTGBD1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel42))
+                            .addComponent(jLabel42)
+                            .addComponent(txtTGBD2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36)
                         .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtChucVu1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel39))
-                        .addGap(3, 3, 3))
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel24)
+                        .addGap(27, 27, 27))
                     .addGroup(QTLVLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
                         .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel19)
                             .addComponent(jLabel30))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel20)
                         .addGap(34, 34, 34)
-                        .addComponent(jLabel21)
-                        .addGap(49, 49, 49)
-                        .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel22)
-                            .addComponent(txtMaPB, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                        .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNgayDC, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel27))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 12, Short.MAX_VALUE)
-                        .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel28)
-                            .addComponent(txtTGBD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)))
-                .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(QTLVLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel24))
-                    .addComponent(txtTGLV, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel20)
+                        .addGap(38, 38, 38)
+                        .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(QTLVLayout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addGap(39, 39, 39)
+                                .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(QTLVLayout.createSequentialGroup()
+                                        .addComponent(jLabel22)
+                                        .addGap(37, 37, 37)
+                                        .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel27)
+                                            .addComponent(txtNgayDC, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(QTLVLayout.createSequentialGroup()
+                                                .addComponent(jLabel28)
+                                                .addGap(40, 40, 40)
+                                                .addComponent(txtTGLV, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtTGBD, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtMaPB, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtChucVuHT, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(QTLVLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel25)
-                            .addComponent(txtDVTD, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtDVTD, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton10)
@@ -1157,13 +1176,12 @@ public class NhanVienIm extends javax.swing.JInternalFrame {
                             .addComponent(jButton13))
                         .addGap(69, 69, 69))
                     .addGroup(QTLVLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNDN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel40))
-                        .addGap(107, 107, 107)
+                            .addComponent(jLabel40)
+                            .addComponent(txtTienNhiem, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(109, 109, 109)
                         .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(72, 72, 72))))
         );
@@ -1188,6 +1206,14 @@ public class NhanVienIm extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        this.insert();
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+     new DANHSACHDIEUCHUYEN().setVisible(true);
+    }//GEN-LAST:event_jButton14ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel HD;
@@ -1195,9 +1221,6 @@ public class NhanVienIm extends javax.swing.JInternalFrame {
     private javax.swing.JPanel TN;
     private javax.swing.JPanel TTNV;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox<String> cboChucVu;
-    private javax.swing.JComboBox<String> cboMaNV;
-    private javax.swing.JComboBox<String> cboPB;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -1254,7 +1277,6 @@ public class NhanVienIm extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
@@ -1329,16 +1351,32 @@ public class NhanVienIm extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbAnh1;
     private javax.swing.JTabbedPane table1;
     private javax.swing.JTextField txtChucVu1;
+    private javax.swing.JTextField txtChucVuHT;
     private javax.swing.JTextField txtDVTD;
+    private javax.swing.JTextField txtMaNV;
     private javax.swing.JTextField txtMaPB;
     private javax.swing.JTextField txtMaPB1;
     private javax.swing.JTextField txtManv;
-    private javax.swing.JTextField txtNDN;
     private javax.swing.JTextField txtNgayDC;
     private javax.swing.JTextField txtTGBD;
-    private javax.swing.JTextField txtTGBD1;
+    private javax.swing.JTextField txtTGBD2;
     private javax.swing.JTextField txtTGLV;
     private javax.swing.JTextField txtTennv;
+    private javax.swing.JTextField txtTienNhiem;
     // End of variables declaration//GEN-END:variables
+
+    private void clear() {
+        txtChucVu1.setText("");
+        txtChucVuHT.setText("");
+        txtDVTD.setText("");
+        txtMaNV.setText("");
+        txtMaPB.setText("");
+        txtMaPB1.setText("");
+        txtNgayDC.setText("");
+        txtTGBD.setText("");
+        txtTGBD2.setText("");
+        txtTGLV.setText("");
+        txtTienNhiem.setText("");
+    }
 
 }

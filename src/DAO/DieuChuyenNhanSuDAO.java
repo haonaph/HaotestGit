@@ -20,7 +20,6 @@ public class DieuChuyenNhanSuDAO extends CSDAO<DieuChuyenNhanSu, String> {
     @Override
     public void insert(DieuChuyenNhanSu entity) {
         JdbcHelper.executeUpdate(INSERT_SQL,
-                entity.getMaDC(),
                 entity.getMaNV(),
                 entity.getMaPB1(),
                 entity.isChucVu1(),

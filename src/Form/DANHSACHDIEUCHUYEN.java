@@ -26,6 +26,10 @@ public class DANHSACHDIEUCHUYEN extends javax.swing.JFrame {
     }
     DieuChuyenNhanSuDAO dao = new DieuChuyenNhanSuDAO();
 
+    DANHSACHDIEUCHUYEN(NhanVienIm aThis, boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     private void fillTable() {
         DefaultTableModel model = (DefaultTableModel) tblDSDC.getModel();
         model.setRowCount(0);
