@@ -43,6 +43,8 @@ public class GioiThieuJDialog extends javax.swing.JDialog {
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jTextArea1.setText("Hệ thống quản lý nhân sự công ty là bài tập của dự án 1 nhằm củng cố và tiếp cận\nhơn với môi trường làm việc.\nYêu cầu về môi trường:\n1.Hệ điều hành bất kỳ\n2.JDK 1.8 trở lên\n3.SQL Server 2008 trở lên\n\n");
+        jTextArea1.setEnabled(false);
+        jTextArea1.setRequestFocusEnabled(false);
         jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

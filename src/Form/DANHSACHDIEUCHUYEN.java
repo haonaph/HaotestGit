@@ -88,7 +88,15 @@ public class DANHSACHDIEUCHUYEN extends javax.swing.JFrame {
             new String [] {
                 "Mã Điều Chuyển", "Mã Nhân Viên", "Mã Phòng Ban", "Chức Vụ HT", "Ngày Điều Chuyển", "Thời Gian Bắt Đầu", "Thời gian Làm Việc", "Đơn Vị Trước ", "Mã Phòng Ban 2", "Thời Gian Bắt Đầu", "Chức Vụ Mới", "Tiền Nhiềm"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblDSDC);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

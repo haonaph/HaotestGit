@@ -9,7 +9,6 @@ import helper.JdbcHelper;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import model.DieuChuyenNhanSu;
 import model.PhongBan;
 
 /**

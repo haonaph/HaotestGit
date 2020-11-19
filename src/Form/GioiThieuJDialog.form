@@ -99,6 +99,8 @@
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
                     <Property name="text" type="java.lang.String" value="H&#x1ec7; th&#x1ed1;ng qu&#x1ea3;n l&#xfd; nh&#xe2;n s&#x1ef1; c&#xf4;ng ty l&#xe0; b&#xe0;i t&#x1ead;p c&#x1ee7;a d&#x1ef1; &#xe1;n 1 nh&#x1eb1;m c&#x1ee7;ng c&#x1ed1; v&#xe0; ti&#x1ebf;p c&#x1ead;n&#xa;h&#x1a1;n v&#x1edb;i m&#xf4;i tr&#x1b0;&#x1edd;ng l&#xe0;m vi&#x1ec7;c.&#xa;Y&#xea;u c&#x1ea7;u v&#x1ec1; m&#xf4;i tr&#x1b0;&#x1edd;ng:&#xa;1.H&#x1ec7; &#x111;i&#x1ec1;u h&#xe0;nh b&#x1ea5;t k&#x1ef3;&#xa;2.JDK 1.8 tr&#x1edf; l&#xea;n&#xa;3.SQL Server 2008 tr&#x1edf; l&#xea;n&#xa;&#xa;"/>
+                    <Property name="enabled" type="boolean" value="false"/>
+                    <Property name="requestFocusEnabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
               </SubComponents>

@@ -86,7 +86,7 @@ public class NhanVienDAO extends CSDAO<NhanVien, String> {
                 entity.setNoiSinh(rs.getString("NoiSinh"));
                 entity.setCMND(rs.getString("CMND"));
                 entity.setGioiTinh(rs.getBoolean("GioiTinh"));
-                entity.setEmail(rs.getString("Email"));
+                entity.setEmail(rs.getString("Emai"));
                 entity.setTinhTrangHonNhan(rs.getBoolean("TinhTrangHonNhan"));
                 entity.setTrangThaiLamViec(rs.getBoolean("TrangThaiLamViec"));
                 entity.setSdt1(rs.getString("SDTKhac"));
