@@ -17,10 +17,11 @@ import model.ChamCong;
  */
 public class ChamCongDao {
 
-    public List<ChamCong> select() {
-        String sql = "SELECT CHAMCONG.*, NHANVIEN.HoTen FROM CHAMCONG\n"
-                + "inner join NHANVIEN on CHAMCONG.MaNV = NHANVIEN.MaNV";
-        return select(sql);
+    public List<ChamCong> loadData(long a) {
+        String sql = "select top 2 CHAMCONG.*, NHANVIEN.HoTen FROM CHAMCONG\n"
+                + "inner join NHANVIEN on CHAMCONG.MaNV = NHANVIEN.MaNV where"
+                + "CHAMCONG.MaNV not in (select top ? CHAMCONG.MaNV FROM CHAMCONG)";
+        return select(sql, a);
     }
 
     public void update(ChamCong model) {

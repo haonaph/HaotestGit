@@ -26,8 +26,19 @@ public class ChamCong extends javax.swing.JInternalFrame {
      */
     Connection cn;
     ChamCongDao dao = new ChamCongDao();
+    long count, sotrang, trang = 1;
+    int doDaiTrang;
+
     public ChamCong() {
         initComponents();
+        countdb();
+        if (count % 2 == 0) {
+            sotrang = count / 2;
+        } else {
+            sotrang = count / 2 + 1;
+        }
+        load(1);
+        number.setText(sotrang + "");
         jTable1.setAutoCreateRowSorter(true);
         String[] a = {
             "C", "CN", "V", "P", "O"
@@ -66,21 +77,36 @@ public class ChamCong extends javax.swing.JInternalFrame {
         jTable1.getColumnModel().getColumn(32).setCellEditor(new DefaultCellEditor(c));
     }
 
-    void load() {
+    public void load(long trang) {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         try {
-            List<model.ChamCong> list = dao.select();
-            for (model.ChamCong cc : list) {
+            long so = this.trang * 2 - 2;
+            String sql = "select top 2 CHAMCONG.*, NHANVIEN.HoTen FROM CHAMCONG\n"
+                    + "inner join NHANVIEN on CHAMCONG.MaNV = NHANVIEN.MaNV where CHAMCONG.MaNV not in (select top " + so + " CHAMCONG.MaNV FROM CHAMCONG)";
+            ResultSet rs = JdbcHelper.executeQuery(sql);
+            while (rs.next()) {
                 Object[] row = {
-                    cc.getMaNV(), cc.getHoten(), cc.getThang(), cc.getNam(), cc.getD1(), cc.getD2(), cc.getD3(), cc.getD4(),
-                    cc.getD5(), cc.getD6(), cc.getD7(), cc.getD8(), cc.getD9(), cc.getD10(), cc.getD11(), cc.getD12(),
-                    cc.getD13(), cc.getD14(), cc.getD15(), cc.getD16(), cc.getD17(), cc.getD18(), cc.getD19(), cc.getD20(),
-                    cc.getD21(), cc.getD22(), cc.getD23(), cc.getD24(), cc.getD25(), cc.getD26(), cc.getD27(), cc.getD28(),
-                    cc.getD29(), cc.getD30(), cc.getD31()
+                    rs.getInt("MaChamCong"),
+                    rs.getString("MaNV"), rs.getString("HoTen"), rs.getInt("Thang"), rs.getInt("Nam"), rs.getInt("D1"),
+                    rs.getInt("D2"), rs.getInt("D3"), rs.getInt("D4"), rs.getInt("D5"), rs.getInt("D6"), rs.getInt("D7"),
+                    rs.getInt("D8"), rs.getInt("D9"), rs.getInt("D10"), rs.getInt("D11"), rs.getInt("D12"), rs.getInt("D13"),
+                    rs.getInt("D14"), rs.getInt("D15"), rs.getInt("D16"), rs.getInt("D17"), rs.getInt("D18"), rs.getInt("D19"),
+                    rs.getInt("D20"), rs.getInt("D21"), rs.getInt("D22"), rs.getInt("D23"), rs.getInt("D24"), rs.getInt("D25"),
+                    rs.getInt("D26"), rs.getInt("D27"), rs.getInt("D28"), rs.getInt("D29"), rs.getInt("D30"), rs.getInt("D31")
                 };
                 model.addRow(row);
             }
+//            for (model.ChamCong cc : list) {
+//                Object[] row = {
+//                    cc.getMaNV(), cc.getHoten(), cc.getThang(), cc.getNam(), cc.getD1(), cc.getD2(), cc.getD3(), cc.getD4(),
+//                    cc.getD5(), cc.getD6(), cc.getD7(), cc.getD8(), cc.getD9(), cc.getD10(), cc.getD11(), cc.getD12(),
+//                    cc.getD13(), cc.getD14(), cc.getD15(), cc.getD16(), cc.getD17(), cc.getD18(), cc.getD19(), cc.getD20(),
+//                    cc.getD21(), cc.getD22(), cc.getD23(), cc.getD24(), cc.getD25(), cc.getD26(), cc.getD27(), cc.getD28(),
+//                    cc.getD29(), cc.getD30(), cc.getD31()
+//                };
+//                model.addRow(row);
+//            }
         } catch (Exception e) {
             MsgBox.alert(this, "Lỗi Truy vấn dữ liệu");
             e.printStackTrace();
@@ -92,6 +118,21 @@ public class ChamCong extends javax.swing.JInternalFrame {
             String sql = "SELECT * FROM CHAMCONG where Thang like '%?%' and Nam = ?";
             PreparedStatement pstm = cn.prepareStatement(sql);
 
+        } catch (Exception e) {
+        }
+    }
+
+    public void countdb() {
+        try {
+            String sql = "select count(*) from CHAMCONG";
+            Statement sta = cn.createStatement();
+            ResultSet rs = sta.executeQuery(sql);
+            while (rs.next()) {
+                count = rs.getLong(1);
+            }
+            rs.close();
+            sta.close();
+            cn.close();
         } catch (Exception e) {
         }
     }
@@ -111,6 +152,11 @@ public class ChamCong extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         TimKiem = new javax.swing.JTextField();
+        preview = new javax.swing.JButton();
+        first = new javax.swing.JButton();
+        next = new javax.swing.JButton();
+        last = new javax.swing.JButton();
+        number = new javax.swing.JLabel();
 
         setClosable(true);
         setMaximizable(true);
@@ -161,9 +207,42 @@ public class ChamCong extends javax.swing.JInternalFrame {
             }
         });
         jTable1.setInheritsPopupMenu(true);
-        jTable1.setMaximumSize(new java.awt.Dimension(1900, 1000));
-        jTable1.setMinimumSize(new java.awt.Dimension(1900, 1000));
         jScrollPane1.setViewportView(jTable1);
+
+        preview.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        preview.setText("<<");
+        preview.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                previewActionPerformed(evt);
+            }
+        });
+
+        first.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        first.setText("<<");
+        first.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                firstActionPerformed(evt);
+            }
+        });
+
+        next.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        next.setText(">>");
+        next.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextActionPerformed(evt);
+            }
+        });
+
+        last.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        last.setText(">|");
+        last.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lastActionPerformed(evt);
+            }
+        });
+
+        number.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        number.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,6 +261,18 @@ public class ChamCong extends javax.swing.JInternalFrame {
                         .addGap(40, 40, 40)
                         .addComponent(TimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(first)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(preview)
+                .addGap(41, 41, 41)
+                .addComponent(number)
+                .addGap(86, 86, 86)
+                .addComponent(next)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(last)
+                .addGap(291, 291, 291))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,15 +285,51 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     .addComponent(TimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(preview)
+                    .addComponent(first)
+                    .addComponent(next)
+                    .addComponent(last)
+                    .addComponent(number))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-        this.load();
+//        this.countdb();
+//        this.load(trang);
     }//GEN-LAST:event_formInternalFrameOpened
+
+    private void firstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstActionPerformed
+        trang = 1;
+        load(trang);
+        number.setText("1 /" + sotrang);
+    }//GEN-LAST:event_firstActionPerformed
+
+    private void previewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previewActionPerformed
+        if (trang > 1) {
+            trang--;
+            load(trang);
+            number.setText(trang + "/" + sotrang);
+        }
+    }//GEN-LAST:event_previewActionPerformed
+
+    private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
+        if (trang < sotrang) {
+            trang++;
+            load(trang);
+            number.setText(trang + "/" + sotrang);
+        }
+    }//GEN-LAST:event_nextActionPerformed
+
+    private void lastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastActionPerformed
+        trang = sotrang;
+        load(trang);
+        number.setText(sotrang + "/" + sotrang);
+    }//GEN-LAST:event_lastActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -210,7 +337,12 @@ public class ChamCong extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> PhongBan;
     private javax.swing.JComboBox<String> Thang;
     private javax.swing.JTextField TimKiem;
+    private javax.swing.JButton first;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton last;
+    private javax.swing.JButton next;
+    private javax.swing.JLabel number;
+    private javax.swing.JButton preview;
     // End of variables declaration//GEN-END:variables
 }
