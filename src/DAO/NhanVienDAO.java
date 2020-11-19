@@ -17,7 +17,6 @@ import helper.JdbcHelper;
  */
 public class NhanVienDAO extends CSDAO<NhanVien, String> {
 
-    
     String DELETE_SQL = "DELETE FROM NhanVien WHERE MaNV=?";
     String SELECT_ALL_SQL = "SELECT * FROM NhanVien";
     String SELECT_BY_ID_SQL = "SELECT * FROM NhanVien WHERE MaNV=?";
@@ -34,12 +33,12 @@ public class NhanVienDAO extends CSDAO<NhanVien, String> {
 
     @Override
     public void delete(String key) {
-      JdbcHelper.executeUpdate(DELETE_SQL, key);
+        JdbcHelper.executeUpdate(DELETE_SQL, key);
     }
 
     @Override
     public List<NhanVien> selectAll() {
-         return this.selectBySql(SELECT_ALL_SQL);
+        return this.selectBySql(SELECT_ALL_SQL);
     }
 
     @Override
@@ -58,23 +57,23 @@ public class NhanVienDAO extends CSDAO<NhanVien, String> {
             ResultSet rs = JdbcHelper.executeQuery(sql, agrs);
             while (rs.next()) {
                 NhanVien entity = new NhanVien();
-                entity.setMaNV(rs.getString("Mã NV"));
-                entity.setMaPB(rs.getString("Mã PB"));
-                entity.setMatKhau(rs.getString("Mật Khẩu"));
-                entity.setTenNV(rs.getString("Tên NV"));
-                entity.setDiaChi(rs.getString("Địa Chỉ"));
-                entity.setSdt(rs.getString("SDT"));
-                entity.setNgaySinh(rs.getDate("Ngày Sinh"));
-                entity.setNoiSinh(rs.getString("Nơi Sinh"));
+                entity.setMaNV(rs.getString("MaNV"));
+                entity.setMaPB(rs.getString("MaPB"));
+                entity.setTenNV(rs.getString("TenNV"));
+                entity.setMatKhau(rs.getString("MatKhau"));
+                entity.setDiaChi(rs.getString("DiaChi"));
+                entity.setSdt(rs.getString("sdt"));
+                entity.setNgaySinh(rs.getDate("NgaySinh"));
+                entity.setNoiSinh(rs.getString("NoiSinh"));
                 entity.setCMND(rs.getString("CMND"));
-                entity.setGioiTinh(rs.getBoolean("Giới Tính"));
-                entity.setEmail(rs.getString("Email"));
-                entity.setTinhTrangHonNhan(rs.getBoolean("Tình Trạng Hôn Nhân"));
-                entity.setTrangThaiLamViec(rs.getBoolean("Trạng Thái Làm Việc"));
-                entity.setSdt1(rs.getString("SDT Khác"));
-                entity.setAnh(rs.getString("Ảnh"));
-                entity.setGhiChu(rs.getString("Ghi Chú"));
-                entity.setChucVu(rs.getBoolean("Chức Vụ"));
+                entity.setGioiTinh(rs.getBoolean("GioiTinh"));
+                entity.setEmail(rs.getString("email"));
+                entity.setTinhTrangHonNhan(rs.getBoolean("TinhTrangHonNhan"));
+                entity.setTrangThaiLamViec(rs.getBoolean("TrangThaiLamViec"));
+                entity.setSdt1(rs.getString("sdt1"));
+                entity.setAnh(rs.getString("Anh"));
+                entity.setGhiChu(rs.getString("GhiChu"));
+                entity.setChucVu(rs.getBoolean("ChucVu"));
                 list.add(entity);
             }
             rs.getStatement().getConnection().close();
