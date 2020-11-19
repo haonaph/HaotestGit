@@ -27,6 +27,7 @@ public class NghiPhepFrame extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         PhongBan = new javax.swing.JComboBox<>();
@@ -39,6 +40,8 @@ public class NghiPhepFrame extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         lenght = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
+
+        jMenuItem1.setText("jMenuItem1");
 
         PhongBan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -152,6 +155,7 @@ public class NghiPhepFrame extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> PhongBan;
     private javax.swing.JButton first;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

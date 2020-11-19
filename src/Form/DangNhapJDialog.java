@@ -56,7 +56,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Tên đăng nhập:");
 
-        txtMaNV.setText("A001");
+        txtMaNV.setText("B001");
         txtMaNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMaNVActionPerformed(evt);
@@ -207,7 +207,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         String manv = txtMaNV.getText();
         String matKhau = new String(txtMatKhau.getPassword());
         NhanVien nhanVien = dao.selectById(manv);
-        if (nhanVien== null) {
+        if (nhanVien == null) {
             MsgBox.alert(this, "Sai tên đăng nhập");
         } else if (!matKhau.equals(nhanVien.getMatKhau())) {
             MsgBox.alert(this, "Sai mật khẩu");
