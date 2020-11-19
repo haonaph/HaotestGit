@@ -252,7 +252,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btNhansuActionPerformed
 
     private void btHethongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHethongActionPerformed
-          new GioiThieuJDialog(this, true).setVisible(true);
+        new GioiThieuJDialog(this, true).setVisible(true);
     }//GEN-LAST:event_btHethongActionPerformed
 
     private void btThongkeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThongkeActionPerformed
