@@ -26,7 +26,7 @@ public class DANHSACHDIEUCHUYEN extends javax.swing.JFrame {
     }
     DieuChuyenNhanSuDAO dao = new DieuChuyenNhanSuDAO();
 
-    void fillTable() {
+    private void fillTable() {
         DefaultTableModel model = (DefaultTableModel) tblDSDC.getModel();
         model.setRowCount(0);
         try {
@@ -49,6 +49,7 @@ public class DANHSACHDIEUCHUYEN extends javax.swing.JFrame {
                 model.addRow(row);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             MsgBox.alert(this, "Lỗi truy vấn dữ liệu!");
         }
     }

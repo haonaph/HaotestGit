@@ -14,8 +14,8 @@ import java.util.Date;
 public class NhanVien {
     private String MaNV;
     private String MaPB;
-    private String TenNV;
     private String MatKhau;
+     private String TenNV;
     private String DiaChi;
     private String sdt;
     private Date NgaySinh;

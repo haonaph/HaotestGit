@@ -58,7 +58,7 @@ public class DieuChuyenNhanSuDAO extends CSDAO<DieuChuyenNhanSu, String> {
 
     @Override
     protected List<DieuChuyenNhanSu> selectBySql(String sql, Object... agrs) {
-      List<DieuChuyenNhanSu> list = new ArrayList<DieuChuyenNhanSu>();
+      List<DieuChuyenNhanSu> list = new ArrayList <DieuChuyenNhanSu>();
         try {
             ResultSet rs = JdbcHelper.executeQuery(sql, agrs);
             while (rs.next()) {
@@ -68,11 +68,11 @@ public class DieuChuyenNhanSuDAO extends CSDAO<DieuChuyenNhanSu, String> {
                 entity.setMaPB1(rs.getString("MaPB1"));
                 entity.setChucVu1(rs.getBoolean("ChucVu1"));
                 entity.setNgayDieuChuyen(rs.getDate("NgayDieuChuyen"));
-                entity.setNgayBatDau1(rs.getDate("NgayBatDau1"));
+                entity.setNgayBatDau1(rs.getDate("ThoiGianBatDau1"));
                 entity.setThoiGianLamViec(rs.getDate("ThoiGianLamViec"));
                 entity.setDonViTruocDo(rs.getString("DonViTruocDo"));
                 entity.setMaPB2(rs.getString("MaPB2"));
-                entity.setNgayBatDau2(rs.getDate("NgayBatDau2"));
+                entity.setNgayBatDau2(rs.getDate("ThoiGianBatDau2"));
                 entity.setChucVu2(rs.getBoolean("ChucVu2"));
                 entity.setTienNhiem(rs.getString("TienNhiem"));
                

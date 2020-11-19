@@ -59,7 +59,6 @@ public class NhanVienDAO extends CSDAO<NhanVien, String> {
     public List<NhanVien> selectAll() {
         return this.selectBySql(SELECT_ALL_SQL);
     }
-
     @Override
     public NhanVien selectById(String key) {
         List<NhanVien> list = this.selectBySql(SELECT_BY_ID_SQL, key);
@@ -79,9 +78,9 @@ public class NhanVienDAO extends CSDAO<NhanVien, String> {
                 entity.setMaNV(rs.getString("MaNV"));
                 entity.setMaPB(rs.getString("MaPB"));
                 entity.setMatKhau(rs.getString("MatKhau"));
-                entity.setTenNV(rs.getString("TenNV"));
-                entity.setDiaChi(rs.getString("DiaChi"));
-                entity.setSdt(rs.getString("sdt"));
+                entity.setTenNV(rs.getString("HoTen"));
+                entity.setDiaChi(rs.getString("ĐiaChi"));
+                entity.setSdt(rs.getString("SDT"));
                 entity.setNgaySinh(rs.getDate("NgaySinh"));
                 entity.setNoiSinh(rs.getString("NoiSinh"));
                 entity.setCMND(rs.getString("CMND"));
