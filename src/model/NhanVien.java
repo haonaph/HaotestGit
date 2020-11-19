@@ -32,8 +32,12 @@ public class NhanVien {
 
     @Override
     public String toString() {
-        return "NhanVien{" + "MaNV=" + MaNV + ", MaPB=" + MaPB + ", MatKhau=" + MatKhau + ", HoTen=" + HoTen + ", DiaChi=" + DiaChi + ", sdt=" + sdt + ", NgaySinh=" + NgaySinh + ", NoiSinh=" + NoiSinh + ", CMND=" + CMND + ", GioiTinh=" + GioiTinh + ", Emai=" + Emai + ", TinhTrangHonNhan=" + TinhTrangHonNhan + ", TrangThaiLamViec=" + TrangThaiLamViec + ", sdt1=" + sdt1 + ", Anh=" + Anh + ", GhiChu=" + GhiChu + ", ChucVu=" + ChucVu + '}';
+        return MaNV;
     }
+
+   
+
+    
 
     public String getMaNV() {
         return MaNV;

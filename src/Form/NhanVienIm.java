@@ -11,11 +11,9 @@ import DAO.NhanVienDAO;
 import DAO.PhongBanDAO;
 import helper.DateHelper;
 import helper.MsgBox;
-import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import model.DieuChuyenNhanSu;
-import model.PhongBan;
 
 /**
  *
@@ -28,28 +26,33 @@ public class NhanVienIm extends javax.swing.JInternalFrame {
      */
     public NhanVienIm() {
         initComponents();
+        fillComboBox();
     }
     NhanVienDAO nvdao = new NhanVienDAO();
     PhongBanDAO pbdao = new PhongBanDAO();
     DieuChuyenNhanSuDAO dcnsdao = new DieuChuyenNhanSuDAO();
 
-//    void fillComboBoxNhanVien() {
-//        DefaultComboBoxModel model = (DefaultComboBoxModel) cboMaNV.getModel();
-//        model.removeAllElements();
-//        List<NhanVien> list = nvdao.selectAll();
-//        for (NhanVien nv : list) {
-//            model.addElement(nv);
-//        }
-//    }
-//    void fillComboBoxPB() {
-//        DefaultComboBoxModel model = (DefaultComboBoxModel) cboPB.getModel();
-//        model.removeAllElements();
-//        List<PhongBan> list = pbdao.selectAll();
-//        for (PhongBan pb : list) {
-//            model.addElement(pb);
-//        }
-//
-//    }
+ void chonMaNV() {
+        NhanVien chuyenDe = (NhanVien) cboMaNV.getSelectedItem();
+        txtChucVuHT.setText(String.valueOf(chuyenDe.isChucVu()? "Trưởng phòng" : "Nhân viên"));
+        txtMaPB.setText(String.valueOf(chuyenDe.getMaPB()));
+        txtDVTD.setText(chuyenDe.getMaPB());
+      
+    }
+
+   private void fillComboBox() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboMaNV.getModel();
+        model.removeAllElements();
+        try {
+            List<NhanVien> list = nvdao.selectAll();
+            for (NhanVien cd : list) {
+                model.addElement(cd);
+            }
+        } catch (Exception e) {
+            MsgBox.alert(this, "Lỗi truy vấn dữ liệu!");
+        }
+
+    }
     DieuChuyenNhanSuDAO dAo = new DieuChuyenNhanSuDAO();
 
     private void insert() {
@@ -68,7 +71,8 @@ public class NhanVienIm extends javax.swing.JInternalFrame {
 
     DieuChuyenNhanSu getModel() {
         DieuChuyenNhanSu model = new DieuChuyenNhanSu();
-        model.setMaNV(txtMaNV.getText());
+        NhanVien chuyenDe = (NhanVien) cboMaNV.getSelectedItem();
+        model.setMaNV(chuyenDe.getMaNV());
         model.setChucVu1(Boolean.valueOf(txtChucVuHT.getText()));
         model.setMaPB1(txtMaPB.getText());
         model.setNgayDieuChuyen(DateHelper.toDate(txtNgayDC.getText()));
@@ -245,8 +249,8 @@ public class NhanVienIm extends javax.swing.JInternalFrame {
         txtTGLV = new javax.swing.JTextField();
         txtTGBD = new javax.swing.JTextField();
         txtDVTD = new javax.swing.JTextField();
-        txtMaNV = new javax.swing.JTextField();
         txtChucVuHT = new javax.swing.JTextField();
+        cboMaNV = new javax.swing.JComboBox<>();
 
         setTitle("Thông Tin Nhân Viên");
 
@@ -1053,9 +1057,14 @@ public class NhanVienIm extends javax.swing.JInternalFrame {
 
         txtDVTD.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        txtMaNV.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
         txtChucVuHT.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        cboMaNV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboMaNV.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cboMaNVMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout QTLVLayout = new javax.swing.GroupLayout(QTLV);
         QTLV.setLayout(QTLVLayout);
@@ -1090,10 +1099,10 @@ public class NhanVienIm extends javax.swing.JInternalFrame {
                             .addComponent(txtMaPB)
                             .addComponent(txtTGLV)
                             .addComponent(txtTGBD)
-                            .addComponent(txtNgayDC, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNgayDC, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
                             .addComponent(txtDVTD)
-                            .addComponent(txtMaNV, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtChucVuHT))))
+                            .addComponent(txtChucVuHT)
+                            .addComponent(cboMaNV, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
                 .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1119,8 +1128,6 @@ public class NhanVienIm extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(QTLVLayout.createSequentialGroup()
-                        .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
                         .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtMaPB1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel41))
@@ -1140,8 +1147,10 @@ public class NhanVienIm extends javax.swing.JInternalFrame {
                             .addComponent(jLabel19)
                             .addComponent(jLabel30))
                         .addGap(34, 34, 34)
-                        .addComponent(jLabel20)
-                        .addGap(38, 38, 38)
+                        .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel20)
+                            .addComponent(cboMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
                         .addGroup(QTLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(QTLVLayout.createSequentialGroup()
                                 .addComponent(jLabel21)
@@ -1214,6 +1223,10 @@ public class NhanVienIm extends javax.swing.JInternalFrame {
         new DANHSACHDIEUCHUYEN().setVisible(true);
     }//GEN-LAST:event_jButton14ActionPerformed
 
+    private void cboMaNVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMaNVMouseClicked
+        this.chonMaNV();
+    }//GEN-LAST:event_cboMaNVMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel HD;
@@ -1221,6 +1234,7 @@ public class NhanVienIm extends javax.swing.JInternalFrame {
     private javax.swing.JPanel TN;
     private javax.swing.JPanel TTNV;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> cboMaNV;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -1353,7 +1367,6 @@ public class NhanVienIm extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtChucVu1;
     private javax.swing.JTextField txtChucVuHT;
     private javax.swing.JTextField txtDVTD;
-    private javax.swing.JTextField txtMaNV;
     private javax.swing.JTextField txtMaPB;
     private javax.swing.JTextField txtMaPB1;
     private javax.swing.JTextField txtManv;
@@ -1369,7 +1382,6 @@ public class NhanVienIm extends javax.swing.JInternalFrame {
         txtChucVu1.setText("");
         txtChucVuHT.setText("");
         txtDVTD.setText("");
-        txtMaNV.setText("");
         txtMaPB.setText("");
         txtMaPB1.setText("");
         txtNgayDC.setText("");
