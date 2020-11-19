@@ -66,6 +66,7 @@ public class Home extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JToolBar.Separator();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
 
         jMenu1.setText("File");
@@ -90,7 +91,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(pnlTrangThaiLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 662, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblDongHo, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
@@ -184,6 +185,15 @@ public class Home extends javax.swing.JFrame {
         toolBar.add(jSeparator4);
 
         jMenu3.setText("File");
+
+        jMenuItem1.setText("Chấm công");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem1);
+
         jMenuBar2.add(jMenu3);
 
         jMenu4.setText("Edit");
@@ -230,6 +240,13 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_btCanhanActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        ChamCong ccmd = new ChamCong();
+        desktopPane.removeAll();
+        desktopPane.add(ccmd);
+        ccmd.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,6 +295,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
