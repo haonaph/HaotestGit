@@ -11,9 +11,22 @@ import javax.swing.JComboBox;
 import java.sql.*;
 import helper.JdbcHelper;
 import helper.MsgBox;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -28,6 +41,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
     ChamCongDao dao = new ChamCongDao();
     long count, sotrang, trang = 1;
     int doDaiTrang;
+//    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
     public ChamCong() {
         initComponents();
@@ -37,44 +51,10 @@ public class ChamCong extends javax.swing.JInternalFrame {
         } else {
             sotrang = count / 2 + 1;
         }
-        load(1);
+//        load(1);
         number.setText("1/" + sotrang);
         jTable1.setAutoCreateRowSorter(true);
-        String[] a = {
-            "C", "CN", "V", "P", "O"
-        };
-        JComboBox c = new JComboBox(a);
-        jTable1.getColumnModel().getColumn(4).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(5).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(6).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(7).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(8).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(9).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(10).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(11).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(18).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(13).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(14).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(15).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(16).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(17).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(18).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(19).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(20).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(21).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(22).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(23).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(24).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(25).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(26).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(27).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(28).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(29).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(30).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(31).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(32).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(33).setCellEditor(new DefaultCellEditor(c));
-        jTable1.getColumnModel().getColumn(34).setCellEditor(new DefaultCellEditor(c));
+        
     }
 
     public void load(long trang) {
@@ -153,6 +133,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
         next = new javax.swing.JButton();
         last = new javax.swing.JButton();
         number = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setClosable(true);
         setMaximizable(true);
@@ -184,17 +165,14 @@ public class ChamCong extends javax.swing.JInternalFrame {
         jTable1.setAutoCreateRowSorter(true);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Mã NV", "Tên NV", "Tháng", "Năm", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"
+                "Mã NV", "Tên NV", "Tháng", "Năm", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "Tổng"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -239,12 +217,21 @@ public class ChamCong extends javax.swing.JInternalFrame {
         number.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         number.setText("jLabel1");
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(63, 63, 63)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(first)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(preview)
@@ -280,22 +267,28 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     .addComponent(TimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(preview)
-                    .addComponent(first)
-                    .addComponent(next)
-                    .addComponent(last)
-                    .addComponent(number))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(preview)
+                            .addComponent(first)
+                            .addComponent(next)
+                            .addComponent(last)
+                            .addComponent(number))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
+                        .addContainerGap(24, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-        this.countdb();
-        this.load(trang);
+//        this.countdb();
+//        this.load(trang);
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void firstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstActionPerformed
@@ -326,6 +319,438 @@ public class ChamCong extends javax.swing.JInternalFrame {
         number.setText(sotrang + "/" + sotrang);
     }//GEN-LAST:event_lastActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        FileInputStream excelFis = null;
+        BufferedInputStream excelBis = null;
+        XSSFWorkbook excelJTableImportWorkBook = null;
+
+        String currenntDirectoryPath = "G:\\";
+        JFileChooser excelFileChooseImport = new JFileChooser(currenntDirectoryPath);
+//        filter only excel files
+        FileNameExtensionFilter fnef = new FileNameExtensionFilter("EXCEL FILES", "xls", "xlxs", "xlsm");
+        excelFileChooseImport.setFileFilter(fnef);
+        excelFileChooseImport.setDialogTitle("Select excel fiel");
+        int excelChoose = excelFileChooseImport.showOpenDialog(null);
+        if (excelChoose == JFileChooser.APPROVE_OPTION) {
+
+            try {
+                File excelFile = excelFileChooseImport.getSelectedFile();
+                excelFis = new FileInputStream(excelFile);
+                excelBis = new BufferedInputStream(excelFis);
+                excelJTableImportWorkBook = new XSSFWorkbook(excelBis);
+                XSSFSheet excelSheet = excelJTableImportWorkBook.getSheetAt(0);
+
+                for (int row = 1; row < excelSheet.getLastRowNum(); row++) {
+                    XSSFRow excelRow = excelSheet.getRow(row);
+                    XSSFCell excelMa = excelRow.getCell(0);
+                    XSSFCell excelTen = excelRow.getCell(1);
+                    XSSFCell excelThang = excelRow.getCell(2);
+                    XSSFCell excelNam = excelRow.getCell(3);
+                    XSSFCell excelD1 = excelRow.getCell(4);
+                    String D1 = excelD1.toString();
+                    int d1;
+                    if (D1.equalsIgnoreCase("VV") || D1.equalsIgnoreCase("C") || D1.equalsIgnoreCase("p")) {
+                        d1 = 2;
+                    } else if (D1.equalsIgnoreCase("x")) {
+                        d1 = 0;
+                    } else if (D1.equalsIgnoreCase("am") || D1.equalsIgnoreCase("pm")) {
+                        d1 = 1;
+                    } else {
+                        d1 = 0;
+                    }
+                    XSSFCell excelD2 = excelRow.getCell(5);
+                    String D2 = excelD2.toString();
+                    int d2;
+                    if (D2.equalsIgnoreCase("VV") || D2.equalsIgnoreCase("C") || D2.equalsIgnoreCase("p")) {
+                        d2 = 2;
+                    } else if (D2.equalsIgnoreCase("x")) {
+                        d2 = 0;
+                    } else if (D2.equalsIgnoreCase("am") || D2.equalsIgnoreCase("pm")) {
+                        d2 = 1;
+                    } else {
+                        d2 = 0;
+                    }
+                    XSSFCell excelD3 = excelRow.getCell(6);
+                    String D3 = excelD3.toString();
+                    int d3;
+                    if (D3.equalsIgnoreCase("VV") || D3.equalsIgnoreCase("C") || D3.equalsIgnoreCase("p")) {
+                        d3 = 2;
+                    } else if (D3.equalsIgnoreCase("x")) {
+                        d3 = 0;
+                    } else if (D3.equalsIgnoreCase("am") || D3.equalsIgnoreCase("pm")) {
+                        d3 = 1;
+                    } else {
+                        d3 = 0;
+                    }
+                    XSSFCell excelD4 = excelRow.getCell(7);
+                    String D4 = excelD4.toString();
+                    int d4;
+                    if (D4.equalsIgnoreCase("VV") || D4.equalsIgnoreCase("C") || D4.equalsIgnoreCase("p")) {
+                        d4 = 2;
+                    } else if (D4.equalsIgnoreCase("x")) {
+                        d4 = 0;
+                    } else if (D4.equalsIgnoreCase("am") || D4.equalsIgnoreCase("pm")) {
+                        d4 = 1;
+                    } else {
+                        d4 = 0;
+                    }
+                    XSSFCell excelD5 = excelRow.getCell(8);
+                    String D5 = excelD5.toString();
+                    int d5;
+                    if (D5.equalsIgnoreCase("VV") || D5.equalsIgnoreCase("C") || D5.equalsIgnoreCase("p")) {
+                        d5 = 2;
+                    } else if (D5.equalsIgnoreCase("x")) {
+                        d5 = 0;
+                    } else if (D5.equalsIgnoreCase("am") || D5.equalsIgnoreCase("pm")) {
+                        d5 = 1;
+                    } else {
+                        d5 = 0;
+                    }
+                    XSSFCell excelD6 = excelRow.getCell(9);
+                    String D6 = excelD6.toString();
+                    int d6;
+                    if (D6.equalsIgnoreCase("VV") || D6.equalsIgnoreCase("C") || D6.equalsIgnoreCase("p")) {
+                        d6 = 2;
+                    } else if (D6.equalsIgnoreCase("x")) {
+                        d6 = 0;
+                    } else if (D6.equalsIgnoreCase("am") || D6.equalsIgnoreCase("pm")) {
+                        d6 = 1;
+                    } else {
+                        d6 = 0;
+                    }
+                    XSSFCell excelD7 = excelRow.getCell(10);
+                    String D7 = excelD7.toString();
+                    int d7;
+                    if (D7.equalsIgnoreCase("VV") || D7.equalsIgnoreCase("C") || D7.equalsIgnoreCase("p")) {
+                        d7 = 2;
+                    } else if (D7.equalsIgnoreCase("x")) {
+                        d7 = 0;
+                    } else if (D7.equalsIgnoreCase("am") || D7.equalsIgnoreCase("pm")) {
+                        d7 = 1;
+                    } else {
+                        d7 = 0;
+                    }
+                    XSSFCell excelD8 = excelRow.getCell(11);
+                    String D8 = excelD8.toString();
+                    int d8;
+                    if (D8.equalsIgnoreCase("VV") || D8.equalsIgnoreCase("C") || D8.equalsIgnoreCase("p")) {
+                        d8 = 2;
+                    } else if (D8.equalsIgnoreCase("x")) {
+                        d8 = 0;
+                    } else if (D8.equalsIgnoreCase("am") || D8.equalsIgnoreCase("pm")) {
+                        d8 = 1;
+                    } else {
+                        d8 = 0;
+                    }
+                    XSSFCell excelD9 = excelRow.getCell(12);
+                    String D9 = excelD9.toString();
+                    int d9;
+                    if (D9.equalsIgnoreCase("VV") || D9.equalsIgnoreCase("C") || D9.equalsIgnoreCase("p")) {
+                        d9 = 2;
+                    } else if (D9.equalsIgnoreCase("x")) {
+                        d9 = 0;
+                    } else if (D9.equalsIgnoreCase("am") || D9.equalsIgnoreCase("pm")) {
+                        d9 = 1;
+                    } else {
+                        d9 = 0;
+                    }
+                    XSSFCell excelD10 = excelRow.getCell(13);
+                    String D10 = excelD10.toString();
+                    int d10;
+                    if (D10.equalsIgnoreCase("VV") || D10.equalsIgnoreCase("C") || D10.equalsIgnoreCase("p")) {
+                        d10 = 2;
+                    } else if (D10.equalsIgnoreCase("x")) {
+                        d10 = 0;
+                    } else if (D10.equalsIgnoreCase("am") || D10.equalsIgnoreCase("pm")) {
+                        d10 = 1;
+                    } else {
+                        d10 = 0;
+                    }
+                    XSSFCell excelD11 = excelRow.getCell(14);
+                    String D11 = excelD11.toString();
+                    int d11;
+                    if (D11.equalsIgnoreCase("VV") || D11.equalsIgnoreCase("C") || D11.equalsIgnoreCase("p")) {
+                        d11 = 2;
+                    } else if (D11.equalsIgnoreCase("x")) {
+                        d11 = 0;
+                    } else if (D11.equalsIgnoreCase("am") || D11.equalsIgnoreCase("pm")) {
+                        d11 = 1;
+                    } else {
+                        d11 = 0;
+                    }
+                    XSSFCell excelD12 = excelRow.getCell(15);
+                    String D12 = excelD12.toString();
+                    int d12;
+                    if (D12.equalsIgnoreCase("VV") || D12.equalsIgnoreCase("C") || D12.equalsIgnoreCase("p")) {
+                        d12 = 2;
+                    } else if (D12.equalsIgnoreCase("x")) {
+                        d12 = 0;
+                    } else if (D12.equalsIgnoreCase("am") || D12.equalsIgnoreCase("pm")) {
+                        d12 = 1;
+                    } else {
+                        d12 = 0;
+                    }
+                    XSSFCell excelD13 = excelRow.getCell(16);
+                    String D13 = excelD13.toString();
+                    int d13;
+                    if (D13.equalsIgnoreCase("VV") || D13.equalsIgnoreCase("C") || D13.equalsIgnoreCase("p")) {
+                        d13 = 2;
+                    } else if (D13.equalsIgnoreCase("x")) {
+                        d13 = 0;
+                    } else if (D13.equalsIgnoreCase("am") || D13.equalsIgnoreCase("pm")) {
+                        d13 = 1;
+                    } else {
+                        d13 = 0;
+                    }
+                    XSSFCell excelD14 = excelRow.getCell(17);
+                    String D14 = excelD14.toString();
+                    int d14;
+                    if (D14.equalsIgnoreCase("VV") || D14.equalsIgnoreCase("C") || D14.equalsIgnoreCase("p")) {
+                        d14 = 2;
+                    } else if (D14.equalsIgnoreCase("x")) {
+                        d14 = 0;
+                    } else if (D14.equalsIgnoreCase("am") || D14.equalsIgnoreCase("pm")) {
+                        d14 = 1;
+                    } else {
+                        d14 = 0;
+                    }
+                    XSSFCell excelD15 = excelRow.getCell(18);
+                    String D15 = excelD15.toString();
+                    int d15;
+                    if (D15.equalsIgnoreCase("VV") || D15.equalsIgnoreCase("C") || D15.equalsIgnoreCase("p")) {
+                        d15 = 2;
+                    } else if (D15.equalsIgnoreCase("x")) {
+                        d15 = 0;
+                    } else if (D15.equalsIgnoreCase("am") || D15.equalsIgnoreCase("pm")) {
+                        d15 = 1;
+                    } else {
+                        d15 = 0;
+                    }
+                    XSSFCell excelD16 = excelRow.getCell(19);
+                    String D16 = excelD16.toString();
+                    int d16;
+                    if (D16.equalsIgnoreCase("VV") || D16.equalsIgnoreCase("C") || D16.equalsIgnoreCase("p")) {
+                        d16 = 2;
+                    } else if (D16.equalsIgnoreCase("x")) {
+                        d16 = 0;
+                    } else if (D16.equalsIgnoreCase("am") || D16.equalsIgnoreCase("pm")) {
+                        d16 = 1;
+                    } else {
+                        d16 = 0;
+                    }
+                    XSSFCell excelD17 = excelRow.getCell(20);
+                    String D17 = excelD17.toString();
+                    int d17;
+                    if (D17.equalsIgnoreCase("VV") || D17.equalsIgnoreCase("C") || D17.equalsIgnoreCase("p")) {
+                        d17 = 2;
+                    } else if (D17.equalsIgnoreCase("x")) {
+                        d17 = 0;
+                    } else if (D17.equalsIgnoreCase("am") || D17.equalsIgnoreCase("pm")) {
+                        d17 = 1;
+                    } else {
+                        d17 = 0;
+                    }
+                    XSSFCell excelD18 = excelRow.getCell(21);
+                    String D18 = excelD18.toString();
+                    int d18;
+                    if (D18.equalsIgnoreCase("VV") || D18.equalsIgnoreCase("C") || D18.equalsIgnoreCase("p")) {
+                        d18 = 2;
+                    } else if (D18.equalsIgnoreCase("x")) {
+                        d18 = 0;
+                    } else if (D18.equalsIgnoreCase("am") || D18.equalsIgnoreCase("pm")) {
+                        d18 = 1;
+                    } else {
+                        d18 = 0;
+                    }
+                    XSSFCell excelD19 = excelRow.getCell(22);
+                    String D19 = excelD19.toString();
+                    int d19;
+                    if (D19.equalsIgnoreCase("VV") || D19.equalsIgnoreCase("C") || D19.equalsIgnoreCase("p")) {
+                        d19 = 2;
+                    } else if (D19.equalsIgnoreCase("x")) {
+                        d19 = 0;
+                    } else if (D19.equalsIgnoreCase("am") || D19.equalsIgnoreCase("pm")) {
+                        d19 = 1;
+                    } else {
+                        d19 = 0;
+                    }
+                    XSSFCell excelD20 = excelRow.getCell(23);
+                    String D20 = excelD20.toString();
+                    int d20;
+                    if (D20.equalsIgnoreCase("VV") || D20.equalsIgnoreCase("C") || D20.equalsIgnoreCase("p")) {
+                        d20 = 2;
+                    } else if (D20.equalsIgnoreCase("x")) {
+                        d20 = 0;
+                    } else if (D20.equalsIgnoreCase("am") || D20.equalsIgnoreCase("pm")) {
+                        d20 = 1;
+                    } else {
+                        d20 = 0;
+                    }
+                    XSSFCell excelD21 = excelRow.getCell(24);
+                    String D21 = excelD21.toString();
+                    int d21;
+                    if (D21.equalsIgnoreCase("VV") || D21.equalsIgnoreCase("C") || D21.equalsIgnoreCase("p")) {
+                        d21 = 2;
+                    } else if (D21.equalsIgnoreCase("x")) {
+                        d21 = 0;
+                    } else if (D21.equalsIgnoreCase("am") || D21.equalsIgnoreCase("pm")) {
+                        d21 = 1;
+                    } else {
+                        d21 = 0;
+                    }
+                    XSSFCell excelD22 = excelRow.getCell(25);
+                    String D22 = excelD22.toString();
+                    int d22;
+                    if (D22.equalsIgnoreCase("VV") || D22.equalsIgnoreCase("C") || D22.equalsIgnoreCase("p")) {
+                        d22 = 2;
+                    } else if (D22.equalsIgnoreCase("x")) {
+                        d22 = 0;
+                    } else if (D22.equalsIgnoreCase("am") || D22.equalsIgnoreCase("pm")) {
+                        d22 = 1;
+                    } else {
+                        d22 = 0;
+                    }
+                    XSSFCell excelD23 = excelRow.getCell(26);
+                    String D23 = excelD23.toString();
+                    int d23;
+                    if (D23.equalsIgnoreCase("VV") || D23.equalsIgnoreCase("C") || D23.equalsIgnoreCase("p")) {
+                        d23 = 2;
+                    } else if (D23.equalsIgnoreCase("x")) {
+                        d23 = 0;
+                    } else if (D23.equalsIgnoreCase("am") || D23.equalsIgnoreCase("pm")) {
+                        d23 = 1;
+                    } else {
+                        d23 = 0;
+                    }
+                    XSSFCell excelD24 = excelRow.getCell(27);
+                    String D24 = excelD24.toString();
+                    int d24;
+                    if (D24.equalsIgnoreCase("VV") || D24.equalsIgnoreCase("C") || D24.equalsIgnoreCase("p")) {
+                        d24 = 2;
+                    } else if (D24.equalsIgnoreCase("x")) {
+                        d24 = 0;
+                    } else if (D24.equalsIgnoreCase("am") || D24.equalsIgnoreCase("pm")) {
+                        d24 = 1;
+                    } else {
+                        d24 = 0;
+                    }
+                    XSSFCell excelD25 = excelRow.getCell(28);
+                    String D25 = excelD25.toString();
+                    int d25;
+                    if (D25.equalsIgnoreCase("VV") || D25.equalsIgnoreCase("C") || D25.equalsIgnoreCase("p")) {
+                        d25 = 2;
+                    } else if (D25.equalsIgnoreCase("x")) {
+                        d25 = 0;
+                    } else if (D25.equalsIgnoreCase("am") || D25.equalsIgnoreCase("pm")) {
+                        d25 = 1;
+                    } else {
+                        d25 = 0;
+                    }
+                    XSSFCell excelD26 = excelRow.getCell(29);
+                    String D26 = excelD26.toString();
+                    int d26;
+                    if (D26.equalsIgnoreCase("VV") || D26.equalsIgnoreCase("C") || D26.equalsIgnoreCase("p")) {
+                        d26 = 2;
+                    } else if (D26.equalsIgnoreCase("x")) {
+                        d26 = 0;
+                    } else if (D26.equalsIgnoreCase("am") || D26.equalsIgnoreCase("pm")) {
+                        d26 = 1;
+                    } else {
+                        d26 = 0;
+                    }
+                    XSSFCell excelD27 = excelRow.getCell(30);
+                    String D27 = excelD27.toString();
+                    int d27;
+                    if (D27.equalsIgnoreCase("VV") || D27.equalsIgnoreCase("C") || D27.equalsIgnoreCase("p")) {
+                        d27 = 2;
+                    } else if (D27.equalsIgnoreCase("x")) {
+                        d27 = 0;
+                    } else if (D27.equalsIgnoreCase("am") || D27.equalsIgnoreCase("pm")) {
+                        d27 = 1;
+                    } else {
+                        d27 = 0;
+                    }
+                    XSSFCell excelD28 = excelRow.getCell(31);
+                    String D28 = excelD2.toString();
+                    int d28;
+                    if (D28.equalsIgnoreCase("VV") || D28.equalsIgnoreCase("C") || D28.equalsIgnoreCase("p")) {
+                        d28 = 2;
+                    } else if (D28.equalsIgnoreCase("x")) {
+                        d28 = 0;
+                    } else if (D28.equalsIgnoreCase("am") || D28.equalsIgnoreCase("pm")) {
+                        d28 = 1;
+                    } else {
+                        d28 = 0;
+                    }
+                    XSSFCell excelD29 = excelRow.getCell(32);
+                    String D29 = excelD2.toString();
+                    int d29;
+                    if (D29.equalsIgnoreCase("VV") || D29.equalsIgnoreCase("C") || D29.equalsIgnoreCase("p")) {
+                        d29 = 2;
+                    } else if (D29.equalsIgnoreCase("x")) {
+                        d29 = 0;
+                    } else if (D29.equalsIgnoreCase("am") || D29.equalsIgnoreCase("pm")) {
+                        d29 = 1;
+                    } else {
+                        d29 = 0;
+                    }
+                    XSSFCell excelD30 = excelRow.getCell(33);
+                    String D30 = excelD30.toString();
+                    int d30;
+                    if (D2.equalsIgnoreCase("VV") || D30.equalsIgnoreCase("C") || D30.equalsIgnoreCase("p")) {
+                        d30 = 2;
+                    } else if (D30.equalsIgnoreCase("x")) {
+                        d30 = 0;
+                    } else if (D30.equalsIgnoreCase("am") || D30.equalsIgnoreCase("pm")) {
+                        d30 = 1;
+                    } else {
+                        d30 = 0;
+                    }
+                    XSSFCell excelD31 = excelRow.getCell(34);
+                    String D31 = excelD31.toString();
+                    int d31;
+                    if (D31.equalsIgnoreCase("VV") || D31.equalsIgnoreCase("C") || D31.equalsIgnoreCase("p")) {
+                        d31 = 2;
+                    } else if (D31.equalsIgnoreCase("x")) {
+                        d31 = 0;
+                    } else if (D31.equalsIgnoreCase("am") || D31.equalsIgnoreCase("pm")) {
+                        d31 = 1;
+                    } else {
+                        d31 = 0;
+                    }
+                    int tong = d1 + d2 + d3 + d4 + d5 + d6 + d7 + d8 + d9 + d10 + d11 + d12 + d13 + d14 + d15 + d16 + d17 + d18 + d19 + d20 + d21
+                            + d22 + d23 + d24 + d25 + d26 + d27 + d28 + d29 + d30 + d31;
+                    model.addRow(new Object[]{excelMa, excelTen, excelThang, excelNam, excelD1, excelD2, excelD3, excelD4, excelD5, excelD6, excelD7,
+                        excelD8, excelD9, excelD10, excelD11, excelD12, excelD13, excelD14, excelD15, excelD16, excelD17, excelD18, excelD19, excelD20,
+                        excelD21, excelD22, excelD23, excelD24, excelD25, excelD26, excelD27, excelD28, excelD29, excelD30, excelD31, tong / 2
+                    });
+                    //                    for (int column = 0; column < excelRow.getLastCellNum(); column++) {
+                    //                        XSSFCell excelCell = excelRow.getCell(column);
+                    //                    }
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(ChamCong.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(ChamCong.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
+                    if (excelFis != null) {
+                        excelFis.close();
+                    }
+                    if (excelBis != null) {
+                        excelBis.close();
+                    }
+                    if (excelJTableImportWorkBook != null) {
+                        excelJTableImportWorkBook.close();
+                    }
+                } catch (IOException e) {
+                }
+            }
+
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Nam;
@@ -333,6 +758,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> Thang;
     private javax.swing.JTextField TimKiem;
     private javax.swing.JButton first;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton last;
