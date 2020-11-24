@@ -258,65 +258,65 @@ public class ChamCong extends javax.swing.JInternalFrame {
         D11AM = new javax.swing.JLabel();
         D11PM = new javax.swing.JLabel();
         jPanel23 = new javax.swing.JPanel();
-        D12PM = new javax.swing.JLabel();
         D12AM = new javax.swing.JLabel();
+        D12PM = new javax.swing.JLabel();
         jPanel22 = new javax.swing.JPanel();
-        D13PM = new javax.swing.JLabel();
         D13AM = new javax.swing.JLabel();
+        D13PM = new javax.swing.JLabel();
         jPanel28 = new javax.swing.JPanel();
-        D14PM = new javax.swing.JLabel();
         D14AM = new javax.swing.JLabel();
+        D14PM = new javax.swing.JLabel();
         jPanel27 = new javax.swing.JPanel();
-        D15PM = new javax.swing.JLabel();
         D15AM = new javax.swing.JLabel();
+        D15PM = new javax.swing.JLabel();
         jPanel24 = new javax.swing.JPanel();
-        D16PM = new javax.swing.JLabel();
         D16AM = new javax.swing.JLabel();
+        D16PM = new javax.swing.JLabel();
         jPanel26 = new javax.swing.JPanel();
-        D17PM = new javax.swing.JLabel();
         D17AM = new javax.swing.JLabel();
+        D17PM = new javax.swing.JLabel();
         jPanel30 = new javax.swing.JPanel();
-        D18PM = new javax.swing.JLabel();
         D18AM = new javax.swing.JLabel();
+        D18PM = new javax.swing.JLabel();
         jPanel19 = new javax.swing.JPanel();
-        D19PM = new javax.swing.JLabel();
         D19AM = new javax.swing.JLabel();
+        D19PM = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
-        D20PM = new javax.swing.JLabel();
         D20AM = new javax.swing.JLabel();
+        D20PM = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
-        D21PM = new javax.swing.JLabel();
         D21AM = new javax.swing.JLabel();
+        D21PM = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
-        D22PM = new javax.swing.JLabel();
         D22AM = new javax.swing.JLabel();
+        D22PM = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
-        D23PM = new javax.swing.JLabel();
         D23AM = new javax.swing.JLabel();
+        D23PM = new javax.swing.JLabel();
         jPanel21 = new javax.swing.JPanel();
-        D24PM = new javax.swing.JLabel();
         D24AM = new javax.swing.JLabel();
+        D24PM = new javax.swing.JLabel();
         jPanel18 = new javax.swing.JPanel();
-        D25PM = new javax.swing.JLabel();
         D25AM = new javax.swing.JLabel();
+        D25PM = new javax.swing.JLabel();
         jPanel17 = new javax.swing.JPanel();
-        D26PM = new javax.swing.JLabel();
         D26AM = new javax.swing.JLabel();
+        D26PM = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        D27PM = new javax.swing.JLabel();
         D27AM = new javax.swing.JLabel();
+        D27PM = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
-        D28PM = new javax.swing.JLabel();
         D28AM = new javax.swing.JLabel();
+        D28PM = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        D29PM = new javax.swing.JLabel();
         D29AM = new javax.swing.JLabel();
+        D29PM = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        D30PM = new javax.swing.JLabel();
         D30AM = new javax.swing.JLabel();
+        D30PM = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        D31PM = new javax.swing.JLabel();
         D31AM = new javax.swing.JLabel();
+        D31PM = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
 
         setClosable(true);
@@ -346,7 +346,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Mã NV", "Tên NV", "Tháng", "Năm", "Số buổi đi", "Số buôi nghỉ", "Tổng"
+                "Mã NV", "Tên NV", "Tháng", "Năm", "Số buổi đi", "Số buổi nghỉ", "Tổng"
             }
         ));
         jTable1.setInheritsPopupMenu(true);
@@ -462,14 +462,14 @@ public class ChamCong extends javax.swing.JInternalFrame {
                         .addComponent(jButton1)
                         .addComponent(jButton2)
                         .addComponent(jButton3))
-                    .addContainerGap(24, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         tabs.addTab("tab2", jPanel2);
 
         jPanel3.setLayout(new java.awt.GridLayout(4, 8, 10, 10));
 
-        jPanel33.setLayout(new java.awt.GridLayout(2, 0, 10, 10));
+        jPanel33.setLayout(new java.awt.GridLayout(2, 0, 5, 5));
 
         D1AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         D1AM.setText("D1 - AM");
@@ -481,7 +481,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
 
         jPanel3.add(jPanel33);
 
-        jPanel38.setLayout(new java.awt.GridLayout(2, 0));
+        jPanel38.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D2AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         D2AM.setText("D2 - AM");
@@ -493,7 +493,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
 
         jPanel3.add(jPanel38);
 
-        jPanel37.setLayout(new java.awt.GridLayout(2, 0));
+        jPanel37.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D3AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         D3AM.setText("D3 - AM");
@@ -505,7 +505,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
 
         jPanel3.add(jPanel37);
 
-        jPanel31.setLayout(new java.awt.GridLayout(2, 0));
+        jPanel31.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D4AM.setText("D4 - AM");
         jPanel31.add(D4AM);
@@ -515,7 +515,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
 
         jPanel3.add(jPanel31);
 
-        jPanel35.setLayout(new java.awt.GridLayout(2, 0));
+        jPanel35.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D5AM.setText("D5 - AM");
         jPanel35.add(D5AM);
@@ -525,7 +525,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
 
         jPanel3.add(jPanel35);
 
-        jPanel36.setLayout(new java.awt.GridLayout(2, 0));
+        jPanel36.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D6AM.setText("D6 - AM");
         jPanel36.add(D6AM);
@@ -535,7 +535,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
 
         jPanel3.add(jPanel36);
 
-        jPanel39.setLayout(new java.awt.GridLayout(2, 0));
+        jPanel39.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D7AM.setText("D7 - AM");
         jPanel39.add(D7AM);
@@ -545,7 +545,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
 
         jPanel3.add(jPanel39);
 
-        jPanel32.setLayout(new java.awt.GridLayout(2, 0));
+        jPanel32.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D8AM.setText("D8 -AM");
         jPanel32.add(D8AM);
@@ -555,729 +555,296 @@ public class ChamCong extends javax.swing.JInternalFrame {
 
         jPanel3.add(jPanel32);
 
-        jPanel34.setLayout(new java.awt.GridLayout(2, 0));
+        jPanel34.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D9AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D9AM.setText("jLabel1");
+        D9AM.setText("D9 - AM");
         jPanel34.add(D9AM);
 
         D9PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D9PM.setText("jLabel2");
+        D9PM.setText("D9 - PM");
         jPanel34.add(D9PM);
 
         jPanel3.add(jPanel34);
 
-        jPanel25.setLayout(new java.awt.GridLayout(2, 0));
+        jPanel25.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D10AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D10AM.setText("jLabel1");
+        D10AM.setText("D10 - AM");
         jPanel25.add(D10AM);
 
         D10PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D10PM.setText("jLabel2");
+        D10PM.setText("D10 - PM");
         jPanel25.add(D10PM);
 
         jPanel3.add(jPanel25);
 
-        jPanel29.setLayout(new java.awt.GridLayout(2, 0));
+        jPanel29.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D11AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D11AM.setText("jLabel1");
+        D11AM.setText("D11 - AM");
         jPanel29.add(D11AM);
 
         D11PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D11PM.setText("jLabel2");
+        D11PM.setText("D11 - PM");
         jPanel29.add(D11PM);
 
         jPanel3.add(jPanel29);
 
-        D12PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D12PM.setText("jLabel2");
+        jPanel23.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D12AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D12AM.setText("jLabel1");
+        D12AM.setText("D12 - AM");
+        jPanel23.add(D12AM);
 
-        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
-        jPanel23.setLayout(jPanel23Layout);
-        jPanel23Layout.setHorizontalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 144, Short.MAX_VALUE)
-            .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel23Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(D12AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(D12PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel23Layout.setVerticalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 153, Short.MAX_VALUE)
-            .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel23Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(D12AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(D12PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        D12PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D12PM.setText("D12 - PM");
+        jPanel23.add(D12PM);
 
         jPanel3.add(jPanel23);
 
-        D13PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D13PM.setText("jLabel2");
+        jPanel22.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D13AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D13AM.setText("jLabel1");
+        D13AM.setText("D13 - AM");
+        jPanel22.add(D13AM);
 
-        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
-        jPanel22.setLayout(jPanel22Layout);
-        jPanel22Layout.setHorizontalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 144, Short.MAX_VALUE)
-            .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel22Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(D13AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(D13PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel22Layout.setVerticalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 153, Short.MAX_VALUE)
-            .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel22Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(D13AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(D13PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        D13PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D13PM.setText("D13 - PM");
+        jPanel22.add(D13PM);
 
         jPanel3.add(jPanel22);
 
-        D14PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D14PM.setText("jLabel2");
+        jPanel28.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D14AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D14AM.setText("jLabel1");
+        D14AM.setText("D14 - AM");
+        jPanel28.add(D14AM);
 
-        javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
-        jPanel28.setLayout(jPanel28Layout);
-        jPanel28Layout.setHorizontalGroup(
-            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 144, Short.MAX_VALUE)
-            .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel28Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(D14AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(D14PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel28Layout.setVerticalGroup(
-            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 153, Short.MAX_VALUE)
-            .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel28Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(D14AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(D14PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        D14PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D14PM.setText("D14 - PM");
+        jPanel28.add(D14PM);
 
         jPanel3.add(jPanel28);
 
-        D15PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D15PM.setText("jLabel2");
+        jPanel27.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D15AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D15AM.setText("jLabel1");
+        D15AM.setText("D15 - AM");
+        jPanel27.add(D15AM);
 
-        javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
-        jPanel27.setLayout(jPanel27Layout);
-        jPanel27Layout.setHorizontalGroup(
-            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 144, Short.MAX_VALUE)
-            .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel27Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(D15AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(D15PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel27Layout.setVerticalGroup(
-            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 153, Short.MAX_VALUE)
-            .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel27Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(D15AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(D15PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        D15PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D15PM.setText("D15 - PM");
+        jPanel27.add(D15PM);
 
         jPanel3.add(jPanel27);
 
-        D16PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D16PM.setText("jLabel2");
+        jPanel24.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D16AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D16AM.setText("jLabel1");
+        D16AM.setText("D16 - AM");
+        jPanel24.add(D16AM);
 
-        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
-        jPanel24.setLayout(jPanel24Layout);
-        jPanel24Layout.setHorizontalGroup(
-            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 144, Short.MAX_VALUE)
-            .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel24Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(D16AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(D16PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel24Layout.setVerticalGroup(
-            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 153, Short.MAX_VALUE)
-            .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel24Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(D16AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(D16PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        D16PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D16PM.setText("D16 - PM");
+        jPanel24.add(D16PM);
 
         jPanel3.add(jPanel24);
 
-        D17PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D17PM.setText("jLabel2");
+        jPanel26.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D17AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D17AM.setText("jLabel1");
+        D17AM.setText("D17 - AM");
+        jPanel26.add(D17AM);
 
-        javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
-        jPanel26.setLayout(jPanel26Layout);
-        jPanel26Layout.setHorizontalGroup(
-            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 144, Short.MAX_VALUE)
-            .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel26Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(D17AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(D17PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel26Layout.setVerticalGroup(
-            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 153, Short.MAX_VALUE)
-            .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel26Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(D17AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(D17PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        D17PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D17PM.setText("D17 - PM");
+        jPanel26.add(D17PM);
 
         jPanel3.add(jPanel26);
 
-        D18PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D18PM.setText("jLabel2");
+        jPanel30.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D18AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D18AM.setText("jLabel1");
+        D18AM.setText("D18 - AM");
+        jPanel30.add(D18AM);
 
-        javax.swing.GroupLayout jPanel30Layout = new javax.swing.GroupLayout(jPanel30);
-        jPanel30.setLayout(jPanel30Layout);
-        jPanel30Layout.setHorizontalGroup(
-            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 144, Short.MAX_VALUE)
-            .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel30Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(D18AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(D18PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel30Layout.setVerticalGroup(
-            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 153, Short.MAX_VALUE)
-            .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel30Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(D18AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(D18PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        D18PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D18PM.setText("D18 - PM");
+        jPanel30.add(D18PM);
 
         jPanel3.add(jPanel30);
 
-        D19PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D19PM.setText("jLabel2");
+        jPanel19.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D19AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D19AM.setText("jLabel1");
+        D19AM.setText("D19 - AM");
+        jPanel19.add(D19AM);
 
-        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
-        jPanel19.setLayout(jPanel19Layout);
-        jPanel19Layout.setHorizontalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 144, Short.MAX_VALUE)
-            .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel19Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(D19AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(D19PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel19Layout.setVerticalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 153, Short.MAX_VALUE)
-            .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel19Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(D19AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(D19PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        D19PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D19PM.setText("D19 - PM");
+        jPanel19.add(D19PM);
 
         jPanel3.add(jPanel19);
 
-        D20PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D20PM.setText("jLabel2");
+        jPanel11.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D20AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D20AM.setText("jLabel1");
+        D20AM.setText("D20 - AM");
+        jPanel11.add(D20AM);
 
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 144, Short.MAX_VALUE)
-            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel11Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(D20AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(D20PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 153, Short.MAX_VALUE)
-            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel11Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(D20AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(D20PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        D20PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D20PM.setText("D20 - PM");
+        jPanel11.add(D20PM);
 
         jPanel3.add(jPanel11);
 
-        D21PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D21PM.setText("jLabel2");
+        jPanel14.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D21AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D21AM.setText("jLabel1");
+        D21AM.setText("D21 - AM");
+        jPanel14.add(D21AM);
 
-        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
-        jPanel14.setLayout(jPanel14Layout);
-        jPanel14Layout.setHorizontalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 144, Short.MAX_VALUE)
-            .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel14Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(D21AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(D21PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel14Layout.setVerticalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 153, Short.MAX_VALUE)
-            .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel14Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(D21AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(D21PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        D21PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D21PM.setText("D21 - PM");
+        jPanel14.add(D21PM);
 
         jPanel3.add(jPanel14);
 
-        D22PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D22PM.setText("jLabel2");
+        jPanel13.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D22AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D22AM.setText("jLabel1");
+        D22AM.setText("D22 - AM");
+        jPanel13.add(D22AM);
 
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 144, Short.MAX_VALUE)
-            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel13Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(D22AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(D22PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 153, Short.MAX_VALUE)
-            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel13Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(D22AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(D22PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        D22PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D22PM.setText("D22 - PM");
+        jPanel13.add(D22PM);
 
         jPanel3.add(jPanel13);
 
-        D23PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D23PM.setText("jLabel2");
+        jPanel10.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D23AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D23AM.setText("jLabel1");
+        D23AM.setText("D23 - AM");
+        jPanel10.add(D23AM);
 
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 144, Short.MAX_VALUE)
-            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel10Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(D23AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(D23PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 153, Short.MAX_VALUE)
-            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel10Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(D23AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(D23PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        D23PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D23PM.setText("D23 - PM");
+        jPanel10.add(D23PM);
 
         jPanel3.add(jPanel10);
 
-        D24PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D24PM.setText("jLabel2");
+        jPanel21.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D24AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D24AM.setText("jLabel1");
+        D24AM.setText("D24 - AM");
+        jPanel21.add(D24AM);
 
-        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
-        jPanel21.setLayout(jPanel21Layout);
-        jPanel21Layout.setHorizontalGroup(
-            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 144, Short.MAX_VALUE)
-            .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel21Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(D24AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(D24PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel21Layout.setVerticalGroup(
-            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 153, Short.MAX_VALUE)
-            .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel21Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(D24AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(D24PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        D24PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D24PM.setText("D24 - PM");
+        jPanel21.add(D24PM);
 
         jPanel3.add(jPanel21);
 
-        D25PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D25PM.setText("jLabel2");
+        jPanel18.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D25AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D25AM.setText("jLabel1");
+        D25AM.setText("D25 - AM");
+        jPanel18.add(D25AM);
 
-        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
-        jPanel18.setLayout(jPanel18Layout);
-        jPanel18Layout.setHorizontalGroup(
-            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 144, Short.MAX_VALUE)
-            .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel18Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(D25AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(D25PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel18Layout.setVerticalGroup(
-            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 153, Short.MAX_VALUE)
-            .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel18Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(D25AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(D25PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        D25PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D25PM.setText("D25 - PM");
+        jPanel18.add(D25PM);
 
         jPanel3.add(jPanel18);
 
-        D26PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D26PM.setText("jLabel2");
+        jPanel17.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D26AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D26AM.setText("jLabel1");
+        D26AM.setText("D26 - AM");
+        jPanel17.add(D26AM);
 
-        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
-        jPanel17.setLayout(jPanel17Layout);
-        jPanel17Layout.setHorizontalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 144, Short.MAX_VALUE)
-            .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel17Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(D26AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(D26PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel17Layout.setVerticalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 153, Short.MAX_VALUE)
-            .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel17Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(D26AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(D26PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        D26PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D26PM.setText("D26 - PM");
+        jPanel17.add(D26PM);
 
         jPanel3.add(jPanel17);
 
-        D27PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D27PM.setText("jLabel2");
+        jPanel9.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D27AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D27AM.setText("jLabel1");
+        D27AM.setText("D27 - AM");
+        jPanel9.add(D27AM);
 
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 144, Short.MAX_VALUE)
-            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel9Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(D27AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(D27PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 153, Short.MAX_VALUE)
-            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel9Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(D27AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(D27PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        D27PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D27PM.setText("D27 - PM");
+        jPanel9.add(D27PM);
 
         jPanel3.add(jPanel9);
 
-        D28PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D28PM.setText("jLabel2");
+        jPanel15.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D28AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D28AM.setText("jLabel1");
+        D28AM.setText("D28 - AM");
+        jPanel15.add(D28AM);
 
-        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 144, Short.MAX_VALUE)
-            .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel15Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(D28AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(D28PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 153, Short.MAX_VALUE)
-            .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel15Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(D28AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(D28PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        D28PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D28PM.setText("D28 - PM");
+        jPanel15.add(D28PM);
 
         jPanel3.add(jPanel15);
 
-        D29PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D29PM.setText("jLabel2");
+        jPanel7.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D29AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D29AM.setText("jLabel1");
+        D29AM.setText("D29 - AM");
+        jPanel7.add(D29AM);
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 144, Short.MAX_VALUE)
-            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel7Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(D29AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(D29PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 153, Short.MAX_VALUE)
-            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel7Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(D29AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(D29PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        D29PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D29PM.setText("D29 - PM");
+        jPanel7.add(D29PM);
 
         jPanel3.add(jPanel7);
 
-        D30PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D30PM.setText("jLabel2");
+        jPanel8.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D30AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D30AM.setText("jLabel1");
+        D30AM.setText("D30 - AM");
+        jPanel8.add(D30AM);
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 144, Short.MAX_VALUE)
-            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel8Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(D30AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(D30PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 153, Short.MAX_VALUE)
-            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel8Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(D30AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(D30PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        D30PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D30PM.setText("D30 - PM");
+        jPanel8.add(D30PM);
 
         jPanel3.add(jPanel8);
 
-        D31PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D31PM.setText("jLabel2");
+        jPanel6.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
         D31AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        D31AM.setText("jLabel1");
+        D31AM.setText("D31 - AM");
+        jPanel6.add(D31AM);
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 144, Short.MAX_VALUE)
-            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel6Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(D31AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(D31PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 153, Short.MAX_VALUE)
-            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel6Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(D31AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(D31PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        D31PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D31PM.setText("D31 - PM");
+        jPanel6.add(D31PM);
 
         jPanel3.add(jPanel6);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 144, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 153, Short.MAX_VALUE)
-        );
-
+        jPanel5.setLayout(new java.awt.GridLayout());
         jPanel3.add(jPanel5);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1424, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 32, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 647, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 15, Short.MAX_VALUE))
         );
 
         tabs.addTab("tab1", jPanel1);
@@ -1821,434 +1388,434 @@ public class ChamCong extends javax.swing.JInternalFrame {
                 ChiTietCong ct = listCtc.get(index);
 //                d1
                 if (ct.getD1().equalsIgnoreCase("VV") || ct.getD1().equalsIgnoreCase("c") || ct.getD1().equalsIgnoreCase("p")) {
-                    D1AM.setBackground(Color.BLUE);
-                    D1PM.setBackground(Color.BLUE);
+                    D1AM.setBackground(Color.GREEN );
+                    D1PM.setBackground(Color.GREEN );
                 } else if (ct.getD1().equalsIgnoreCase("am")) {
-                    D1AM.setBackground(Color.BLUE);
+                    D1AM.setBackground(Color.GREEN );
                     D1PM.setBackground(Color.RED);
                 } else if (ct.getD1().equalsIgnoreCase("pm")) {
                     D1AM.setBackground(Color.RED);
-                    D1PM.setBackground(Color.BLUE);
+                    D1PM.setBackground(Color.GREEN );
                 } else {
                     D1AM.setBackground(Color.RED);
                     D1PM.setBackground(Color.RED);
                 }
 //                d2
                 if (ct.getD2().equalsIgnoreCase("VV") || ct.getD2().equalsIgnoreCase("c") || ct.getD2().equalsIgnoreCase("p")) {
-                    D2AM.setBackground(Color.BLUE);
-                    D2PM.setBackground(Color.BLUE);
+                    D2AM.setBackground(Color.GREEN );
+                    D2PM.setBackground(Color.GREEN );
                 } else if (ct.getD2().equalsIgnoreCase("am")) {
-                    D2AM.setBackground(Color.BLUE);
+                    D2AM.setBackground(Color.GREEN );
                     D2PM.setBackground(Color.RED);
                 } else if (ct.getD2().equalsIgnoreCase("pm")) {
                     D2AM.setBackground(Color.RED);
-                    D2PM.setBackground(Color.BLUE);
+                    D2PM.setBackground(Color.GREEN );
                 } else {
                     D2AM.setBackground(Color.RED);
                     D2PM.setBackground(Color.RED);
                 }
 //                d3
                 if (ct.getD3().equalsIgnoreCase("VV") || ct.getD3().equalsIgnoreCase("c") || ct.getD3().equalsIgnoreCase("p")) {
-                    D3AM.setBackground(Color.BLUE);
-                    D3PM.setBackground(Color.BLUE);
+                    D3AM.setBackground(Color.GREEN );
+                    D3PM.setBackground(Color.GREEN );
                 } else if (ct.getD3().equalsIgnoreCase("am")) {
-                    D3AM.setBackground(Color.BLUE);
+                    D3AM.setBackground(Color.GREEN );
                     D3PM.setBackground(Color.RED);
                 } else if (ct.getD3().equalsIgnoreCase("pm")) {
                     D3AM.setBackground(Color.RED);
-                    D3PM.setBackground(Color.BLUE);
+                    D3PM.setBackground(Color.GREEN );
                 } else {
                     D3AM.setBackground(Color.RED);
                     D3PM.setBackground(Color.RED);
                 }
 //                d4
                 if (ct.getD4().equalsIgnoreCase("VV") || ct.getD4().equalsIgnoreCase("c") || ct.getD4().equalsIgnoreCase("p")) {
-                    D4AM.setBackground(Color.BLUE);
-                    D4PM.setBackground(Color.BLUE);
+                    D4AM.setBackground(Color.GREEN );
+                    D4PM.setBackground(Color.GREEN );
                 } else if (ct.getD4().equalsIgnoreCase("am")) {
-                    D4AM.setBackground(Color.BLUE);
+                    D4AM.setBackground(Color.GREEN );
                     D4PM.setBackground(Color.RED);
                 } else if (ct.getD4().equalsIgnoreCase("pm")) {
                     D4AM.setBackground(Color.RED);
-                    D4PM.setBackground(Color.BLUE);
+                    D4PM.setBackground(Color.GREEN );
                 } else {
                     D4AM.setBackground(Color.RED);
                     D4PM.setBackground(Color.RED);
                 }
 //                d5
                 if (ct.getD5().equalsIgnoreCase("VV") || ct.getD5().equalsIgnoreCase("c") || ct.getD5().equalsIgnoreCase("p")) {
-                    D5AM.setBackground(Color.BLUE);
-                    D5PM.setBackground(Color.BLUE);
+                    D5AM.setBackground(Color.GREEN );
+                    D5PM.setBackground(Color.GREEN );
                 } else if (ct.getD5().equalsIgnoreCase("am")) {
-                    D5AM.setBackground(Color.BLUE);
+                    D5AM.setBackground(Color.GREEN );
                     D5PM.setBackground(Color.RED);
                 } else if (ct.getD5().equalsIgnoreCase("pm")) {
                     D5AM.setBackground(Color.RED);
-                    D5PM.setBackground(Color.BLUE);
+                    D5PM.setBackground(Color.GREEN );
                 } else {
                     D5AM.setBackground(Color.RED);
                     D5PM.setBackground(Color.RED);
                 }
 //                d6
                 if (ct.getD6().equalsIgnoreCase("VV") || ct.getD6().equalsIgnoreCase("c") || ct.getD6().equalsIgnoreCase("p")) {
-                    D6AM.setBackground(Color.BLUE);
-                    D6PM.setBackground(Color.BLUE);
+                    D6AM.setBackground(Color.GREEN );
+                    D6PM.setBackground(Color.GREEN );
                 } else if (ct.getD6().equalsIgnoreCase("am")) {
-                    D6AM.setBackground(Color.BLUE);
+                    D6AM.setBackground(Color.GREEN );
                     D6PM.setBackground(Color.RED);
                 } else if (ct.getD6().equalsIgnoreCase("pm")) {
                     D6AM.setBackground(Color.RED);
-                    D6PM.setBackground(Color.BLUE);
+                    D6PM.setBackground(Color.GREEN );
                 } else {
                     D6AM.setBackground(Color.RED);
                     D6PM.setBackground(Color.RED);
                 }
 //                d7
                 if (ct.getD7().equalsIgnoreCase("VV") || ct.getD7().equalsIgnoreCase("c") || ct.getD7().equalsIgnoreCase("p")) {
-                    D7AM.setBackground(Color.BLUE);
-                    D7PM.setBackground(Color.BLUE);
+                    D7AM.setBackground(Color.GREEN );
+                    D7PM.setBackground(Color.GREEN );
                 } else if (ct.getD7().equalsIgnoreCase("am")) {
-                    D7AM.setBackground(Color.BLUE);
+                    D7AM.setBackground(Color.GREEN );
                     D7PM.setBackground(Color.RED);
                 } else if (ct.getD7().equalsIgnoreCase("pm")) {
                     D7AM.setBackground(Color.RED);
-                    D7PM.setBackground(Color.BLUE);
+                    D7PM.setBackground(Color.GREEN );
                 } else {
                     D7AM.setBackground(Color.RED);
                     D7PM.setBackground(Color.RED);
                 }
 //d8
                 if (ct.getD8().equalsIgnoreCase("VV") || ct.getD8().equalsIgnoreCase("c") || ct.getD8().equalsIgnoreCase("p")) {
-                    D8AM.setBackground(Color.BLUE);
-                    D8PM.setBackground(Color.BLUE);
+                    D8AM.setBackground(Color.GREEN );
+                    D8PM.setBackground(Color.GREEN );
                 } else if (ct.getD8().equalsIgnoreCase("am")) {
-                    D8AM.setBackground(Color.BLUE);
+                    D8AM.setBackground(Color.GREEN );
                     D8PM.setBackground(Color.RED);
                 } else if (ct.getD8().equalsIgnoreCase("pm")) {
                     D8AM.setBackground(Color.RED);
-                    D8PM.setBackground(Color.BLUE);
+                    D8PM.setBackground(Color.GREEN );
                 } else {
                     D8AM.setBackground(Color.RED);
                     D8PM.setBackground(Color.RED);
                 }
 //d9
                 if (ct.getD9().equalsIgnoreCase("VV") || ct.getD9().equalsIgnoreCase("c") || ct.getD9().equalsIgnoreCase("p")) {
-                    D9AM.setBackground(Color.BLUE);
-                    D9PM.setBackground(Color.BLUE);
+                    D9AM.setBackground(Color.GREEN );
+                    D9PM.setBackground(Color.GREEN );
                 } else if (ct.getD9().equalsIgnoreCase("am")) {
-                    D9AM.setBackground(Color.BLUE);
+                    D9AM.setBackground(Color.GREEN );
                     D9PM.setBackground(Color.RED);
                 } else if (ct.getD9().equalsIgnoreCase("pm")) {
                     D9AM.setBackground(Color.RED);
-                    D9PM.setBackground(Color.BLUE);
+                    D9PM.setBackground(Color.GREEN );
                 } else {
                     D9AM.setBackground(Color.RED);
                     D9PM.setBackground(Color.RED);
                 }
 //d10
                 if (ct.getD10().equalsIgnoreCase("VV") || ct.getD10().equalsIgnoreCase("c") || ct.getD10().equalsIgnoreCase("p")) {
-                    D10AM.setBackground(Color.BLUE);
-                    D10PM.setBackground(Color.BLUE);
+                    D10AM.setBackground(Color.GREEN );
+                    D10PM.setBackground(Color.GREEN );
                 } else if (ct.getD10().equalsIgnoreCase("am")) {
-                    D10AM.setBackground(Color.BLUE);
+                    D10AM.setBackground(Color.GREEN );
                     D10PM.setBackground(Color.RED);
                 } else if (ct.getD10().equalsIgnoreCase("pm")) {
                     D10AM.setBackground(Color.RED);
-                    D10PM.setBackground(Color.BLUE);
+                    D10PM.setBackground(Color.GREEN );
                 } else {
                     D10AM.setBackground(Color.RED);
                     D10PM.setBackground(Color.RED);
                 }
 //                d11
                 if (ct.getD11().equalsIgnoreCase("VV") || ct.getD11().equalsIgnoreCase("c") || ct.getD11().equalsIgnoreCase("p")) {
-                    D11AM.setBackground(Color.BLUE);
-                    D11PM.setBackground(Color.BLUE);
+                    D11AM.setBackground(Color.GREEN );
+                    D11PM.setBackground(Color.GREEN );
                 } else if (ct.getD11().equalsIgnoreCase("am")) {
-                    D11AM.setBackground(Color.BLUE);
+                    D11AM.setBackground(Color.GREEN );
                     D11PM.setBackground(Color.RED);
                 } else if (ct.getD11().equalsIgnoreCase("pm")) {
                     D11AM.setBackground(Color.RED);
-                    D11PM.setBackground(Color.BLUE);
+                    D11PM.setBackground(Color.GREEN );
                 } else {
                     D11AM.setBackground(Color.RED);
                     D11PM.setBackground(Color.RED);
                 }
 //d12
                 if (ct.getD12().equalsIgnoreCase("VV") || ct.getD12().equalsIgnoreCase("c") || ct.getD12().equalsIgnoreCase("p")) {
-                    D12AM.setBackground(Color.BLUE);
-                    D12PM.setBackground(Color.BLUE);
+                    D12AM.setBackground(Color.GREEN );
+                    D12PM.setBackground(Color.GREEN );
                 } else if (ct.getD12().equalsIgnoreCase("am")) {
-                    D12AM.setBackground(Color.BLUE);
+                    D12AM.setBackground(Color.GREEN );
                     D12PM.setBackground(Color.RED);
                 } else if (ct.getD12().equalsIgnoreCase("pm")) {
                     D12AM.setBackground(Color.RED);
-                    D12PM.setBackground(Color.BLUE);
+                    D12PM.setBackground(Color.GREEN );
                 } else {
                     D12AM.setBackground(Color.RED);
                     D12PM.setBackground(Color.RED);
                 }
 //d13
                 if (ct.getD13().equalsIgnoreCase("VV") || ct.getD13().equalsIgnoreCase("c") || ct.getD13().equalsIgnoreCase("p")) {
-                    D13AM.setBackground(Color.BLUE);
-                    D13PM.setBackground(Color.BLUE);
+                    D13AM.setBackground(Color.GREEN );
+                    D13PM.setBackground(Color.GREEN );
                 } else if (ct.getD13().equalsIgnoreCase("am")) {
-                    D13AM.setBackground(Color.BLUE);
+                    D13AM.setBackground(Color.GREEN );
                     D13PM.setBackground(Color.RED);
                 } else if (ct.getD13().equalsIgnoreCase("pm")) {
                     D13AM.setBackground(Color.RED);
-                    D13PM.setBackground(Color.BLUE);
+                    D13PM.setBackground(Color.GREEN );
                 } else {
                     D13AM.setBackground(Color.RED);
                     D13PM.setBackground(Color.RED);
                 }
 //d14
                 if (ct.getD14().equalsIgnoreCase("VV") || ct.getD14().equalsIgnoreCase("c") || ct.getD14().equalsIgnoreCase("p")) {
-                    D14AM.setBackground(Color.BLUE);
-                    D14PM.setBackground(Color.BLUE);
+                    D14AM.setBackground(Color.GREEN );
+                    D14PM.setBackground(Color.GREEN );
                 } else if (ct.getD14().equalsIgnoreCase("am")) {
-                    D14AM.setBackground(Color.BLUE);
+                    D14AM.setBackground(Color.GREEN );
                     D14PM.setBackground(Color.RED);
                 } else if (ct.getD14().equalsIgnoreCase("pm")) {
                     D14AM.setBackground(Color.RED);
-                    D14PM.setBackground(Color.BLUE);
+                    D14PM.setBackground(Color.GREEN );
                 } else {
                     D14AM.setBackground(Color.RED);
                     D14PM.setBackground(Color.RED);
                 }
 //                d15
                 if (ct.getD15().equalsIgnoreCase("VV") || ct.getD15().equalsIgnoreCase("c") || ct.getD15().equalsIgnoreCase("p")) {
-                    D15AM.setBackground(Color.BLUE);
-                    D15PM.setBackground(Color.BLUE);
+                    D15AM.setBackground(Color.GREEN );
+                    D15PM.setBackground(Color.GREEN );
                 } else if (ct.getD15().equalsIgnoreCase("am")) {
-                    D15AM.setBackground(Color.BLUE);
+                    D15AM.setBackground(Color.GREEN );
                     D15PM.setBackground(Color.RED);
                 } else if (ct.getD15().equalsIgnoreCase("pm")) {
                     D15AM.setBackground(Color.RED);
-                    D15PM.setBackground(Color.BLUE);
+                    D15PM.setBackground(Color.GREEN );
                 } else {
                     D15AM.setBackground(Color.RED);
                     D15PM.setBackground(Color.RED);
                 }
 //d16
                 if (ct.getD16().equalsIgnoreCase("VV") || ct.getD16().equalsIgnoreCase("c") || ct.getD16().equalsIgnoreCase("p")) {
-                    D16AM.setBackground(Color.BLUE);
-                    D16PM.setBackground(Color.BLUE);
+                    D16AM.setBackground(Color.GREEN );
+                    D16PM.setBackground(Color.GREEN );
                 } else if (ct.getD16().equalsIgnoreCase("am")) {
-                    D16AM.setBackground(Color.BLUE);
+                    D16AM.setBackground(Color.GREEN );
                     D16PM.setBackground(Color.RED);
                 } else if (ct.getD16().equalsIgnoreCase("pm")) {
                     D16AM.setBackground(Color.RED);
-                    D16PM.setBackground(Color.BLUE);
+                    D16PM.setBackground(Color.GREEN );
                 } else {
                     D16AM.setBackground(Color.RED);
                     D16PM.setBackground(Color.RED);
                 }
 //d17
                 if (ct.getD17().equalsIgnoreCase("VV") || ct.getD17().equalsIgnoreCase("c") || ct.getD17().equalsIgnoreCase("p")) {
-                    D17AM.setBackground(Color.BLUE);
-                    D17PM.setBackground(Color.BLUE);
+                    D17AM.setBackground(Color.GREEN );
+                    D17PM.setBackground(Color.GREEN );
                 } else if (ct.getD17().equalsIgnoreCase("am")) {
-                    D17AM.setBackground(Color.BLUE);
+                    D17AM.setBackground(Color.GREEN );
                     D17PM.setBackground(Color.RED);
                 } else if (ct.getD17().equalsIgnoreCase("pm")) {
                     D17AM.setBackground(Color.RED);
-                    D17PM.setBackground(Color.BLUE);
+                    D17PM.setBackground(Color.GREEN );
                 } else {
                     D17AM.setBackground(Color.RED);
                     D17PM.setBackground(Color.RED);
                 }
 //d18
                 if (ct.getD18().equalsIgnoreCase("VV") || ct.getD18().equalsIgnoreCase("c") || ct.getD18().equalsIgnoreCase("p")) {
-                    D18AM.setBackground(Color.BLUE);
-                    D18PM.setBackground(Color.BLUE);
+                    D18AM.setBackground(Color.GREEN );
+                    D18PM.setBackground(Color.GREEN );
                 } else if (ct.getD18().equalsIgnoreCase("am")) {
-                    D18AM.setBackground(Color.BLUE);
+                    D18AM.setBackground(Color.GREEN );
                     D18PM.setBackground(Color.RED);
                 } else if (ct.getD18().equalsIgnoreCase("pm")) {
                     D18AM.setBackground(Color.RED);
-                    D18PM.setBackground(Color.BLUE);
+                    D18PM.setBackground(Color.GREEN );
                 } else {
                     D18AM.setBackground(Color.RED);
                     D18PM.setBackground(Color.RED);
                 }
 //d19
                 if (ct.getD19().equalsIgnoreCase("VV") || ct.getD19().equalsIgnoreCase("c") || ct.getD19().equalsIgnoreCase("p")) {
-                    D19AM.setBackground(Color.BLUE);
-                    D19PM.setBackground(Color.BLUE);
+                    D19AM.setBackground(Color.GREEN );
+                    D19PM.setBackground(Color.GREEN );
                 } else if (ct.getD19().equalsIgnoreCase("am")) {
-                    D19AM.setBackground(Color.BLUE);
+                    D19AM.setBackground(Color.GREEN );
                     D19PM.setBackground(Color.RED);
                 } else if (ct.getD19().equalsIgnoreCase("pm")) {
                     D19AM.setBackground(Color.RED);
-                    D19PM.setBackground(Color.BLUE);
+                    D19PM.setBackground(Color.GREEN );
                 } else {
                     D19AM.setBackground(Color.RED);
                     D19PM.setBackground(Color.RED);
                 }
 //d20
                 if (ct.getD20().equalsIgnoreCase("VV") || ct.getD20().equalsIgnoreCase("c") || ct.getD20().equalsIgnoreCase("p")) {
-                    D20AM.setBackground(Color.BLUE);
-                    D20PM.setBackground(Color.BLUE);
+                    D20AM.setBackground(Color.GREEN );
+                    D20PM.setBackground(Color.GREEN );
                 } else if (ct.getD20().equalsIgnoreCase("am")) {
-                    D20AM.setBackground(Color.BLUE);
+                    D20AM.setBackground(Color.GREEN );
                     D20PM.setBackground(Color.RED);
                 } else if (ct.getD20().equalsIgnoreCase("pm")) {
                     D20AM.setBackground(Color.RED);
-                    D20PM.setBackground(Color.BLUE);
+                    D20PM.setBackground(Color.GREEN );
                 } else {
                     D20AM.setBackground(Color.RED);
                     D20PM.setBackground(Color.RED);
                 }
 //d21
                 if (ct.getD21().equalsIgnoreCase("VV") || ct.getD21().equalsIgnoreCase("c") || ct.getD21().equalsIgnoreCase("p")) {
-                    D21AM.setBackground(Color.BLUE);
-                    D21PM.setBackground(Color.BLUE);
+                    D21AM.setBackground(Color.GREEN );
+                    D21PM.setBackground(Color.GREEN );
                 } else if (ct.getD21().equalsIgnoreCase("am")) {
-                    D21AM.setBackground(Color.BLUE);
+                    D21AM.setBackground(Color.GREEN );
                     D21PM.setBackground(Color.RED);
                 } else if (ct.getD21().equalsIgnoreCase("pm")) {
                     D21AM.setBackground(Color.RED);
-                    D21PM.setBackground(Color.BLUE);
+                    D21PM.setBackground(Color.GREEN );
                 } else {
                     D21AM.setBackground(Color.RED);
                     D21PM.setBackground(Color.RED);
                 }
 //d22
                 if (ct.getD22().equalsIgnoreCase("VV") || ct.getD22().equalsIgnoreCase("c") || ct.getD22().equalsIgnoreCase("p")) {
-                    D22AM.setBackground(Color.BLUE);
-                    D22PM.setBackground(Color.BLUE);
+                    D22AM.setBackground(Color.GREEN );
+                    D22PM.setBackground(Color.GREEN );
                 } else if (ct.getD22().equalsIgnoreCase("am")) {
-                    D22AM.setBackground(Color.BLUE);
+                    D22AM.setBackground(Color.GREEN );
                     D22PM.setBackground(Color.RED);
                 } else if (ct.getD22().equalsIgnoreCase("pm")) {
                     D22AM.setBackground(Color.RED);
-                    D22PM.setBackground(Color.BLUE);
+                    D22PM.setBackground(Color.GREEN );
                 } else {
                     D22AM.setBackground(Color.RED);
                     D22PM.setBackground(Color.RED);
                 }
 //d23
                 if (ct.getD23().equalsIgnoreCase("VV") || ct.getD23().equalsIgnoreCase("c") || ct.getD23().equalsIgnoreCase("p")) {
-                    D23AM.setBackground(Color.BLUE);
-                    D23PM.setBackground(Color.BLUE);
+                    D23AM.setBackground(Color.GREEN );
+                    D23PM.setBackground(Color.GREEN );
                 } else if (ct.getD23().equalsIgnoreCase("am")) {
-                    D23AM.setBackground(Color.BLUE);
+                    D23AM.setBackground(Color.GREEN );
                     D23PM.setBackground(Color.RED);
                 } else if (ct.getD2().equalsIgnoreCase("pm")) {
                     D23AM.setBackground(Color.RED);
-                    D23PM.setBackground(Color.BLUE);
+                    D23PM.setBackground(Color.GREEN );
                 } else {
                     D23AM.setBackground(Color.RED);
                     D23PM.setBackground(Color.RED);
                 }
 //d24
                 if (ct.getD24().equalsIgnoreCase("VV") || ct.getD24().equalsIgnoreCase("c") || ct.getD24().equalsIgnoreCase("p")) {
-                    D24AM.setBackground(Color.BLUE);
-                    D24PM.setBackground(Color.BLUE);
+                    D24AM.setBackground(Color.GREEN );
+                    D24PM.setBackground(Color.GREEN );
                 } else if (ct.getD24().equalsIgnoreCase("am")) {
-                    D24AM.setBackground(Color.BLUE);
+                    D24AM.setBackground(Color.GREEN );
                     D24PM.setBackground(Color.RED);
                 } else if (ct.getD2().equalsIgnoreCase("pm")) {
                     D24AM.setBackground(Color.RED);
-                    D24PM.setBackground(Color.BLUE);
+                    D24PM.setBackground(Color.GREEN );
                 } else {
                     D24AM.setBackground(Color.RED);
                     D24PM.setBackground(Color.RED);
                 }
 //d25
                 if (ct.getD25().equalsIgnoreCase("VV") || ct.getD25().equalsIgnoreCase("c") || ct.getD25().equalsIgnoreCase("p")) {
-                    D25AM.setBackground(Color.BLUE);
-                    D25PM.setBackground(Color.BLUE);
+                    D25AM.setBackground(Color.GREEN );
+                    D25PM.setBackground(Color.GREEN );
                 } else if (ct.getD25().equalsIgnoreCase("am")) {
-                    D25AM.setBackground(Color.BLUE);
+                    D25AM.setBackground(Color.GREEN );
                     D25PM.setBackground(Color.RED);
                 } else if (ct.getD25().equalsIgnoreCase("pm")) {
                     D25AM.setBackground(Color.RED);
-                    D25PM.setBackground(Color.BLUE);
+                    D25PM.setBackground(Color.GREEN );
                 } else {
                     D25AM.setBackground(Color.RED);
                     D25PM.setBackground(Color.RED);
                 }
 //d26
                 if (ct.getD26().equalsIgnoreCase("VV") || ct.getD26().equalsIgnoreCase("c") || ct.getD26().equalsIgnoreCase("p")) {
-                    D26AM.setBackground(Color.BLUE);
-                    D26PM.setBackground(Color.BLUE);
+                    D26AM.setBackground(Color.GREEN );
+                    D26PM.setBackground(Color.GREEN );
                 } else if (ct.getD26().equalsIgnoreCase("am")) {
-                    D26AM.setBackground(Color.BLUE);
+                    D26AM.setBackground(Color.GREEN );
                     D26PM.setBackground(Color.RED);
                 } else if (ct.getD26().equalsIgnoreCase("pm")) {
                     D26AM.setBackground(Color.RED);
-                    D26PM.setBackground(Color.BLUE);
+                    D26PM.setBackground(Color.GREEN );
                 } else {
                     D26AM.setBackground(Color.RED);
                     D26PM.setBackground(Color.RED);
                 }
 //d27
                 if (ct.getD27().equalsIgnoreCase("VV") || ct.getD27().equalsIgnoreCase("c") || ct.getD27().equalsIgnoreCase("p")) {
-                    D27AM.setBackground(Color.BLUE);
-                    D27PM.setBackground(Color.BLUE);
+                    D27AM.setBackground(Color.GREEN );
+                    D27PM.setBackground(Color.GREEN );
                 } else if (ct.getD27().equalsIgnoreCase("am")) {
-                    D27AM.setBackground(Color.BLUE);
+                    D27AM.setBackground(Color.GREEN );
                     D27PM.setBackground(Color.RED);
                 } else if (ct.getD27().equalsIgnoreCase("pm")) {
                     D27AM.setBackground(Color.RED);
-                    D27PM.setBackground(Color.BLUE);
+                    D27PM.setBackground(Color.GREEN );
                 } else {
                     D27AM.setBackground(Color.RED);
                     D27PM.setBackground(Color.RED);
                 }
 //d28
                 if (ct.getD28().equalsIgnoreCase("VV") || ct.getD28().equalsIgnoreCase("c") || ct.getD28().equalsIgnoreCase("p")) {
-                    D28AM.setBackground(Color.BLUE);
-                    D28PM.setBackground(Color.BLUE);
+                    D28AM.setBackground(Color.GREEN );
+                    D28PM.setBackground(Color.GREEN );
                 } else if (ct.getD28().equalsIgnoreCase("am")) {
-                    D28AM.setBackground(Color.BLUE);
+                    D28AM.setBackground(Color.GREEN );
                     D28PM.setBackground(Color.RED);
                 } else if (ct.getD28().equalsIgnoreCase("pm")) {
                     D28AM.setBackground(Color.RED);
-                    D28PM.setBackground(Color.BLUE);
+                    D28PM.setBackground(Color.GREEN );
                 } else {
                     D28AM.setBackground(Color.RED);
                     D28PM.setBackground(Color.RED);
                 }
 //d29
                 if (ct.getD29().equalsIgnoreCase("VV") || ct.getD29().equalsIgnoreCase("c") || ct.getD29().equalsIgnoreCase("p")) {
-                    D29AM.setBackground(Color.BLUE);
-                    D29PM.setBackground(Color.BLUE);
+                    D29AM.setBackground(Color.GREEN );
+                    D29PM.setBackground(Color.GREEN );
                 } else if (ct.getD29().equalsIgnoreCase("am")) {
-                    D29AM.setBackground(Color.BLUE);
+                    D29AM.setBackground(Color.GREEN );
                     D29PM.setBackground(Color.RED);
                 } else if (ct.getD29().equalsIgnoreCase("pm")) {
                     D29AM.setBackground(Color.RED);
-                    D29PM.setBackground(Color.BLUE);
+                    D29PM.setBackground(Color.GREEN );
                 } else {
                     D29AM.setBackground(Color.RED);
                     D29PM.setBackground(Color.RED);
                 }
 //d30
                 if (ct.getD30().equalsIgnoreCase("VV") || ct.getD30().equalsIgnoreCase("c") || ct.getD30().equalsIgnoreCase("p")) {
-                    D30AM.setBackground(Color.BLUE);
-                    D30PM.setBackground(Color.BLUE);
+                    D30AM.setBackground(Color.GREEN );
+                    D30PM.setBackground(Color.GREEN );
                 } else if (ct.getD30().equalsIgnoreCase("am")) {
-                    D30AM.setBackground(Color.BLUE);
+                    D30AM.setBackground(Color.GREEN );
                     D30PM.setBackground(Color.RED);
                 } else if (ct.getD30().equalsIgnoreCase("pm")) {
                     D30AM.setBackground(Color.RED);
-                    D30PM.setBackground(Color.BLUE);
+                    D30PM.setBackground(Color.GREEN );
                 } else {
                     D30AM.setBackground(Color.RED);
                     D30PM.setBackground(Color.RED);
                 }
 //d31
                 if (ct.getD31().equalsIgnoreCase("VV") || ct.getD31().equalsIgnoreCase("c") || ct.getD31().equalsIgnoreCase("p")) {
-                    D31AM.setBackground(Color.BLUE);
-                    D31PM.setBackground(Color.BLUE);
+                    D31AM.setBackground(Color.GREEN );
+                    D31PM.setBackground(Color.GREEN );
                 } else if (ct.getD31().equalsIgnoreCase("am")) {
-                    D31AM.setBackground(Color.BLUE);
+                    D31AM.setBackground(Color.GREEN );
                     D31PM.setBackground(Color.RED);
                 } else if (ct.getD31().equalsIgnoreCase("pm")) {
                     D31AM.setBackground(Color.RED);
-                    D31PM.setBackground(Color.BLUE);
+                    D31PM.setBackground(Color.GREEN );
                 } else {
                     D31AM.setBackground(Color.RED);
                     D31PM.setBackground(Color.RED);
