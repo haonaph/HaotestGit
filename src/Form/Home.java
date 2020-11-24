@@ -62,14 +62,14 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void OpenChamCong() {
-        for (JInternalFrame frmChild : desktopPane.getAllFrames()) {
-            frmChild.dispose();
-        }
-        ChamCong frmLogin = new ChamCong();
-        frmLogin.setTitle("QUẢN LÝ CHẤM CÔNG");
-        frmLogin.setLocation(this.getWidth() / 2 - frmLogin.getWidth() / 2, (this.getHeight() - 20) / 2 - frmLogin.getHeight() / 2 - 20);
-        desktopPane.add(frmLogin);
-        frmLogin.setVisible(true);
+//        for (JInternalFrame frmChild : desktopPane.getAllFrames()) {
+//            frmChild.dispose();
+//        }
+//        ChamCong frmLogin = new ChamCong();
+//        frmLogin.setTitle("QUẢN LÝ CHẤM CÔNG");
+//        frmLogin.setLocation(this.getWidth() / 2 - frmLogin.getWidth() / 2, (this.getHeight() - 20) / 2 - frmLogin.getHeight() / 2 - 20);
+//        desktopPane.add(frmLogin);
+//        frmLogin.setVisible(true);
     }
 
     /**
@@ -266,11 +266,11 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btCanhanActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        this.OpenChamCong();
-//        ChamCong ccmd = new ChamCong();
-//        desktopPane.removeAll();
-//        desktopPane.add(ccmd);
-//        ccmd.setVisible(true);
+//        this.OpenChamCong();
+        ChamCong ccmd = new ChamCong();
+        desktopPane.removeAll();
+        desktopPane.add(ccmd);
+        ccmd.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**

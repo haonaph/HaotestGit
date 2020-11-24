@@ -11,18 +11,21 @@ import javax.swing.JComboBox;
 import java.sql.*;
 import helper.JdbcHelper;
 import helper.MsgBox;
+import java.awt.Color;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import model.ChiTietCong;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -41,39 +44,124 @@ public class ChamCong extends javax.swing.JInternalFrame {
     ChamCongDao dao = new ChamCongDao();
     long count, sotrang, trang = 1;
     int doDaiTrang;
+    int index;
 //    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+    ArrayList<ChiTietCong> listCtc = new ArrayList<>();
 
     public ChamCong() {
         initComponents();
         countdb();
-        if (count % 2 == 0) {
-            sotrang = count / 2;
+        if (count % 5 == 0) {
+            sotrang = count / 5;
         } else {
-            sotrang = count / 2 + 1;
+            sotrang = count / 5 + 1;
         }
 //        load(1);
         number.setText("1/" + sotrang);
         jTable1.setAutoCreateRowSorter(true);
-        
+//D1AM.setBackground(Color.red);
+        D1AM.setOpaque(true);
+        D2AM.setOpaque(true);
+        D3AM.setOpaque(true);
+        D4AM.setOpaque(true);
+        D5AM.setOpaque(true);
+        D6AM.setOpaque(true);
+        D7AM.setOpaque(true);
+        D8AM.setOpaque(true);
+        D9AM.setOpaque(true);
+        D10AM.setOpaque(true);
+        D11AM.setOpaque(true);
+        D12AM.setOpaque(true);
+        D13AM.setOpaque(true);
+        D14AM.setOpaque(true);
+        D15AM.setOpaque(true);
+        D16AM.setOpaque(true);
+        D17AM.setOpaque(true);
+        D18AM.setOpaque(true);
+        D19AM.setOpaque(true);
+        D20AM.setOpaque(true);
+        D21AM.setOpaque(true);
+        D22AM.setOpaque(true);
+        D23AM.setOpaque(true);
+        D24AM.setOpaque(true);
+        D25AM.setOpaque(true);
+        D26AM.setOpaque(true);
+        D27AM.setOpaque(true);
+        D28AM.setOpaque(true);
+        D29AM.setOpaque(true);
+        D30AM.setOpaque(true);
+        D31AM.setOpaque(true);
+
+        D1PM.setOpaque(true);
+        D2PM.setOpaque(true);
+        D3PM.setOpaque(true);
+        D4PM.setOpaque(true);
+        D5PM.setOpaque(true);
+        D6PM.setOpaque(true);
+        D7PM.setOpaque(true);
+        D8PM.setOpaque(true);
+        D9PM.setOpaque(true);
+        D10PM.setOpaque(true);
+        D11PM.setOpaque(true);
+        D12PM.setOpaque(true);
+        D13PM.setOpaque(true);
+        D14PM.setOpaque(true);
+        D15PM.setOpaque(true);
+        D16PM.setOpaque(true);
+        D17PM.setOpaque(true);
+        D18PM.setOpaque(true);
+        D19PM.setOpaque(true);
+        D20PM.setOpaque(true);
+        D21PM.setOpaque(true);
+        D22PM.setOpaque(true);
+        D23PM.setOpaque(true);
+        D24PM.setOpaque(true);
+        D25PM.setOpaque(true);
+        D26PM.setOpaque(true);
+        D27PM.setOpaque(true);
+        D28PM.setOpaque(true);
+        D29PM.setOpaque(true);
+        D30PM.setOpaque(true);
+        D31PM.setOpaque(true);
+
+//D1AM.setBackground(Color.red);
+    }
+
+    public void save() {
+        model.ChamCong model = new model.ChamCong();
+        for (int i = 0; i <= jTable1.getRowCount(); i++) {
+            String manv = (String) jTable1.getValueAt(i, 0);
+            java.util.Date checkin = model.getCheckIn();
+            String thang = (String) jTable1.getValueAt(i, 2);
+            int tong = (int) jTable1.getValueAt(i, 35);
+            String a = String.valueOf(tong);
+            try {
+                model.setMaNV(manv);
+                model.setCheckIn(checkin);
+                model.setThang(thang);
+                model.setTong(a);
+                dao.insert(model);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void load(long trang) {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
+        model.setColumnIdentifiers(new Object[]{
+            "MaNV", "Họ tên", "Tháng", "Tổng"
+        });
         try {
-            long so = trang * 2 - 2;
-            String sql = "select top 2 CHAMCONG.*, NHANVIEN.HoTen FROM CHAMCONG\n"
-                    + "inner join NHANVIEN on CHAMCONG.MaNV = NHANVIEN.MaNV where CHAMCONG.MaNV not in (select top " + so + " CHAMCONG.MaNV FROM CHAMCONG)";
+            long so = trang * 5 - 2;
+            String sql = "select top 5 CHAMCONG2.*, NHANVIEN.HoTen FROM CHAMCONG2\n"
+                    + "left join NHANVIEN on CHAMCONG2.MaNV = NHANVIEN.MaNV  where CHAMCONG.MaNV not in (select top" + so + " CHAMCONG.MaNV FROM CHAMCONG)";
             ResultSet rs = JdbcHelper.executeQuery(sql);
             while (rs.next()) {
                 Object[] row = {
-                    rs.getString("MaNV"), rs.getString("HoTen"), rs.getInt("Thang"), rs.getInt("Nam"), rs.getInt("D1"),
-                    rs.getInt("D2"), rs.getInt("D3"), rs.getInt("D4"), rs.getInt("D5"), rs.getInt("D6"), rs.getInt("D7"),
-                    rs.getInt("D8"), rs.getInt("D9"), rs.getInt("D10"), rs.getInt("D11"), rs.getInt("D12"), rs.getInt("D13"),
-                    rs.getInt("D14"), rs.getInt("D15"), rs.getInt("D16"), rs.getInt("D17"), rs.getInt("D18"), rs.getInt("D19"),
-                    rs.getInt("D20"), rs.getInt("D21"), rs.getInt("D22"), rs.getInt("D23"), rs.getInt("D24"), rs.getInt("D25"),
-                    rs.getInt("D26"), rs.getInt("D27"), rs.getInt("D28"), rs.getInt("D29"), rs.getInt("D30"), rs.getInt("D31")
-                };
+                    rs.getString("MaNV"), rs.getString("HoTen"), rs.getString("Thang"), rs.getString("tong"),};
                 model.addRow(row);
             }
 //            for (model.ChamCong cc : list) {
@@ -122,18 +210,114 @@ public class ChamCong extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PhongBan = new javax.swing.JComboBox<>();
-        Thang = new javax.swing.JComboBox<>();
-        Nam = new javax.swing.JComboBox<>();
+        tabs = new javax.swing.JTabbedPane();
+        jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        TimKiem = new javax.swing.JTextField();
         preview = new javax.swing.JButton();
         first = new javax.swing.JButton();
         next = new javax.swing.JButton();
         last = new javax.swing.JButton();
         number = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel33 = new javax.swing.JPanel();
+        D1AM = new javax.swing.JLabel();
+        D1PM = new javax.swing.JLabel();
+        jPanel38 = new javax.swing.JPanel();
+        D2AM = new javax.swing.JLabel();
+        D2PM = new javax.swing.JLabel();
+        jPanel37 = new javax.swing.JPanel();
+        D3AM = new javax.swing.JLabel();
+        D3PM = new javax.swing.JLabel();
+        jPanel31 = new javax.swing.JPanel();
+        D4AM = new javax.swing.JLabel();
+        D4PM = new javax.swing.JLabel();
+        jPanel35 = new javax.swing.JPanel();
+        D5AM = new javax.swing.JLabel();
+        D5PM = new javax.swing.JLabel();
+        jPanel36 = new javax.swing.JPanel();
+        D6AM = new javax.swing.JLabel();
+        D6PM = new javax.swing.JLabel();
+        jPanel39 = new javax.swing.JPanel();
+        D7AM = new javax.swing.JLabel();
+        D7PM = new javax.swing.JLabel();
+        jPanel32 = new javax.swing.JPanel();
+        D8AM = new javax.swing.JLabel();
+        D8PM = new javax.swing.JLabel();
+        jPanel34 = new javax.swing.JPanel();
+        D9AM = new javax.swing.JLabel();
+        D9PM = new javax.swing.JLabel();
+        jPanel25 = new javax.swing.JPanel();
+        D10AM = new javax.swing.JLabel();
+        D10PM = new javax.swing.JLabel();
+        jPanel29 = new javax.swing.JPanel();
+        D11AM = new javax.swing.JLabel();
+        D11PM = new javax.swing.JLabel();
+        jPanel23 = new javax.swing.JPanel();
+        D12PM = new javax.swing.JLabel();
+        D12AM = new javax.swing.JLabel();
+        jPanel22 = new javax.swing.JPanel();
+        D13PM = new javax.swing.JLabel();
+        D13AM = new javax.swing.JLabel();
+        jPanel28 = new javax.swing.JPanel();
+        D14PM = new javax.swing.JLabel();
+        D14AM = new javax.swing.JLabel();
+        jPanel27 = new javax.swing.JPanel();
+        D15PM = new javax.swing.JLabel();
+        D15AM = new javax.swing.JLabel();
+        jPanel24 = new javax.swing.JPanel();
+        D16PM = new javax.swing.JLabel();
+        D16AM = new javax.swing.JLabel();
+        jPanel26 = new javax.swing.JPanel();
+        D17PM = new javax.swing.JLabel();
+        D17AM = new javax.swing.JLabel();
+        jPanel30 = new javax.swing.JPanel();
+        D18PM = new javax.swing.JLabel();
+        D18AM = new javax.swing.JLabel();
+        jPanel19 = new javax.swing.JPanel();
+        D19PM = new javax.swing.JLabel();
+        D19AM = new javax.swing.JLabel();
+        jPanel11 = new javax.swing.JPanel();
+        D20PM = new javax.swing.JLabel();
+        D20AM = new javax.swing.JLabel();
+        jPanel14 = new javax.swing.JPanel();
+        D21PM = new javax.swing.JLabel();
+        D21AM = new javax.swing.JLabel();
+        jPanel13 = new javax.swing.JPanel();
+        D22PM = new javax.swing.JLabel();
+        D22AM = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        D23PM = new javax.swing.JLabel();
+        D23AM = new javax.swing.JLabel();
+        jPanel21 = new javax.swing.JPanel();
+        D24PM = new javax.swing.JLabel();
+        D24AM = new javax.swing.JLabel();
+        jPanel18 = new javax.swing.JPanel();
+        D25PM = new javax.swing.JLabel();
+        D25AM = new javax.swing.JLabel();
+        jPanel17 = new javax.swing.JPanel();
+        D26PM = new javax.swing.JLabel();
+        D26AM = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        D27PM = new javax.swing.JLabel();
+        D27AM = new javax.swing.JLabel();
+        jPanel15 = new javax.swing.JPanel();
+        D28PM = new javax.swing.JLabel();
+        D28AM = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        D29PM = new javax.swing.JLabel();
+        D29AM = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        D30PM = new javax.swing.JLabel();
+        D30AM = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        D31PM = new javax.swing.JLabel();
+        D31AM = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
 
         setClosable(true);
         setMaximizable(true);
@@ -156,30 +340,21 @@ public class ChamCong extends javax.swing.JInternalFrame {
             }
         });
 
-        PhongBan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        Thang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        Nam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", " " }));
-
         jTable1.setAutoCreateRowSorter(true);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Mã NV", "Tên NV", "Tháng", "Năm", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "Tổng"
+                "Mã NV", "Tên NV", "Tháng", "Năm", "Số buổi đi", "Số buôi nghỉ", "Tổng"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+        ));
+        jTable1.setInheritsPopupMenu(true);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
             }
         });
-        jTable1.setInheritsPopupMenu(true);
         jScrollPane1.setViewportView(jTable1);
 
         preview.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -217,21 +392,37 @@ public class ChamCong extends javax.swing.JInternalFrame {
         number.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         number.setText("jLabel1");
 
-        jButton1.setText("jButton1");
+        jButton2.setText("Mở");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Save");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Import");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1396, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(first)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(preview)
@@ -241,46 +432,869 @@ public class ChamCong extends javax.swing.JInternalFrame {
                 .addComponent(next)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(last)
-                .addGap(291, 291, 291))
+                .addGap(299, 299, 299))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jButton1)
+                    .addGap(216, 216, 216)
+                    .addComponent(jButton2)
+                    .addGap(18, 18, 18)
+                    .addComponent(jButton3)
+                    .addContainerGap(1013, Short.MAX_VALUE)))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(preview)
+                    .addComponent(first)
+                    .addComponent(next)
+                    .addComponent(last)
+                    .addComponent(number))
+                .addGap(0, 27, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(627, 627, 627)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1)
+                        .addComponent(jButton2)
+                        .addComponent(jButton3))
+                    .addContainerGap(24, Short.MAX_VALUE)))
+        );
+
+        tabs.addTab("tab2", jPanel2);
+
+        jPanel3.setLayout(new java.awt.GridLayout(4, 8, 10, 10));
+
+        jPanel33.setLayout(new java.awt.GridLayout(2, 0, 10, 10));
+
+        D1AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D1AM.setText("D1 - AM");
+        jPanel33.add(D1AM);
+
+        D1PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D1PM.setText("D1 - PM");
+        jPanel33.add(D1PM);
+
+        jPanel3.add(jPanel33);
+
+        jPanel38.setLayout(new java.awt.GridLayout(2, 0));
+
+        D2AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D2AM.setText("D2 - AM");
+        jPanel38.add(D2AM);
+
+        D2PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D2PM.setText("D2 - PM");
+        jPanel38.add(D2PM);
+
+        jPanel3.add(jPanel38);
+
+        jPanel37.setLayout(new java.awt.GridLayout(2, 0));
+
+        D3AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D3AM.setText("D3 - AM");
+        jPanel37.add(D3AM);
+
+        D3PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D3PM.setText("D3 - PM");
+        jPanel37.add(D3PM);
+
+        jPanel3.add(jPanel37);
+
+        jPanel31.setLayout(new java.awt.GridLayout(2, 0));
+
+        D4AM.setText("D4 - AM");
+        jPanel31.add(D4AM);
+
+        D4PM.setText("D4 - PM");
+        jPanel31.add(D4PM);
+
+        jPanel3.add(jPanel31);
+
+        jPanel35.setLayout(new java.awt.GridLayout(2, 0));
+
+        D5AM.setText("D5 - AM");
+        jPanel35.add(D5AM);
+
+        D5PM.setText("D5 - PM");
+        jPanel35.add(D5PM);
+
+        jPanel3.add(jPanel35);
+
+        jPanel36.setLayout(new java.awt.GridLayout(2, 0));
+
+        D6AM.setText("D6 - AM");
+        jPanel36.add(D6AM);
+
+        D6PM.setText("D6 - PM");
+        jPanel36.add(D6PM);
+
+        jPanel3.add(jPanel36);
+
+        jPanel39.setLayout(new java.awt.GridLayout(2, 0));
+
+        D7AM.setText("D7 - AM");
+        jPanel39.add(D7AM);
+
+        D7PM.setText("D7 - PM");
+        jPanel39.add(D7PM);
+
+        jPanel3.add(jPanel39);
+
+        jPanel32.setLayout(new java.awt.GridLayout(2, 0));
+
+        D8AM.setText("D8 -AM");
+        jPanel32.add(D8AM);
+
+        D8PM.setText("D8 - PM");
+        jPanel32.add(D8PM);
+
+        jPanel3.add(jPanel32);
+
+        jPanel34.setLayout(new java.awt.GridLayout(2, 0));
+
+        D9AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D9AM.setText("jLabel1");
+        jPanel34.add(D9AM);
+
+        D9PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D9PM.setText("jLabel2");
+        jPanel34.add(D9PM);
+
+        jPanel3.add(jPanel34);
+
+        jPanel25.setLayout(new java.awt.GridLayout(2, 0));
+
+        D10AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D10AM.setText("jLabel1");
+        jPanel25.add(D10AM);
+
+        D10PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D10PM.setText("jLabel2");
+        jPanel25.add(D10PM);
+
+        jPanel3.add(jPanel25);
+
+        jPanel29.setLayout(new java.awt.GridLayout(2, 0));
+
+        D11AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D11AM.setText("jLabel1");
+        jPanel29.add(D11AM);
+
+        D11PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D11PM.setText("jLabel2");
+        jPanel29.add(D11PM);
+
+        jPanel3.add(jPanel29);
+
+        D12PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D12PM.setText("jLabel2");
+
+        D12AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D12AM.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
+        jPanel23.setLayout(jPanel23Layout);
+        jPanel23Layout.setHorizontalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 144, Short.MAX_VALUE)
+            .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel23Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(D12AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(D12PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel23Layout.setVerticalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 153, Short.MAX_VALUE)
+            .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel23Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(D12AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(D12PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel3.add(jPanel23);
+
+        D13PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D13PM.setText("jLabel2");
+
+        D13AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D13AM.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
+        jPanel22.setLayout(jPanel22Layout);
+        jPanel22Layout.setHorizontalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 144, Short.MAX_VALUE)
+            .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel22Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(D13AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(D13PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel22Layout.setVerticalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 153, Short.MAX_VALUE)
+            .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel22Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(D13AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(D13PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel3.add(jPanel22);
+
+        D14PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D14PM.setText("jLabel2");
+
+        D14AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D14AM.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
+        jPanel28.setLayout(jPanel28Layout);
+        jPanel28Layout.setHorizontalGroup(
+            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 144, Short.MAX_VALUE)
+            .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel28Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(D14AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(D14PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel28Layout.setVerticalGroup(
+            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 153, Short.MAX_VALUE)
+            .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel28Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(D14AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(D14PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel3.add(jPanel28);
+
+        D15PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D15PM.setText("jLabel2");
+
+        D15AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D15AM.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
+        jPanel27.setLayout(jPanel27Layout);
+        jPanel27Layout.setHorizontalGroup(
+            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 144, Short.MAX_VALUE)
+            .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel27Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(D15AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(D15PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel27Layout.setVerticalGroup(
+            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 153, Short.MAX_VALUE)
+            .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel27Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(D15AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(D15PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel3.add(jPanel27);
+
+        D16PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D16PM.setText("jLabel2");
+
+        D16AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D16AM.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
+        jPanel24.setLayout(jPanel24Layout);
+        jPanel24Layout.setHorizontalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 144, Short.MAX_VALUE)
+            .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel24Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(D16AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(D16PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel24Layout.setVerticalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 153, Short.MAX_VALUE)
+            .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel24Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(D16AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(D16PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel3.add(jPanel24);
+
+        D17PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D17PM.setText("jLabel2");
+
+        D17AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D17AM.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
+        jPanel26.setLayout(jPanel26Layout);
+        jPanel26Layout.setHorizontalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 144, Short.MAX_VALUE)
+            .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel26Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(D17AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(D17PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel26Layout.setVerticalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 153, Short.MAX_VALUE)
+            .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel26Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(D17AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(D17PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel3.add(jPanel26);
+
+        D18PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D18PM.setText("jLabel2");
+
+        D18AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D18AM.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel30Layout = new javax.swing.GroupLayout(jPanel30);
+        jPanel30.setLayout(jPanel30Layout);
+        jPanel30Layout.setHorizontalGroup(
+            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 144, Short.MAX_VALUE)
+            .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel30Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(D18AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(D18PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel30Layout.setVerticalGroup(
+            jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 153, Short.MAX_VALUE)
+            .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel30Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(D18AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(D18PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel3.add(jPanel30);
+
+        D19PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D19PM.setText("jLabel2");
+
+        D19AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D19AM.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 144, Short.MAX_VALUE)
+            .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel19Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(D19AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(D19PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 153, Short.MAX_VALUE)
+            .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel19Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(D19AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(D19PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel3.add(jPanel19);
+
+        D20PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D20PM.setText("jLabel2");
+
+        D20AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D20AM.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 144, Short.MAX_VALUE)
+            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel11Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(D20AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(D20PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 153, Short.MAX_VALUE)
+            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel11Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(D20AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(D20PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel3.add(jPanel11);
+
+        D21PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D21PM.setText("jLabel2");
+
+        D21AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D21AM.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 144, Short.MAX_VALUE)
+            .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel14Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(D21AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(D21PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 153, Short.MAX_VALUE)
+            .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel14Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(D21AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(D21PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel3.add(jPanel14);
+
+        D22PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D22PM.setText("jLabel2");
+
+        D22AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D22AM.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 144, Short.MAX_VALUE)
+            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel13Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(D22AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(D22PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 153, Short.MAX_VALUE)
+            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel13Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(D22AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(D22PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel3.add(jPanel13);
+
+        D23PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D23PM.setText("jLabel2");
+
+        D23AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D23AM.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 144, Short.MAX_VALUE)
+            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel10Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(D23AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(D23PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 153, Short.MAX_VALUE)
+            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel10Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(D23AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(D23PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel3.add(jPanel10);
+
+        D24PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D24PM.setText("jLabel2");
+
+        D24AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D24AM.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
+        jPanel21.setLayout(jPanel21Layout);
+        jPanel21Layout.setHorizontalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 144, Short.MAX_VALUE)
+            .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel21Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(D24AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(D24PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel21Layout.setVerticalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 153, Short.MAX_VALUE)
+            .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel21Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(D24AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(D24PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel3.add(jPanel21);
+
+        D25PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D25PM.setText("jLabel2");
+
+        D25AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D25AM.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 144, Short.MAX_VALUE)
+            .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel18Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(D25AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(D25PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 153, Short.MAX_VALUE)
+            .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel18Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(D25AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(D25PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel3.add(jPanel18);
+
+        D26PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D26PM.setText("jLabel2");
+
+        D26AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D26AM.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 144, Short.MAX_VALUE)
+            .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel17Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(D26AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(D26PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 153, Short.MAX_VALUE)
+            .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel17Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(D26AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(D26PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel3.add(jPanel17);
+
+        D27PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D27PM.setText("jLabel2");
+
+        D27AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D27AM.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 144, Short.MAX_VALUE)
+            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel9Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(D27AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(D27PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 153, Short.MAX_VALUE)
+            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel9Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(D27AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(D27PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel3.add(jPanel9);
+
+        D28PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D28PM.setText("jLabel2");
+
+        D28AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D28AM.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 144, Short.MAX_VALUE)
+            .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel15Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(D28AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(D28PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 153, Short.MAX_VALUE)
+            .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel15Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(D28AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(D28PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel3.add(jPanel15);
+
+        D29PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D29PM.setText("jLabel2");
+
+        D29AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D29AM.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 144, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(D29AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(D29PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 153, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(D29AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(D29PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel3.add(jPanel7);
+
+        D30PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D30PM.setText("jLabel2");
+
+        D30AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D30AM.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 144, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel8Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(D30AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(D30PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 153, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel8Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(D30AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(D30PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel3.add(jPanel8);
+
+        D31PM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D31PM.setText("jLabel2");
+
+        D31AM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D31AM.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 144, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(D31AM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(D31PM, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 153, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(D31AM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(D31PM, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel3.add(jPanel6);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 144, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 153, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(jPanel5);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 32, Short.MAX_VALUE))
+        );
+
+        tabs.addTab("tab1", jPanel1);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(PhongBan, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Thang, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Nam, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(TimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 1265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PhongBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Thang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Nam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(preview)
-                            .addComponent(first)
-                            .addComponent(next)
-                            .addComponent(last)
-                            .addComponent(number))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addContainerGap(24, Short.MAX_VALUE))))
+                .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 702, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -341,14 +1355,19 @@ public class ChamCong extends javax.swing.JInternalFrame {
                 excelJTableImportWorkBook = new XSSFWorkbook(excelBis);
                 XSSFSheet excelSheet = excelJTableImportWorkBook.getSheetAt(0);
 
-                for (int row = 1; row < excelSheet.getLastRowNum(); row++) {
+                ChiTietCong modelCtc = new ChiTietCong();
+                for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
                     XSSFRow excelRow = excelSheet.getRow(row);
                     XSSFCell excelMa = excelRow.getCell(0);
+                    String manv = excelMa.toString();
+                    modelCtc.setMaNV(manv);
                     XSSFCell excelTen = excelRow.getCell(1);
                     XSSFCell excelThang = excelRow.getCell(2);
+                    String thang = excelThang.toString();
                     XSSFCell excelNam = excelRow.getCell(3);
                     XSSFCell excelD1 = excelRow.getCell(4);
                     String D1 = excelD1.toString();
+                    modelCtc.setD1(D1);
                     int d1;
                     if (D1.equalsIgnoreCase("VV") || D1.equalsIgnoreCase("C") || D1.equalsIgnoreCase("p")) {
                         d1 = 2;
@@ -361,6 +1380,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD2 = excelRow.getCell(5);
                     String D2 = excelD2.toString();
+                    modelCtc.setD2(D2);
                     int d2;
                     if (D2.equalsIgnoreCase("VV") || D2.equalsIgnoreCase("C") || D2.equalsIgnoreCase("p")) {
                         d2 = 2;
@@ -373,6 +1393,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD3 = excelRow.getCell(6);
                     String D3 = excelD3.toString();
+                    modelCtc.setD3(D3);
                     int d3;
                     if (D3.equalsIgnoreCase("VV") || D3.equalsIgnoreCase("C") || D3.equalsIgnoreCase("p")) {
                         d3 = 2;
@@ -385,6 +1406,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD4 = excelRow.getCell(7);
                     String D4 = excelD4.toString();
+                    modelCtc.setD4(D4);
                     int d4;
                     if (D4.equalsIgnoreCase("VV") || D4.equalsIgnoreCase("C") || D4.equalsIgnoreCase("p")) {
                         d4 = 2;
@@ -397,6 +1419,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD5 = excelRow.getCell(8);
                     String D5 = excelD5.toString();
+                    modelCtc.setD5(D5);
                     int d5;
                     if (D5.equalsIgnoreCase("VV") || D5.equalsIgnoreCase("C") || D5.equalsIgnoreCase("p")) {
                         d5 = 2;
@@ -409,6 +1432,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD6 = excelRow.getCell(9);
                     String D6 = excelD6.toString();
+                    modelCtc.setD6(D6);
                     int d6;
                     if (D6.equalsIgnoreCase("VV") || D6.equalsIgnoreCase("C") || D6.equalsIgnoreCase("p")) {
                         d6 = 2;
@@ -421,6 +1445,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD7 = excelRow.getCell(10);
                     String D7 = excelD7.toString();
+                    modelCtc.setD7(D7);
                     int d7;
                     if (D7.equalsIgnoreCase("VV") || D7.equalsIgnoreCase("C") || D7.equalsIgnoreCase("p")) {
                         d7 = 2;
@@ -433,6 +1458,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD8 = excelRow.getCell(11);
                     String D8 = excelD8.toString();
+                    modelCtc.setD8(D8);
                     int d8;
                     if (D8.equalsIgnoreCase("VV") || D8.equalsIgnoreCase("C") || D8.equalsIgnoreCase("p")) {
                         d8 = 2;
@@ -445,6 +1471,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD9 = excelRow.getCell(12);
                     String D9 = excelD9.toString();
+                    modelCtc.setD9(D9);
                     int d9;
                     if (D9.equalsIgnoreCase("VV") || D9.equalsIgnoreCase("C") || D9.equalsIgnoreCase("p")) {
                         d9 = 2;
@@ -457,6 +1484,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD10 = excelRow.getCell(13);
                     String D10 = excelD10.toString();
+                    modelCtc.setD10(D10);
                     int d10;
                     if (D10.equalsIgnoreCase("VV") || D10.equalsIgnoreCase("C") || D10.equalsIgnoreCase("p")) {
                         d10 = 2;
@@ -469,6 +1497,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD11 = excelRow.getCell(14);
                     String D11 = excelD11.toString();
+                    modelCtc.setD11(D11);
                     int d11;
                     if (D11.equalsIgnoreCase("VV") || D11.equalsIgnoreCase("C") || D11.equalsIgnoreCase("p")) {
                         d11 = 2;
@@ -481,6 +1510,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD12 = excelRow.getCell(15);
                     String D12 = excelD12.toString();
+                    modelCtc.setD12(D12);
                     int d12;
                     if (D12.equalsIgnoreCase("VV") || D12.equalsIgnoreCase("C") || D12.equalsIgnoreCase("p")) {
                         d12 = 2;
@@ -493,6 +1523,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD13 = excelRow.getCell(16);
                     String D13 = excelD13.toString();
+                    modelCtc.setD13(D13);
                     int d13;
                     if (D13.equalsIgnoreCase("VV") || D13.equalsIgnoreCase("C") || D13.equalsIgnoreCase("p")) {
                         d13 = 2;
@@ -505,6 +1536,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD14 = excelRow.getCell(17);
                     String D14 = excelD14.toString();
+                    modelCtc.setD14(D14);
                     int d14;
                     if (D14.equalsIgnoreCase("VV") || D14.equalsIgnoreCase("C") || D14.equalsIgnoreCase("p")) {
                         d14 = 2;
@@ -517,6 +1549,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD15 = excelRow.getCell(18);
                     String D15 = excelD15.toString();
+                    modelCtc.setD15(D15);
                     int d15;
                     if (D15.equalsIgnoreCase("VV") || D15.equalsIgnoreCase("C") || D15.equalsIgnoreCase("p")) {
                         d15 = 2;
@@ -529,6 +1562,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD16 = excelRow.getCell(19);
                     String D16 = excelD16.toString();
+                    modelCtc.setD16(D16);
                     int d16;
                     if (D16.equalsIgnoreCase("VV") || D16.equalsIgnoreCase("C") || D16.equalsIgnoreCase("p")) {
                         d16 = 2;
@@ -541,6 +1575,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD17 = excelRow.getCell(20);
                     String D17 = excelD17.toString();
+                    modelCtc.setD17(D17);
                     int d17;
                     if (D17.equalsIgnoreCase("VV") || D17.equalsIgnoreCase("C") || D17.equalsIgnoreCase("p")) {
                         d17 = 2;
@@ -553,6 +1588,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD18 = excelRow.getCell(21);
                     String D18 = excelD18.toString();
+                    modelCtc.setD18(D18);
                     int d18;
                     if (D18.equalsIgnoreCase("VV") || D18.equalsIgnoreCase("C") || D18.equalsIgnoreCase("p")) {
                         d18 = 2;
@@ -565,6 +1601,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD19 = excelRow.getCell(22);
                     String D19 = excelD19.toString();
+                    modelCtc.setD19(D19);
                     int d19;
                     if (D19.equalsIgnoreCase("VV") || D19.equalsIgnoreCase("C") || D19.equalsIgnoreCase("p")) {
                         d19 = 2;
@@ -577,6 +1614,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD20 = excelRow.getCell(23);
                     String D20 = excelD20.toString();
+                    modelCtc.setD20(D20);
                     int d20;
                     if (D20.equalsIgnoreCase("VV") || D20.equalsIgnoreCase("C") || D20.equalsIgnoreCase("p")) {
                         d20 = 2;
@@ -589,6 +1627,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD21 = excelRow.getCell(24);
                     String D21 = excelD21.toString();
+                    modelCtc.setD21(D21);
                     int d21;
                     if (D21.equalsIgnoreCase("VV") || D21.equalsIgnoreCase("C") || D21.equalsIgnoreCase("p")) {
                         d21 = 2;
@@ -601,6 +1640,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD22 = excelRow.getCell(25);
                     String D22 = excelD22.toString();
+                    modelCtc.setD22(D22);
                     int d22;
                     if (D22.equalsIgnoreCase("VV") || D22.equalsIgnoreCase("C") || D22.equalsIgnoreCase("p")) {
                         d22 = 2;
@@ -613,6 +1653,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD23 = excelRow.getCell(26);
                     String D23 = excelD23.toString();
+                    modelCtc.setD23(D23);
                     int d23;
                     if (D23.equalsIgnoreCase("VV") || D23.equalsIgnoreCase("C") || D23.equalsIgnoreCase("p")) {
                         d23 = 2;
@@ -625,6 +1666,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD24 = excelRow.getCell(27);
                     String D24 = excelD24.toString();
+                    modelCtc.setD24(D24);
                     int d24;
                     if (D24.equalsIgnoreCase("VV") || D24.equalsIgnoreCase("C") || D24.equalsIgnoreCase("p")) {
                         d24 = 2;
@@ -637,6 +1679,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD25 = excelRow.getCell(28);
                     String D25 = excelD25.toString();
+                    modelCtc.setD25(D25);
                     int d25;
                     if (D25.equalsIgnoreCase("VV") || D25.equalsIgnoreCase("C") || D25.equalsIgnoreCase("p")) {
                         d25 = 2;
@@ -649,6 +1692,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD26 = excelRow.getCell(29);
                     String D26 = excelD26.toString();
+                    modelCtc.setD26(D26);
                     int d26;
                     if (D26.equalsIgnoreCase("VV") || D26.equalsIgnoreCase("C") || D26.equalsIgnoreCase("p")) {
                         d26 = 2;
@@ -661,6 +1705,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD27 = excelRow.getCell(30);
                     String D27 = excelD27.toString();
+                    modelCtc.setD27(D27);
                     int d27;
                     if (D27.equalsIgnoreCase("VV") || D27.equalsIgnoreCase("C") || D27.equalsIgnoreCase("p")) {
                         d27 = 2;
@@ -672,7 +1717,8 @@ public class ChamCong extends javax.swing.JInternalFrame {
                         d27 = 0;
                     }
                     XSSFCell excelD28 = excelRow.getCell(31);
-                    String D28 = excelD2.toString();
+                    String D28 = excelD28.toString();
+                    modelCtc.setD28(D28);
                     int d28;
                     if (D28.equalsIgnoreCase("VV") || D28.equalsIgnoreCase("C") || D28.equalsIgnoreCase("p")) {
                         d28 = 2;
@@ -684,7 +1730,8 @@ public class ChamCong extends javax.swing.JInternalFrame {
                         d28 = 0;
                     }
                     XSSFCell excelD29 = excelRow.getCell(32);
-                    String D29 = excelD2.toString();
+                    String D29 = excelD29.toString();
+                    modelCtc.setD29(D29);
                     int d29;
                     if (D29.equalsIgnoreCase("VV") || D29.equalsIgnoreCase("C") || D29.equalsIgnoreCase("p")) {
                         d29 = 2;
@@ -697,6 +1744,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD30 = excelRow.getCell(33);
                     String D30 = excelD30.toString();
+                    modelCtc.setD30(D30);
                     int d30;
                     if (D2.equalsIgnoreCase("VV") || D30.equalsIgnoreCase("C") || D30.equalsIgnoreCase("p")) {
                         d30 = 2;
@@ -709,6 +1757,7 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     }
                     XSSFCell excelD31 = excelRow.getCell(34);
                     String D31 = excelD31.toString();
+                    modelCtc.setD31(D31);
                     int d31;
                     if (D31.equalsIgnoreCase("VV") || D31.equalsIgnoreCase("C") || D31.equalsIgnoreCase("p")) {
                         d31 = 2;
@@ -719,12 +1768,12 @@ public class ChamCong extends javax.swing.JInternalFrame {
                     } else {
                         d31 = 0;
                     }
+                    listCtc.add(new ChiTietCong(manv, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, D13, D14, D15, D16, D17, D18, D19, D20, D21, D22, D23, D24, D25, D26, D27, D28, D29, D30, D31));
                     int tong = d1 + d2 + d3 + d4 + d5 + d6 + d7 + d8 + d9 + d10 + d11 + d12 + d13 + d14 + d15 + d16 + d17 + d18 + d19 + d20 + d21
                             + d22 + d23 + d24 + d25 + d26 + d27 + d28 + d29 + d30 + d31;
-                    model.addRow(new Object[]{excelMa, excelTen, excelThang, excelNam, excelD1, excelD2, excelD3, excelD4, excelD5, excelD6, excelD7,
-                        excelD8, excelD9, excelD10, excelD11, excelD12, excelD13, excelD14, excelD15, excelD16, excelD17, excelD18, excelD19, excelD20,
-                        excelD21, excelD22, excelD23, excelD24, excelD25, excelD26, excelD27, excelD28, excelD29, excelD30, excelD31, tong / 2
+                    model.addRow(new Object[]{manv, excelTen, thang, excelNam, null, null, tong / 2
                     });
+
                     //                    for (int column = 0; column < excelRow.getLastCellNum(); column++) {
                     //                        XSSFCell excelCell = excelRow.getCell(column);
                     //                    }
@@ -749,21 +1798,575 @@ public class ChamCong extends javax.swing.JInternalFrame {
             }
 
         }
+        for (ChiTietCong sheet : listCtc) {
+            System.out.println(sheet);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        new BangCong().setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.save();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        if (evt.getClickCount() == 2) {
+            this.index = jTable1.rowAtPoint(evt.getPoint());
+            if (this.index >= 0) {
+                tabs.setSelectedIndex(0);
+//                MsgBox.alert(null, index + "");
+//                listCtc.get(index);
+                ChiTietCong ct = listCtc.get(index);
+//                d1
+                if (ct.getD1().equalsIgnoreCase("VV") || ct.getD1().equalsIgnoreCase("c") || ct.getD1().equalsIgnoreCase("p")) {
+                    D1AM.setBackground(Color.BLUE);
+                    D1PM.setBackground(Color.BLUE);
+                } else if (ct.getD1().equalsIgnoreCase("am")) {
+                    D1AM.setBackground(Color.BLUE);
+                    D1PM.setBackground(Color.RED);
+                } else if (ct.getD1().equalsIgnoreCase("pm")) {
+                    D1AM.setBackground(Color.RED);
+                    D1PM.setBackground(Color.BLUE);
+                } else {
+                    D1AM.setBackground(Color.RED);
+                    D1PM.setBackground(Color.RED);
+                }
+//                d2
+                if (ct.getD2().equalsIgnoreCase("VV") || ct.getD2().equalsIgnoreCase("c") || ct.getD2().equalsIgnoreCase("p")) {
+                    D2AM.setBackground(Color.BLUE);
+                    D2PM.setBackground(Color.BLUE);
+                } else if (ct.getD2().equalsIgnoreCase("am")) {
+                    D2AM.setBackground(Color.BLUE);
+                    D2PM.setBackground(Color.RED);
+                } else if (ct.getD2().equalsIgnoreCase("pm")) {
+                    D2AM.setBackground(Color.RED);
+                    D2PM.setBackground(Color.BLUE);
+                } else {
+                    D2AM.setBackground(Color.RED);
+                    D2PM.setBackground(Color.RED);
+                }
+//                d3
+                if (ct.getD3().equalsIgnoreCase("VV") || ct.getD3().equalsIgnoreCase("c") || ct.getD3().equalsIgnoreCase("p")) {
+                    D3AM.setBackground(Color.BLUE);
+                    D3PM.setBackground(Color.BLUE);
+                } else if (ct.getD3().equalsIgnoreCase("am")) {
+                    D3AM.setBackground(Color.BLUE);
+                    D3PM.setBackground(Color.RED);
+                } else if (ct.getD3().equalsIgnoreCase("pm")) {
+                    D3AM.setBackground(Color.RED);
+                    D3PM.setBackground(Color.BLUE);
+                } else {
+                    D3AM.setBackground(Color.RED);
+                    D3PM.setBackground(Color.RED);
+                }
+//                d4
+                if (ct.getD4().equalsIgnoreCase("VV") || ct.getD4().equalsIgnoreCase("c") || ct.getD4().equalsIgnoreCase("p")) {
+                    D4AM.setBackground(Color.BLUE);
+                    D4PM.setBackground(Color.BLUE);
+                } else if (ct.getD4().equalsIgnoreCase("am")) {
+                    D4AM.setBackground(Color.BLUE);
+                    D4PM.setBackground(Color.RED);
+                } else if (ct.getD4().equalsIgnoreCase("pm")) {
+                    D4AM.setBackground(Color.RED);
+                    D4PM.setBackground(Color.BLUE);
+                } else {
+                    D4AM.setBackground(Color.RED);
+                    D4PM.setBackground(Color.RED);
+                }
+//                d5
+                if (ct.getD5().equalsIgnoreCase("VV") || ct.getD5().equalsIgnoreCase("c") || ct.getD5().equalsIgnoreCase("p")) {
+                    D5AM.setBackground(Color.BLUE);
+                    D5PM.setBackground(Color.BLUE);
+                } else if (ct.getD5().equalsIgnoreCase("am")) {
+                    D5AM.setBackground(Color.BLUE);
+                    D5PM.setBackground(Color.RED);
+                } else if (ct.getD5().equalsIgnoreCase("pm")) {
+                    D5AM.setBackground(Color.RED);
+                    D5PM.setBackground(Color.BLUE);
+                } else {
+                    D5AM.setBackground(Color.RED);
+                    D5PM.setBackground(Color.RED);
+                }
+//                d6
+                if (ct.getD6().equalsIgnoreCase("VV") || ct.getD6().equalsIgnoreCase("c") || ct.getD6().equalsIgnoreCase("p")) {
+                    D6AM.setBackground(Color.BLUE);
+                    D6PM.setBackground(Color.BLUE);
+                } else if (ct.getD6().equalsIgnoreCase("am")) {
+                    D6AM.setBackground(Color.BLUE);
+                    D6PM.setBackground(Color.RED);
+                } else if (ct.getD6().equalsIgnoreCase("pm")) {
+                    D6AM.setBackground(Color.RED);
+                    D6PM.setBackground(Color.BLUE);
+                } else {
+                    D6AM.setBackground(Color.RED);
+                    D6PM.setBackground(Color.RED);
+                }
+//                d7
+                if (ct.getD7().equalsIgnoreCase("VV") || ct.getD7().equalsIgnoreCase("c") || ct.getD7().equalsIgnoreCase("p")) {
+                    D7AM.setBackground(Color.BLUE);
+                    D7PM.setBackground(Color.BLUE);
+                } else if (ct.getD7().equalsIgnoreCase("am")) {
+                    D7AM.setBackground(Color.BLUE);
+                    D7PM.setBackground(Color.RED);
+                } else if (ct.getD7().equalsIgnoreCase("pm")) {
+                    D7AM.setBackground(Color.RED);
+                    D7PM.setBackground(Color.BLUE);
+                } else {
+                    D7AM.setBackground(Color.RED);
+                    D7PM.setBackground(Color.RED);
+                }
+//d8
+                if (ct.getD8().equalsIgnoreCase("VV") || ct.getD8().equalsIgnoreCase("c") || ct.getD8().equalsIgnoreCase("p")) {
+                    D8AM.setBackground(Color.BLUE);
+                    D8PM.setBackground(Color.BLUE);
+                } else if (ct.getD8().equalsIgnoreCase("am")) {
+                    D8AM.setBackground(Color.BLUE);
+                    D8PM.setBackground(Color.RED);
+                } else if (ct.getD8().equalsIgnoreCase("pm")) {
+                    D8AM.setBackground(Color.RED);
+                    D8PM.setBackground(Color.BLUE);
+                } else {
+                    D8AM.setBackground(Color.RED);
+                    D8PM.setBackground(Color.RED);
+                }
+//d9
+                if (ct.getD9().equalsIgnoreCase("VV") || ct.getD9().equalsIgnoreCase("c") || ct.getD9().equalsIgnoreCase("p")) {
+                    D9AM.setBackground(Color.BLUE);
+                    D9PM.setBackground(Color.BLUE);
+                } else if (ct.getD9().equalsIgnoreCase("am")) {
+                    D9AM.setBackground(Color.BLUE);
+                    D9PM.setBackground(Color.RED);
+                } else if (ct.getD9().equalsIgnoreCase("pm")) {
+                    D9AM.setBackground(Color.RED);
+                    D9PM.setBackground(Color.BLUE);
+                } else {
+                    D9AM.setBackground(Color.RED);
+                    D9PM.setBackground(Color.RED);
+                }
+//d10
+                if (ct.getD10().equalsIgnoreCase("VV") || ct.getD10().equalsIgnoreCase("c") || ct.getD10().equalsIgnoreCase("p")) {
+                    D10AM.setBackground(Color.BLUE);
+                    D10PM.setBackground(Color.BLUE);
+                } else if (ct.getD10().equalsIgnoreCase("am")) {
+                    D10AM.setBackground(Color.BLUE);
+                    D10PM.setBackground(Color.RED);
+                } else if (ct.getD10().equalsIgnoreCase("pm")) {
+                    D10AM.setBackground(Color.RED);
+                    D10PM.setBackground(Color.BLUE);
+                } else {
+                    D10AM.setBackground(Color.RED);
+                    D10PM.setBackground(Color.RED);
+                }
+//                d11
+                if (ct.getD11().equalsIgnoreCase("VV") || ct.getD11().equalsIgnoreCase("c") || ct.getD11().equalsIgnoreCase("p")) {
+                    D11AM.setBackground(Color.BLUE);
+                    D11PM.setBackground(Color.BLUE);
+                } else if (ct.getD11().equalsIgnoreCase("am")) {
+                    D11AM.setBackground(Color.BLUE);
+                    D11PM.setBackground(Color.RED);
+                } else if (ct.getD11().equalsIgnoreCase("pm")) {
+                    D11AM.setBackground(Color.RED);
+                    D11PM.setBackground(Color.BLUE);
+                } else {
+                    D11AM.setBackground(Color.RED);
+                    D11PM.setBackground(Color.RED);
+                }
+//d12
+                if (ct.getD12().equalsIgnoreCase("VV") || ct.getD12().equalsIgnoreCase("c") || ct.getD12().equalsIgnoreCase("p")) {
+                    D12AM.setBackground(Color.BLUE);
+                    D12PM.setBackground(Color.BLUE);
+                } else if (ct.getD12().equalsIgnoreCase("am")) {
+                    D12AM.setBackground(Color.BLUE);
+                    D12PM.setBackground(Color.RED);
+                } else if (ct.getD12().equalsIgnoreCase("pm")) {
+                    D12AM.setBackground(Color.RED);
+                    D12PM.setBackground(Color.BLUE);
+                } else {
+                    D12AM.setBackground(Color.RED);
+                    D12PM.setBackground(Color.RED);
+                }
+//d13
+                if (ct.getD13().equalsIgnoreCase("VV") || ct.getD13().equalsIgnoreCase("c") || ct.getD13().equalsIgnoreCase("p")) {
+                    D13AM.setBackground(Color.BLUE);
+                    D13PM.setBackground(Color.BLUE);
+                } else if (ct.getD13().equalsIgnoreCase("am")) {
+                    D13AM.setBackground(Color.BLUE);
+                    D13PM.setBackground(Color.RED);
+                } else if (ct.getD13().equalsIgnoreCase("pm")) {
+                    D13AM.setBackground(Color.RED);
+                    D13PM.setBackground(Color.BLUE);
+                } else {
+                    D13AM.setBackground(Color.RED);
+                    D13PM.setBackground(Color.RED);
+                }
+//d14
+                if (ct.getD14().equalsIgnoreCase("VV") || ct.getD14().equalsIgnoreCase("c") || ct.getD14().equalsIgnoreCase("p")) {
+                    D14AM.setBackground(Color.BLUE);
+                    D14PM.setBackground(Color.BLUE);
+                } else if (ct.getD14().equalsIgnoreCase("am")) {
+                    D14AM.setBackground(Color.BLUE);
+                    D14PM.setBackground(Color.RED);
+                } else if (ct.getD14().equalsIgnoreCase("pm")) {
+                    D14AM.setBackground(Color.RED);
+                    D14PM.setBackground(Color.BLUE);
+                } else {
+                    D14AM.setBackground(Color.RED);
+                    D14PM.setBackground(Color.RED);
+                }
+//                d15
+                if (ct.getD15().equalsIgnoreCase("VV") || ct.getD15().equalsIgnoreCase("c") || ct.getD15().equalsIgnoreCase("p")) {
+                    D15AM.setBackground(Color.BLUE);
+                    D15PM.setBackground(Color.BLUE);
+                } else if (ct.getD15().equalsIgnoreCase("am")) {
+                    D15AM.setBackground(Color.BLUE);
+                    D15PM.setBackground(Color.RED);
+                } else if (ct.getD15().equalsIgnoreCase("pm")) {
+                    D15AM.setBackground(Color.RED);
+                    D15PM.setBackground(Color.BLUE);
+                } else {
+                    D15AM.setBackground(Color.RED);
+                    D15PM.setBackground(Color.RED);
+                }
+//d16
+                if (ct.getD16().equalsIgnoreCase("VV") || ct.getD16().equalsIgnoreCase("c") || ct.getD16().equalsIgnoreCase("p")) {
+                    D16AM.setBackground(Color.BLUE);
+                    D16PM.setBackground(Color.BLUE);
+                } else if (ct.getD16().equalsIgnoreCase("am")) {
+                    D16AM.setBackground(Color.BLUE);
+                    D16PM.setBackground(Color.RED);
+                } else if (ct.getD16().equalsIgnoreCase("pm")) {
+                    D16AM.setBackground(Color.RED);
+                    D16PM.setBackground(Color.BLUE);
+                } else {
+                    D16AM.setBackground(Color.RED);
+                    D16PM.setBackground(Color.RED);
+                }
+//d17
+                if (ct.getD17().equalsIgnoreCase("VV") || ct.getD17().equalsIgnoreCase("c") || ct.getD17().equalsIgnoreCase("p")) {
+                    D17AM.setBackground(Color.BLUE);
+                    D17PM.setBackground(Color.BLUE);
+                } else if (ct.getD17().equalsIgnoreCase("am")) {
+                    D17AM.setBackground(Color.BLUE);
+                    D17PM.setBackground(Color.RED);
+                } else if (ct.getD17().equalsIgnoreCase("pm")) {
+                    D17AM.setBackground(Color.RED);
+                    D17PM.setBackground(Color.BLUE);
+                } else {
+                    D17AM.setBackground(Color.RED);
+                    D17PM.setBackground(Color.RED);
+                }
+//d18
+                if (ct.getD18().equalsIgnoreCase("VV") || ct.getD18().equalsIgnoreCase("c") || ct.getD18().equalsIgnoreCase("p")) {
+                    D18AM.setBackground(Color.BLUE);
+                    D18PM.setBackground(Color.BLUE);
+                } else if (ct.getD18().equalsIgnoreCase("am")) {
+                    D18AM.setBackground(Color.BLUE);
+                    D18PM.setBackground(Color.RED);
+                } else if (ct.getD18().equalsIgnoreCase("pm")) {
+                    D18AM.setBackground(Color.RED);
+                    D18PM.setBackground(Color.BLUE);
+                } else {
+                    D18AM.setBackground(Color.RED);
+                    D18PM.setBackground(Color.RED);
+                }
+//d19
+                if (ct.getD19().equalsIgnoreCase("VV") || ct.getD19().equalsIgnoreCase("c") || ct.getD19().equalsIgnoreCase("p")) {
+                    D19AM.setBackground(Color.BLUE);
+                    D19PM.setBackground(Color.BLUE);
+                } else if (ct.getD19().equalsIgnoreCase("am")) {
+                    D19AM.setBackground(Color.BLUE);
+                    D19PM.setBackground(Color.RED);
+                } else if (ct.getD19().equalsIgnoreCase("pm")) {
+                    D19AM.setBackground(Color.RED);
+                    D19PM.setBackground(Color.BLUE);
+                } else {
+                    D19AM.setBackground(Color.RED);
+                    D19PM.setBackground(Color.RED);
+                }
+//d20
+                if (ct.getD20().equalsIgnoreCase("VV") || ct.getD20().equalsIgnoreCase("c") || ct.getD20().equalsIgnoreCase("p")) {
+                    D20AM.setBackground(Color.BLUE);
+                    D20PM.setBackground(Color.BLUE);
+                } else if (ct.getD20().equalsIgnoreCase("am")) {
+                    D20AM.setBackground(Color.BLUE);
+                    D20PM.setBackground(Color.RED);
+                } else if (ct.getD20().equalsIgnoreCase("pm")) {
+                    D20AM.setBackground(Color.RED);
+                    D20PM.setBackground(Color.BLUE);
+                } else {
+                    D20AM.setBackground(Color.RED);
+                    D20PM.setBackground(Color.RED);
+                }
+//d21
+                if (ct.getD21().equalsIgnoreCase("VV") || ct.getD21().equalsIgnoreCase("c") || ct.getD21().equalsIgnoreCase("p")) {
+                    D21AM.setBackground(Color.BLUE);
+                    D21PM.setBackground(Color.BLUE);
+                } else if (ct.getD21().equalsIgnoreCase("am")) {
+                    D21AM.setBackground(Color.BLUE);
+                    D21PM.setBackground(Color.RED);
+                } else if (ct.getD21().equalsIgnoreCase("pm")) {
+                    D21AM.setBackground(Color.RED);
+                    D21PM.setBackground(Color.BLUE);
+                } else {
+                    D21AM.setBackground(Color.RED);
+                    D21PM.setBackground(Color.RED);
+                }
+//d22
+                if (ct.getD22().equalsIgnoreCase("VV") || ct.getD22().equalsIgnoreCase("c") || ct.getD22().equalsIgnoreCase("p")) {
+                    D22AM.setBackground(Color.BLUE);
+                    D22PM.setBackground(Color.BLUE);
+                } else if (ct.getD22().equalsIgnoreCase("am")) {
+                    D22AM.setBackground(Color.BLUE);
+                    D22PM.setBackground(Color.RED);
+                } else if (ct.getD22().equalsIgnoreCase("pm")) {
+                    D22AM.setBackground(Color.RED);
+                    D22PM.setBackground(Color.BLUE);
+                } else {
+                    D22AM.setBackground(Color.RED);
+                    D22PM.setBackground(Color.RED);
+                }
+//d23
+                if (ct.getD23().equalsIgnoreCase("VV") || ct.getD23().equalsIgnoreCase("c") || ct.getD23().equalsIgnoreCase("p")) {
+                    D23AM.setBackground(Color.BLUE);
+                    D23PM.setBackground(Color.BLUE);
+                } else if (ct.getD23().equalsIgnoreCase("am")) {
+                    D23AM.setBackground(Color.BLUE);
+                    D23PM.setBackground(Color.RED);
+                } else if (ct.getD2().equalsIgnoreCase("pm")) {
+                    D23AM.setBackground(Color.RED);
+                    D23PM.setBackground(Color.BLUE);
+                } else {
+                    D23AM.setBackground(Color.RED);
+                    D23PM.setBackground(Color.RED);
+                }
+//d24
+                if (ct.getD24().equalsIgnoreCase("VV") || ct.getD24().equalsIgnoreCase("c") || ct.getD24().equalsIgnoreCase("p")) {
+                    D24AM.setBackground(Color.BLUE);
+                    D24PM.setBackground(Color.BLUE);
+                } else if (ct.getD24().equalsIgnoreCase("am")) {
+                    D24AM.setBackground(Color.BLUE);
+                    D24PM.setBackground(Color.RED);
+                } else if (ct.getD2().equalsIgnoreCase("pm")) {
+                    D24AM.setBackground(Color.RED);
+                    D24PM.setBackground(Color.BLUE);
+                } else {
+                    D24AM.setBackground(Color.RED);
+                    D24PM.setBackground(Color.RED);
+                }
+//d25
+                if (ct.getD25().equalsIgnoreCase("VV") || ct.getD25().equalsIgnoreCase("c") || ct.getD25().equalsIgnoreCase("p")) {
+                    D25AM.setBackground(Color.BLUE);
+                    D25PM.setBackground(Color.BLUE);
+                } else if (ct.getD25().equalsIgnoreCase("am")) {
+                    D25AM.setBackground(Color.BLUE);
+                    D25PM.setBackground(Color.RED);
+                } else if (ct.getD25().equalsIgnoreCase("pm")) {
+                    D25AM.setBackground(Color.RED);
+                    D25PM.setBackground(Color.BLUE);
+                } else {
+                    D25AM.setBackground(Color.RED);
+                    D25PM.setBackground(Color.RED);
+                }
+//d26
+                if (ct.getD26().equalsIgnoreCase("VV") || ct.getD26().equalsIgnoreCase("c") || ct.getD26().equalsIgnoreCase("p")) {
+                    D26AM.setBackground(Color.BLUE);
+                    D26PM.setBackground(Color.BLUE);
+                } else if (ct.getD26().equalsIgnoreCase("am")) {
+                    D26AM.setBackground(Color.BLUE);
+                    D26PM.setBackground(Color.RED);
+                } else if (ct.getD26().equalsIgnoreCase("pm")) {
+                    D26AM.setBackground(Color.RED);
+                    D26PM.setBackground(Color.BLUE);
+                } else {
+                    D26AM.setBackground(Color.RED);
+                    D26PM.setBackground(Color.RED);
+                }
+//d27
+                if (ct.getD27().equalsIgnoreCase("VV") || ct.getD27().equalsIgnoreCase("c") || ct.getD27().equalsIgnoreCase("p")) {
+                    D27AM.setBackground(Color.BLUE);
+                    D27PM.setBackground(Color.BLUE);
+                } else if (ct.getD27().equalsIgnoreCase("am")) {
+                    D27AM.setBackground(Color.BLUE);
+                    D27PM.setBackground(Color.RED);
+                } else if (ct.getD27().equalsIgnoreCase("pm")) {
+                    D27AM.setBackground(Color.RED);
+                    D27PM.setBackground(Color.BLUE);
+                } else {
+                    D27AM.setBackground(Color.RED);
+                    D27PM.setBackground(Color.RED);
+                }
+//d28
+                if (ct.getD28().equalsIgnoreCase("VV") || ct.getD28().equalsIgnoreCase("c") || ct.getD28().equalsIgnoreCase("p")) {
+                    D28AM.setBackground(Color.BLUE);
+                    D28PM.setBackground(Color.BLUE);
+                } else if (ct.getD28().equalsIgnoreCase("am")) {
+                    D28AM.setBackground(Color.BLUE);
+                    D28PM.setBackground(Color.RED);
+                } else if (ct.getD28().equalsIgnoreCase("pm")) {
+                    D28AM.setBackground(Color.RED);
+                    D28PM.setBackground(Color.BLUE);
+                } else {
+                    D28AM.setBackground(Color.RED);
+                    D28PM.setBackground(Color.RED);
+                }
+//d29
+                if (ct.getD29().equalsIgnoreCase("VV") || ct.getD29().equalsIgnoreCase("c") || ct.getD29().equalsIgnoreCase("p")) {
+                    D29AM.setBackground(Color.BLUE);
+                    D29PM.setBackground(Color.BLUE);
+                } else if (ct.getD29().equalsIgnoreCase("am")) {
+                    D29AM.setBackground(Color.BLUE);
+                    D29PM.setBackground(Color.RED);
+                } else if (ct.getD29().equalsIgnoreCase("pm")) {
+                    D29AM.setBackground(Color.RED);
+                    D29PM.setBackground(Color.BLUE);
+                } else {
+                    D29AM.setBackground(Color.RED);
+                    D29PM.setBackground(Color.RED);
+                }
+//d30
+                if (ct.getD30().equalsIgnoreCase("VV") || ct.getD30().equalsIgnoreCase("c") || ct.getD30().equalsIgnoreCase("p")) {
+                    D30AM.setBackground(Color.BLUE);
+                    D30PM.setBackground(Color.BLUE);
+                } else if (ct.getD30().equalsIgnoreCase("am")) {
+                    D30AM.setBackground(Color.BLUE);
+                    D30PM.setBackground(Color.RED);
+                } else if (ct.getD30().equalsIgnoreCase("pm")) {
+                    D30AM.setBackground(Color.RED);
+                    D30PM.setBackground(Color.BLUE);
+                } else {
+                    D30AM.setBackground(Color.RED);
+                    D30PM.setBackground(Color.RED);
+                }
+//d31
+                if (ct.getD31().equalsIgnoreCase("VV") || ct.getD31().equalsIgnoreCase("c") || ct.getD31().equalsIgnoreCase("p")) {
+                    D31AM.setBackground(Color.BLUE);
+                    D31PM.setBackground(Color.BLUE);
+                } else if (ct.getD31().equalsIgnoreCase("am")) {
+                    D31AM.setBackground(Color.BLUE);
+                    D31PM.setBackground(Color.RED);
+                } else if (ct.getD31().equalsIgnoreCase("pm")) {
+                    D31AM.setBackground(Color.RED);
+                    D31PM.setBackground(Color.BLUE);
+                } else {
+                    D31AM.setBackground(Color.RED);
+                    D31PM.setBackground(Color.RED);
+                }
+            }
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> Nam;
-    private javax.swing.JComboBox<String> PhongBan;
-    private javax.swing.JComboBox<String> Thang;
-    private javax.swing.JTextField TimKiem;
+    private javax.swing.JLabel D10AM;
+    private javax.swing.JLabel D10PM;
+    private javax.swing.JLabel D11AM;
+    private javax.swing.JLabel D11PM;
+    private javax.swing.JLabel D12AM;
+    private javax.swing.JLabel D12PM;
+    private javax.swing.JLabel D13AM;
+    private javax.swing.JLabel D13PM;
+    private javax.swing.JLabel D14AM;
+    private javax.swing.JLabel D14PM;
+    private javax.swing.JLabel D15AM;
+    private javax.swing.JLabel D15PM;
+    private javax.swing.JLabel D16AM;
+    private javax.swing.JLabel D16PM;
+    private javax.swing.JLabel D17AM;
+    private javax.swing.JLabel D17PM;
+    private javax.swing.JLabel D18AM;
+    private javax.swing.JLabel D18PM;
+    private javax.swing.JLabel D19AM;
+    private javax.swing.JLabel D19PM;
+    private javax.swing.JLabel D1AM;
+    private javax.swing.JLabel D1PM;
+    private javax.swing.JLabel D20AM;
+    private javax.swing.JLabel D20PM;
+    private javax.swing.JLabel D21AM;
+    private javax.swing.JLabel D21PM;
+    private javax.swing.JLabel D22AM;
+    private javax.swing.JLabel D22PM;
+    private javax.swing.JLabel D23AM;
+    private javax.swing.JLabel D23PM;
+    private javax.swing.JLabel D24AM;
+    private javax.swing.JLabel D24PM;
+    private javax.swing.JLabel D25AM;
+    private javax.swing.JLabel D25PM;
+    private javax.swing.JLabel D26AM;
+    private javax.swing.JLabel D26PM;
+    private javax.swing.JLabel D27AM;
+    private javax.swing.JLabel D27PM;
+    private javax.swing.JLabel D28AM;
+    private javax.swing.JLabel D28PM;
+    private javax.swing.JLabel D29AM;
+    private javax.swing.JLabel D29PM;
+    private javax.swing.JLabel D2AM;
+    private javax.swing.JLabel D2PM;
+    private javax.swing.JLabel D30AM;
+    private javax.swing.JLabel D30PM;
+    private javax.swing.JLabel D31AM;
+    private javax.swing.JLabel D31PM;
+    private javax.swing.JLabel D3AM;
+    private javax.swing.JLabel D3PM;
+    private javax.swing.JLabel D4AM;
+    private javax.swing.JLabel D4PM;
+    private javax.swing.JLabel D5AM;
+    private javax.swing.JLabel D5PM;
+    private javax.swing.JLabel D6AM;
+    private javax.swing.JLabel D6PM;
+    private javax.swing.JLabel D7AM;
+    private javax.swing.JLabel D7PM;
+    private javax.swing.JLabel D8AM;
+    private javax.swing.JLabel D8PM;
+    private javax.swing.JLabel D9AM;
+    private javax.swing.JLabel D9PM;
     private javax.swing.JButton first;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel23;
+    private javax.swing.JPanel jPanel24;
+    private javax.swing.JPanel jPanel25;
+    private javax.swing.JPanel jPanel26;
+    private javax.swing.JPanel jPanel27;
+    private javax.swing.JPanel jPanel28;
+    private javax.swing.JPanel jPanel29;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel30;
+    private javax.swing.JPanel jPanel31;
+    private javax.swing.JPanel jPanel32;
+    private javax.swing.JPanel jPanel33;
+    private javax.swing.JPanel jPanel34;
+    private javax.swing.JPanel jPanel35;
+    private javax.swing.JPanel jPanel36;
+    private javax.swing.JPanel jPanel37;
+    private javax.swing.JPanel jPanel38;
+    private javax.swing.JPanel jPanel39;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton last;
     private javax.swing.JButton next;
     private javax.swing.JLabel number;
     private javax.swing.JButton preview;
+    private javax.swing.JTabbedPane tabs;
     // End of variables declaration//GEN-END:variables
+
 }
