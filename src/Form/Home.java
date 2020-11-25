@@ -51,14 +51,10 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void OpenNhanSu() {
-        for (JInternalFrame frmChild : desktopPane.getAllFrames()) {
-            frmChild.dispose();
-        }
-        NhanVienIm frmLogin = new NhanVienIm();
-        frmLogin.setTitle("QUẢN LÝ NHÂN SỰ");
-        frmLogin.setLocation(this.getWidth() / 2 - frmLogin.getWidth() / 2, (this.getHeight() - 20) / 2 - frmLogin.getHeight() / 2 - 20);
-        desktopPane.add(frmLogin);
-        frmLogin.setVisible(true);
+        Anv nv1=new Anv();
+        desktopPane.removeAll();
+        desktopPane.add(nv1);
+        nv1.setVisible(true);
     }
 
     private void OpenChamCong() {
