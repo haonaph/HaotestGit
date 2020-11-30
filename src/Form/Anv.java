@@ -60,10 +60,10 @@ public class Anv extends javax.swing.JInternalFrame {
                     dsns.getCMND(),
                     dsns.getSdt1(),
                     dsns.isGioiTinh() ? "Nam" : "Nữ",
-                    dsns.getTrangThaiLamViec() ,
+                    dsns.getTrangThaiLamViec(),
                     dsns.getAnh(),
                     dsns.getGhiChu()});
-                
+
             }
         } catch (Exception e) {
             MsgBox.alert(this, "lỗi truy vấn dữ liệu.");
@@ -176,9 +176,11 @@ public class Anv extends javax.swing.JInternalFrame {
         txtSDT1.setText("");
         taGhichu.setText("");
         txtEmail.setText("");
+        lbstt.setText(nvdao1.select().size() + " of " + nvdao1.select().size());
     }
-    public void delete(){ //do csdl vs hopdong
-                if(MsgBox.comfirm(this, "Bạn thật sự muốn xóa Chuyên đề này")){
+
+    public void delete() { //do csdl vs hopdong
+        if (MsgBox.comfirm(this, "Bạn thật sự muốn xóa Chuyên đề này")) {
             try {
                 nvdao1.delete(txtManv.getText());
                 this.load();
@@ -189,6 +191,10 @@ public class Anv extends javax.swing.JInternalFrame {
                 MsgBox.alert(this, "Xóa thất bại");
             }
         }
+    }
+
+    public void kiemtra() {
+
     }
 
     /**
@@ -247,6 +253,8 @@ public class Anv extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDSNS = new javax.swing.JTable();
+        txtTK = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         txtNgaySinh.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -570,7 +578,7 @@ public class Anv extends javax.swing.JInternalFrame {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        tabs.addTab("tab1", jPanel1);
+        tabs.addTab("Nhân sự", jPanel1);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(51, 0, 204));
@@ -603,29 +611,44 @@ public class Anv extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tblDSNS);
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane2)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1125, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(252, 252, 252)
+                .addGap(60, 60, 60)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(464, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addComponent(txtTK, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addGap(17, 17, 17)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1))
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        tabs.addTab("tab2", jPanel2);
+        tabs.addTab("Danh Sách Nhân Sự", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -645,19 +668,13 @@ public class Anv extends javax.swing.JInternalFrame {
 
     private void btAnhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAnhActionPerformed
         JFileChooser chon = new JFileChooser();
-if(chon.showOpenDialog(this)==JFileChooser.APPROVE_OPTION){
-    File file = chon.getSelectedFile();
-    if(helper.Auth.saveLogo(file)){
-        lbAnh.setIcon(helper.Auth.readLogo(file.getName()));
-        lbAnh.setToolTipText(file.getName());
-    }
-}
-        //        chon.setFileFilter(new FileNameExtensionFilter("Nhận các đuôi JPG,PNG", "jpg","png"));
-//        int chonanh = chon.showOpenDialog(this);
-//        if (chonanh == JFileChooser.APPROVE_OPTION) {
-//            File file = chon.getSelectedFile();
-//            lbAnh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/" + file.getName())));
-//        }
+        if (chon.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File file = chon.getSelectedFile();
+            if (helper.Auth.saveLogo(file)) {
+                lbAnh.setIcon(helper.Auth.readLogo(file.getName()));
+                lbAnh.setToolTipText(file.getName());
+            }
+        }
     }//GEN-LAST:event_btAnhActionPerformed
 
     private void btUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateActionPerformed
@@ -678,6 +695,7 @@ if(chon.showOpenDialog(this)==JFileChooser.APPROVE_OPTION){
     private void btFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFirstActionPerformed
         index = 0;
         this.edit();
+        lbstt.setText(nvdao1.select().size() + " of " + nvdao1.select().size());
     }//GEN-LAST:event_btFirstActionPerformed
 
     private void btPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPrevActionPerformed
@@ -712,14 +730,19 @@ if(chon.showOpenDialog(this)==JFileChooser.APPROVE_OPTION){
     }//GEN-LAST:event_btDSNVActionPerformed
 
     private void tblDSNSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSNSMouseClicked
-                if(evt.getClickCount()==2){
-            this.index=tblDSNS.rowAtPoint(evt.getPoint());
-            if(this.index>=0){
+        if (evt.getClickCount() == 2) {
+            this.index = tblDSNS.rowAtPoint(evt.getPoint());
+            if (this.index >= 0) {
                 this.edit();
                 tabs.setSelectedIndex(0);
             }
         }
     }//GEN-LAST:event_tblDSNSMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.edit();
+        index++;
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -735,6 +758,7 @@ if(chon.showOpenDialog(this)==JFileChooser.APPROVE_OPTION){
     private javax.swing.JButton btUpdate;
     private javax.swing.JButton btXoa;
     private javax.swing.JComboBox<String> cbTTHN;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -769,6 +793,7 @@ if(chon.showOpenDialog(this)==JFileChooser.APPROVE_OPTION){
     private javax.swing.JTextField txtNoiSinh;
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtSDT1;
+    private javax.swing.JTextField txtTK;
     private javax.swing.JTextField txtTennv;
     // End of variables declaration//GEN-END:variables
 }

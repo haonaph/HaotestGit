@@ -3,11 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/OneDrive/Máy%20tính/New%20folder/New%20folder/HaotestGit/src/Form/Home.java</file>
-            <file>file:/E:/OneDrive/Máy%20tính/New%20folder/New%20folder/HaotestGit/src/Form/BangCong.java</file>
-            <file>file:/E:/OneDrive/Máy%20tính/New%20folder/New%20folder/HaotestGit/src/model/ChamCong.java</file>
-            <file>file:/E:/OneDrive/Máy%20tính/New%20folder/New%20folder/HaotestGit/src/Form/ChamCong.java</file>
-            <file>file:/E:/OneDrive/Máy%20tính/New%20folder/New%20folder/HaotestGit/src/model/ChiTietCong.java</file>
+            <file>file:/D:/TM-FPT_Mon/FALL2020/TestGit/HaotestGit/src/DAO/NhanVienDAO1.java</file>
+            <file>file:/D:/TM-FPT_Mon/FALL2020/TestGit/HaotestGit/src/Form/ChamCong.java</file>
+            <file>file:/D:/TM-FPT_Mon/FALL2020/TestGit/HaotestGit/src/model/NXV.java</file>
+            <file>file:/D:/TM-FPT_Mon/FALL2020/TestGit/HaotestGit/src/Form/Home.java</file>
+            <file>file:/D:/TM-FPT_Mon/FALL2020/TestGit/HaotestGit/src/Form/DANHSACHNHANSU.java</file>
+            <file>file:/D:/TM-FPT_Mon/FALL2020/TestGit/HaotestGit/src/DAO/DanhSachNhanSuDao.java</file>
+            <file>file:/D:/TM-FPT_Mon/FALL2020/TestGit/HaotestGit/src/helper/Auth.java</file>
+            <file>file:/D:/TM-FPT_Mon/FALL2020/TestGit/HaotestGit/src/Form/Anv.java</file>
         </group>
     </open-files>
 </project-private>
