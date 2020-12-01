@@ -53,14 +53,14 @@ public class Anv extends javax.swing.JInternalFrame {
                     dsns.getEmail(),
                     dsns.getSdt(),
                     dsns.getMaPB(),
-                    dsns.getTinhTrangHonNhan(),
+                    dsns.isTinhTrangHonNhan(),
                     dsns.getDiaChi(),
                     DateHelper.toString(dsns.getNgaySinh(), "dd/MM/yyyy"),
                     dsns.getNoiSinh(),
                     dsns.getCMND(),
                     dsns.getSdt1(),
                     dsns.isGioiTinh() ? "Nam" : "Nữ",
-                    dsns.getTrangThaiLamViec(),
+                    dsns.isTrangThaiLamViec(),
                     dsns.getAnh(),
                     dsns.getGhiChu()});
 
@@ -94,6 +94,8 @@ public class Anv extends javax.swing.JInternalFrame {
         model.setNoiSinh(txtNoiSinh.getText());
         model.setCMND(txtCMND.getText());
         model.setSdt1(txtSDT1.getText());
+        model.setTinhTrangHonNhan(Boolean.parseBoolean(cbTTHN.getSelectedIndex() + ""));
+        model.setTrangThaiLamViec(Boolean.parseBoolean(CBTTLV.getSelectedIndex() + ""));
         model.setGioiTinh(Boolean.valueOf(rdNam.getText()));
         model.setGhiChu(taGhichu.getText());
         model.setAnh(lbAnh.getToolTipText());
@@ -115,11 +117,11 @@ public class Anv extends javax.swing.JInternalFrame {
             rdNu.setSelected(true);
         }
         txtEmail.setText(na.getEmail());
-        cbTTHN.setSelectedItem(na.getTinhTrangHonNhan());
-        CBTTLV.setSelectedItem(na.getTrangThaiLamViec());
+        cbTTHN.setSelectedItem(na.isTinhTrangHonNhan() ? "Đã kết hôn" : "Chưa kết hôn");
+        CBTTLV.setSelectedItem(na.isTrangThaiLamViec() ? "Đang làm việc" : "Chưa làm việc");
         taGhichu.setText(na.getGhiChu());
         if (na.getAnh() != null) {
-            lbAnh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/" + na.getAnh())));
+            lbAnh.setIcon(helper.Auth.readLogo(na.getAnh()));
         }
     }
 
@@ -193,8 +195,64 @@ public class Anv extends javax.swing.JInternalFrame {
         }
     }
 
-    public void kiemtra() {
+    public boolean check() {
+        String manv = txtManv.getText();
+        for (NXV nxv : lstA) {
+            if (manv.equals(nxv.getMaNV())) {
+                MsgBox.alert(this, "Trùng mã.");
+                return false;
+            }
+        }
+        if (txtManv.getText().equalsIgnoreCase("")) {
+            MsgBox.alert(this, "Vui lòng nhập Mã Nhân Viên.");
+            return false;
+        }
+        if (txtTennv.getText().equalsIgnoreCase("")) {
+            MsgBox.alert(this, "Vui lòng nhập Họ tên.");
+            return false;
+        }
+        if (txtDiachi.getText().equalsIgnoreCase("")) {
+            MsgBox.alert(this, "Vui lòng nhập Địa chỉ.");
+            return false;
+        }
 
+        if (txtSDT.getText().equalsIgnoreCase("")) {
+            MsgBox.alert(this, "Vui lòng nhập SĐT.");
+            return false;
+        }
+        String sdt = "0\\d{9}";
+        if (!txtSDT.getText().matches(sdt)) {
+            MsgBox.alert(null, "Vui lòng nhập đúng định dạng SĐT(10số).");
+            return false;
+        }
+        if (txtNgaySinh.getText().equalsIgnoreCase("")) {
+            MsgBox.alert(this, "Vui lòng nhập Ngày sinh.");
+            return false;
+        }
+        if (txtNoiSinh.getText().equalsIgnoreCase("")) {
+            MsgBox.alert(this, "Vui lòng nhập Nơi sinh.");
+            return false;
+        }
+
+        if (txtCMND.getText().equalsIgnoreCase("")) {
+            MsgBox.alert(this, "Vui lòng nhập CMND.");
+            return false;
+        }
+
+        if (txtSDT1.getText().equalsIgnoreCase("")) {
+            MsgBox.alert(this, "Vui lòng nhập SĐT Khác.");
+            return false;
+        }
+        String Email = "\\w+@\\w+(\\.\\w+){1,2}";
+        if (!txtEmail.getText().matches(Email)) {
+            MsgBox.alert(null, "Vui lòng nhập đúng định dạng Email.");
+            return false;
+        }
+        if (taGhichu.getText().equalsIgnoreCase("")) {
+            MsgBox.alert(this, "Vui lòng nhập Ghi chú.");
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -255,6 +313,9 @@ public class Anv extends javax.swing.JInternalFrame {
         tblDSNS = new javax.swing.JTable();
         txtTK = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+
+        setClosable(true);
+        setIconifiable(true);
 
         txtNgaySinh.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -575,7 +636,7 @@ public class Anv extends javax.swing.JInternalFrame {
                         .addComponent(lbstt)
                         .addGap(18, 18, 18)
                         .addComponent(btDSNV, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tabs.addTab("Nhân sự", jPanel1);
@@ -608,10 +669,19 @@ public class Anv extends javax.swing.JInternalFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblDSNSMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tblDSNSMouseEntered(evt);
+            }
         });
         jScrollPane2.setViewportView(tblDSNS);
 
-        jButton1.setText("jButton1");
+        txtTK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTKActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Tìm kiếm Mã");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -644,7 +714,7 @@ public class Anv extends javax.swing.JInternalFrame {
                         .addComponent(jButton1))
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -678,7 +748,11 @@ public class Anv extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btAnhActionPerformed
 
     private void btUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateActionPerformed
-        this.updateA();
+        if (!check()) {
+            return;
+        } else {
+            this.updateA();
+        }
     }//GEN-LAST:event_btUpdateActionPerformed
 
     private void lbAnhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbAnhMouseClicked
@@ -695,26 +769,33 @@ public class Anv extends javax.swing.JInternalFrame {
     private void btFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFirstActionPerformed
         index = 0;
         this.edit();
-        lbstt.setText(nvdao1.select().size() + " of " + nvdao1.select().size());
+        lbstt.setText(nvdao1.select().size() + " / " + nvdao1.select().size());
     }//GEN-LAST:event_btFirstActionPerformed
 
     private void btPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPrevActionPerformed
         index--;
         this.edit();
+        lbstt.setText(nvdao1.select().size() - 1 + " / " + nvdao1.select().size());
     }//GEN-LAST:event_btPrevActionPerformed
 
     private void btNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNextActionPerformed
         index++;
         this.edit();
+        lbstt.setText(nvdao1.select().size() + " / " + nvdao1.select().size());
     }//GEN-LAST:event_btNextActionPerformed
 
     private void btLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLastActionPerformed
         index = lstA.size() - 1;
         this.edit();
+        lbstt.setText(nvdao1.select().size() + " / " + nvdao1.select().size());
     }//GEN-LAST:event_btLastActionPerformed
 
     private void btLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLuuActionPerformed
-        this.insertTTNV();
+        if (!check()) {
+            return;
+        } else {
+            this.insertTTNV();
+        }
     }//GEN-LAST:event_btLuuActionPerformed
 
     private void btClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClearActionPerformed
@@ -740,9 +821,28 @@ public class Anv extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblDSNSMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.edit();
-        index++;
+
+        int index;
+        for (index = 0; index < lstA.size(); index++) {
+            NXV sv = lstA.get(index);
+            if (sv.getMaNV().equalsIgnoreCase(txtTK.getText().trim())) {
+                MsgBox.alert(this, "Đã tìm thấy:");
+                tblDSNS.setRowSelectionInterval(index, index);
+            }
+            if (index == lstA.size()) {
+                MsgBox.alert(this, "Không tìm thấy.");
+                clear();
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tblDSNSMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSNSMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblDSNSMouseEntered
+
+    private void txtTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTKActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTKActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
